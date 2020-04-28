@@ -19,10 +19,28 @@ public abstract class Player {
     protected int skor = 0;
     protected int jumlahpeluru = 1;
     protected int gold = 0;
+    protected int xPlayer;
+    protected int yPlayer;
     protected String jenispesawat;
     protected String nama;
 
     public Player(String nama) {
         this.nama = nama;
+    }
+    
+    public void gerakAtas(){
+        this.yPlayer--;
+    }
+    
+    public void gerakBawah(){
+        this.yPlayer++;
+    }
+    
+    public void gerakKiri(){
+        this.xPlayer--;
+    }
+    
+    public void gerakKanan(){
+        this.xPlayer++;
     }
 }
