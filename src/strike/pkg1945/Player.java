@@ -28,19 +28,15 @@ public abstract class Player {
         this.nama = nama;
     }
     
-    public void gerakAtas(){
-        this.yPlayer--;
-    }
-    
-    public void gerakBawah(){
-        this.yPlayer++;
-    }
-    
-    public void gerakKiri(){
-        this.xPlayer--;
-    }
-    
-    public void gerakKanan(){
-        this.xPlayer++;
+    public void gerak(String x){
+        if (x.equalsIgnoreCase("w")) {
+            this.yPlayer--;
+        }else if (x.equalsIgnoreCase("a")) {
+            this.xPlayer--;
+        }else if (x.equalsIgnoreCase("s")) {
+            this.xPlayer++;
+        }else if (x.equalsIgnoreCase("d")) {
+            this.yPlayer++;
+        }
     }
 }
