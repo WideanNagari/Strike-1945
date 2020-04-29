@@ -16,7 +16,7 @@ public class Strike1945 {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        MainMenu main = new MainMenu();
+        About main = new About();
         main.pack();
         main.setLocationRelativeTo(null);
         main.setVisible(true);
