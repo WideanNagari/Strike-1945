@@ -5,6 +5,9 @@
  */
 package strike.pkg1945;
 
+import java.awt.event.WindowEvent;
+import javax.swing.JFrame;
+
 /**
  *
  * @author Widean Nagari
@@ -16,6 +19,7 @@ public class About extends javax.swing.JFrame {
      */
     public About() {
         initComponents();
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
     /**
@@ -71,6 +75,11 @@ public class About extends javax.swing.JFrame {
         jLabel9.setBounds(560, 770, 850, 120);
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/strike/pkg1945/Gambar/Back.png"))); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton1);
         jButton1.setBounds(890, 900, 200, 75);
 
@@ -91,6 +100,11 @@ public class About extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        this.dispatchEvent(new WindowEvent(this,WindowEvent.WINDOW_CLOSING));
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

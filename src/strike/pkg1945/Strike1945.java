@@ -16,7 +16,7 @@ public class Strike1945 {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        NewGame main = new NewGame();
+        MainMenu main = new MainMenu();
         main.pack();
         main.setLocationRelativeTo(null);
         main.setVisible(true);

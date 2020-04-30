@@ -23,7 +23,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jPanel1" alignment="0" pref="2100" max="32767" attributes="0"/>
+          <Component id="jPanel1" alignment="0" pref="1920" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -42,12 +42,12 @@
         <Component class="javax.swing.JLabel" name="jLabel3">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/strike/pkg1945/Gambar/Continue2.png"/>
+              <Image iconType="3" name="/strike/pkg1945/Gambar/Upgrade.png"/>
             </Property>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="760" y="80" width="420" height="120"/>
+              <AbsoluteConstraints x="790" y="80" width="380" height="120"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -69,7 +69,7 @@
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/strike/pkg1945/Gambar/Main Menu.jpg"/>
+              <Image iconType="3" name="/strike/pkg1945/Gambar/menu.jpg"/>
             </Property>
           </Properties>
           <Constraints>
