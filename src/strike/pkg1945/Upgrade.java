@@ -34,6 +34,26 @@ public class Upgrade extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jLabel11 = new javax.swing.JLabel();
+        Hp = new javax.swing.JLabel();
+        Attack = new javax.swing.JLabel();
+        Defend = new javax.swing.JLabel();
+        Bullet = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -53,6 +73,115 @@ public class Upgrade extends javax.swing.JFrame {
         jPanel1.add(jButton1);
         jButton1.setBounds(880, 800, 200, 75);
 
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/strike/pkg1945/Gambar/Attack.png"))); // NOI18N
+        jPanel1.add(jLabel4);
+        jLabel4.setBounds(210, 530, 120, 120);
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/strike/pkg1945/Gambar/Bullet.png"))); // NOI18N
+        jPanel1.add(jLabel5);
+        jLabel5.setBounds(1080, 520, 130, 130);
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/strike/pkg1945/Gambar/Defend.png"))); // NOI18N
+        jPanel1.add(jLabel6);
+        jLabel6.setBounds(1080, 310, 130, 130);
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/strike/pkg1945/Gambar/Hp.png"))); // NOI18N
+        jPanel1.add(jLabel2);
+        jLabel2.setBounds(210, 320, 120, 120);
+
+        jLabel7.setFont(new java.awt.Font("Comic Sans MS", 1, 36)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(240, 240, 240));
+        jLabel7.setText("+500 Hp");
+        jPanel1.add(jLabel7);
+        jLabel7.setBounds(350, 320, 180, 50);
+
+        jLabel8.setFont(new java.awt.Font("Comic Sans MS", 1, 36)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(240, 240, 240));
+        jLabel8.setText("+100 Attack Point");
+        jPanel1.add(jLabel8);
+        jLabel8.setBounds(350, 530, 330, 40);
+
+        jLabel10.setFont(new java.awt.Font("Comic Sans MS", 1, 36)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(240, 240, 240));
+        jLabel10.setText("+1 Bullet");
+        jPanel1.add(jLabel10);
+        jLabel10.setBounds(1230, 520, 170, 40);
+
+        jLabel9.setFont(new java.awt.Font("Comic Sans MS", 1, 36)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(240, 240, 240));
+        jLabel9.setText("+5 Defend Point");
+        jPanel1.add(jLabel9);
+        jLabel9.setBounds(1230, 310, 300, 51);
+
+        jButton2.setFont(new java.awt.Font("Comic Sans MS", 1, 24)); // NOI18N
+        jButton2.setText("250 Gold");
+        jPanel1.add(jButton2);
+        jButton2.setBounds(690, 530, 250, 50);
+
+        jButton3.setFont(new java.awt.Font("Comic Sans MS", 1, 24)); // NOI18N
+        jButton3.setText("500 Gold");
+        jPanel1.add(jButton3);
+        jButton3.setBounds(1530, 520, 250, 50);
+
+        jButton4.setFont(new java.awt.Font("Comic Sans MS", 1, 24)); // NOI18N
+        jButton4.setText("300 Gold");
+        jPanel1.add(jButton4);
+        jButton4.setBounds(1530, 310, 250, 50);
+
+        jButton5.setFont(new java.awt.Font("Comic Sans MS", 1, 24)); // NOI18N
+        jButton5.setText("350 Gold");
+        jPanel1.add(jButton5);
+        jButton5.setBounds(680, 320, 250, 50);
+
+        jLabel11.setFont(new java.awt.Font("Comic Sans MS", 1, 36)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(240, 240, 240));
+        jLabel11.setText("Hp     :");
+        jPanel1.add(jLabel11);
+        jLabel11.setBounds(370, 390, 150, 50);
+
+        Hp.setFont(new java.awt.Font("Comic Sans MS", 1, 36)); // NOI18N
+        Hp.setForeground(new java.awt.Color(240, 240, 240));
+        Hp.setText("1500/1500");
+        jPanel1.add(Hp);
+        Hp.setBounds(540, 390, 500, 50);
+
+        Attack.setFont(new java.awt.Font("Comic Sans MS", 1, 36)); // NOI18N
+        Attack.setForeground(new java.awt.Color(240, 240, 240));
+        Attack.setText("50");
+        jPanel1.add(Attack);
+        Attack.setBounds(540, 590, 500, 50);
+
+        Defend.setFont(new java.awt.Font("Comic Sans MS", 1, 36)); // NOI18N
+        Defend.setForeground(new java.awt.Color(240, 240, 240));
+        Defend.setText("10");
+        jPanel1.add(Defend);
+        Defend.setBounds(1470, 380, 200, 40);
+
+        Bullet.setFont(new java.awt.Font("Comic Sans MS", 1, 36)); // NOI18N
+        Bullet.setForeground(new java.awt.Color(240, 240, 240));
+        Bullet.setText("1/7");
+        jPanel1.add(Bullet);
+        Bullet.setBounds(1480, 580, 200, 50);
+
+        jLabel12.setFont(new java.awt.Font("Comic Sans MS", 1, 36)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(240, 240, 240));
+        jLabel12.setText("Defend :");
+        jPanel1.add(jLabel12);
+        jLabel12.setBounds(1290, 380, 160, 40);
+
+        jLabel13.setFont(new java.awt.Font("Comic Sans MS", 1, 36)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(240, 240, 240));
+        jLabel13.setText("Bullet   :");
+        jPanel1.add(jLabel13);
+        jLabel13.setBounds(1290, 580, 170, 50);
+
+        jLabel14.setFont(new java.awt.Font("Comic Sans MS", 1, 36)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(240, 240, 240));
+        jLabel14.setText("Attack :");
+        jPanel1.add(jLabel14);
+        jLabel14.setBounds(370, 590, 150, 50);
+
+        jLabel1.setForeground(new java.awt.Color(240, 240, 240));
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/strike/pkg1945/Gambar/menu.jpg"))); // NOI18N
         jPanel1.add(jLabel1);
         jLabel1.setBounds(0, 0, 2100, 1000);
@@ -112,9 +241,29 @@ public class Upgrade extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Attack;
+    private javax.swing.JLabel Bullet;
+    private javax.swing.JLabel Defend;
+    private javax.swing.JLabel Hp;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
