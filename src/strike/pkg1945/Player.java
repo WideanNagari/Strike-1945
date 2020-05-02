@@ -5,11 +5,19 @@
  */
 package strike.pkg1945;
 
+import java.awt.image.*;
+
 /**
  *
  * @author TUF
  */
 public abstract class Player {
+    BufferedImage gambarAnimasi[];
+    BufferedImage gambar;
+    protected int x,y,width,height,speed;
+    protected int cooldown = 0;
+    protected int animasi;
+    protected int durasimati;
     protected int attack = 50;
     protected int defend = 10;
     protected int level = 1;
@@ -28,15 +36,45 @@ public abstract class Player {
         this.nama = nama;
     }
     
-    public void gerak(String x){
-        if (x.equalsIgnoreCase("w")) {
-            this.yPlayer--;
-        }else if (x.equalsIgnoreCase("a")) {
-            this.xPlayer--;
-        }else if (x.equalsIgnoreCase("s")) {
-            this.xPlayer++;
-        }else if (x.equalsIgnoreCase("d")) {
-            this.yPlayer++;
+    public void gantiAnimasi(){
+        if(this.hp <= 0){
+            this.animasi = 2;
+        }else{
+            if(this.animasi ==0){
+                this.animasi = 1;
+            }else{
+                this.animasi = 0;
+            }
+        }
+        this.gambar = gambarAnimasi[this.animasi];
+    }
+    
+    public void gerak(int arah) {
+        if(arah == 0){
+            //atas
+            this.y -= this.speed;
+        }if(arah == 1){
+            //kanan
+            this.x += this.speed;
+        }if(arah == 2){
+            //bawah
+            this.y += this.speed;
+        }if(arah == 3){
+            //kiri
+            this.x -= this.speed;
+        }
+    }
+
+    public void mati() {
+        this.hp = 0;
+        this.animasi = 2;
+        this.gambar = this.gambarAnimasi[this.animasi];
+    }
+    
+    public void ketabrak(){
+        this.hp--;
+        if(this.hp <= 0){
+            this.mati();
         }
     }
 }
