@@ -23,8 +23,7 @@ public class Shop extends javax.swing.JFrame {
     /**
      * Creates new form Shop
      */
-    itemShop i;
-    Player p;
+    
     public Shop() {
         initComponents();
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -181,21 +180,11 @@ public class Shop extends javax.swing.JFrame {
 
         jButton2.setFont(new java.awt.Font("Comic Sans MS", 1, 24)); // NOI18N
         jButton2.setText("2500 Gold");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
         jPanel1.add(jButton2);
         jButton2.setBounds(1610, 420, 160, 50);
 
         jButton3.setFont(new java.awt.Font("Comic Sans MS", 1, 24)); // NOI18N
         jButton3.setText("1000 Gold");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
         jPanel1.add(jButton3);
         jButton3.setBounds(1600, 200, 160, 50);
 
@@ -211,21 +200,11 @@ public class Shop extends javax.swing.JFrame {
 
         jButton5.setFont(new java.awt.Font("Comic Sans MS", 1, 24)); // NOI18N
         jButton5.setText("700 Gold");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
-            }
-        });
         jPanel1.add(jButton5);
         jButton5.setBounds(740, 420, 160, 50);
 
         jButton6.setFont(new java.awt.Font("Comic Sans MS", 1, 24)); // NOI18N
         jButton6.setText("500 Gold");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
-            }
-        });
         jPanel1.add(jButton6);
         jButton6.setBounds(740, 600, 160, 50);
 
@@ -325,30 +304,9 @@ public class Shop extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        p.gold=p.gold-i.getHargaEaglePotion();
-        p.jumEaglePotion+=i.getJumEaglePotion();
+        // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        p.gold=p.gold-i.getHargaShieldofCrystalBarrier();
-        p.jumShieldofCrystal+=i.getJumShieldofCrystal();
-    }//GEN-LAST:event_jButton5ActionPerformed
-
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-       p.gold=p.gold-i.getHargaMassiveSalve();
-       p.jumMassiveSalve+=i.getJumMassiveSalve();
-    }//GEN-LAST:event_jButton6ActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        p.gold=p.gold-i.getHargaSackofGold();
-        p.jumSackofGold+=i.getJumSackofGold();
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        p.gold=p.gold-i.getHargaAngelBox();
-        p.jumAngleBox+=i.getJumAngleBox();
-    }//GEN-LAST:event_jButton2ActionPerformed
-    
     /**
      * @param args the command line arguments
      */
