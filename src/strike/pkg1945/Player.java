@@ -41,6 +41,56 @@ public abstract class Player {
     public Player(String nama) {
         this.nama = nama;
     }
+
+    public int getGold() {
+        return gold;
+    }
+
+    public void setGold(int gold) {
+        this.gold = gold;
+    }
+
+    public int getJumEaglePotion() {
+        return jumEaglePotion;
+    }
+
+    public void setJumEaglePotion(int jumEaglePotion) {
+        this.jumEaglePotion = jumEaglePotion;
+    }
+
+    public int getJumShieldofCrystal() {
+        return jumShieldofCrystal;
+    }
+
+    public void setJumShieldofCrystal(int jumShieldofCrystal) {
+        this.jumShieldofCrystal = jumShieldofCrystal;
+    }
+
+    public int getJumMassiveSalve() {
+        return jumMassiveSalve;
+    }
+
+    public void setJumMassiveSalve(int jumMassiveSalve) {
+        this.jumMassiveSalve = jumMassiveSalve;
+    }
+
+    public int getJumSackofGold() {
+        return jumSackofGold;
+    }
+
+    public void setJumSackofGold(int jumSackofGold) {
+        this.jumSackofGold = jumSackofGold;
+    }
+
+    public int getJumAngleBox() {
+        return jumAngleBox;
+    }
+
+    public void setJumAngleBox(int jumAngleBox) {
+        this.jumAngleBox = jumAngleBox;
+    }
+    
+    
     
     public void gantiAnimasi(){
         if(this.hp <= 0){
