@@ -31,6 +31,12 @@ public abstract class Player {
     protected int yPlayer;
     protected String jenispesawat;
     protected String nama;
+    protected int jumEaglePotion=0;
+    protected int jumShieldofCrystal=0;
+    protected int jumMassiveSalve=0;
+    protected int jumSackofGold=0;
+    protected int jumAngleBox=0;
+    
 
     public Player(String nama) {
         this.nama = nama;
