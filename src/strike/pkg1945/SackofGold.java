@@ -11,28 +11,23 @@ package strike.pkg1945;
  */
 public class SackofGold {
     private int harga;
-    private int jumItem;
+    
 
     public SackofGold() {
         this.harga = 500;
-        this.jumItem = 1;
+       
     }
 
     public int getHargaSackofGold() {
         return harga;
     }
 
-    public int getJumSackofGold() {
-        return jumItem;
-    }
+   
 
     public int getHarga() {
         return harga;
     }
 
-    public int getJumItem() {
-        return jumItem;
-    }
     
     
 }

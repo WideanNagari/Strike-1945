@@ -331,27 +331,27 @@ public class Shop extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         p.setGold(p.getGold()-e.getHarga());
-        p.setJumEaglePotion(p.getJumEaglePotion()+e.getJumItem());
+        p.setJumEaglePotion(p.getJumEaglePotion()+1);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         p.setGold(p.getGold()-sc.getHarga());
-        p.setJumShieldofCrystal(p.getJumShieldofCrystal()+sc.getJumItem());
+        p.setJumShieldofCrystal(p.getJumShieldofCrystal()+1);
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
        p.setGold(p.getGold()-m.getHarga());
-        p.setJumMassiveSalve(p.getJumMassiveSalve()+m.getJumItem());
+        p.setJumMassiveSalve(p.getJumMassiveSalve()+1);
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         p.setGold(p.getGold()-sg.getHarga());
-        p.setJumSackofGold(p.getJumSackofGold()+sg.getJumItem());
+        p.setJumSackofGold(p.getJumSackofGold()+1);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
        p.setGold(p.getGold()-a.getHarga());
-       p.setJumAngleBox(p.getJumAngleBox()+a.getJumItem());
+       p.setJumAngleBox(p.getJumAngleBox()+1);
     }//GEN-LAST:event_jButton2ActionPerformed
     
     /**

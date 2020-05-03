@@ -11,27 +11,23 @@ package strike.pkg1945;
  */
 public class ShieldofCrystalBarrier {
       private int harga;
-    private int jumItem;
+  
     public ShieldofCrystalBarrier() {
         this.harga = 700;
-        this.jumItem = 1;
+       
     }
 
     public int getHargaShieldofCrystalBarrier() {
         return harga;
     }
 
-    public int getJumShieldofCrystalBarrier() {
-        return jumItem;
-    }
+    
 
     public int getHarga() {
         return harga;
     }
 
-    public int getJumItem() {
-        return jumItem;
-    }
+   
      
      
 }

@@ -11,20 +11,16 @@ package strike.pkg1945;
  */
 public class EaglePotion {
     private int harga;
-    private int jumItem;
+  
 
     public EaglePotion() {
         this.harga = 1200;
-        this.jumItem = 1;
+       
     }
-
     public int getHarga() {
         return harga;
     }
 
-    public int getJumItem() {
-        return jumItem;
-    }
-    
+
     
 }
