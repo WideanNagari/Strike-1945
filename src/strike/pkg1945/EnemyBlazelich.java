@@ -41,9 +41,9 @@ public class EnemyBlazelich extends Enemy{
             if(animasi<3){
                 this.animasi++;
             }else{
-                animasi=0;
+                this.animasi=0;
             }
         }
-        this.gambar2=gambarKnalpot[animasi];
+        this.gambar2=this.gambarKnalpot[this.animasi];
     }
 }

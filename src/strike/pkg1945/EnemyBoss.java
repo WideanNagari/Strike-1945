@@ -42,9 +42,9 @@ public class EnemyBoss extends Enemy{
             if(animasi<3){
                 this.animasi++;
             }else{
-                animasi=0;
+                this.animasi=0;
             }
         }
-        this.gambar=gambarAnimasi[animasi];
+        this.gambar=this.gambarAnimasi[this.animasi];
     }
 }

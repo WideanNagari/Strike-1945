@@ -19,14 +19,13 @@ public class PesawatLockheed extends Player{
     public PesawatLockheed(String nama, int x, int y) {
         super(nama);
         this.jenispesawat = "Lockheed Martin F-35";
-        gambarAnimasi = new BufferedImage[2];
         gambarKnalpot = new BufferedImage[4];
         try{
-            gambarAnimasi[0] = ImageIO.read(new File("./src/strike/pkg1945/Gambar/Pesawat 1.png"));
-            gambarKnalpot[0] = ImageIO.read(new File("./Player/lockheed/lhapi1.png"));
-            gambarKnalpot[1] = ImageIO.read(new File("./Player/lockheed/lhapi2.png"));
-            gambarKnalpot[2] = ImageIO.read(new File("./Player/lockheed/lhapi3.png"));
-            gambarKnalpot[3] = ImageIO.read(new File("./Player/lockheed/lhapi4.png"));
+            this.gambar = ImageIO.read(new File("./src/strike/pkg1945/Gambar/Pesawat 1.png"));
+            this.gambarKnalpot[0] = ImageIO.read(new File("./Player/lockheed/lhapi1.png"));
+            this.gambarKnalpot[1] = ImageIO.read(new File("./Player/lockheed/lhapi2.png"));
+            this.gambarKnalpot[2] = ImageIO.read(new File("./Player/lockheed/lhapi3.png"));
+            this.gambarKnalpot[3] = ImageIO.read(new File("./Player/lockheed/lhapi4.png"));
         }catch(IOException ex){
             ex.printStackTrace();
         }
@@ -37,6 +36,6 @@ public class PesawatLockheed extends Player{
         this.speed = 10;
         this.durasimati = 30;
         this.animasi = 0;
-        this.gambar = gambarAnimasi[animasi];
+        this.gambar2 = gambarKnalpot[animasi];
     }
 }

@@ -12,9 +12,9 @@ import java.awt.image.*;
  * @author TUF
  */
 public abstract class Player {
-    BufferedImage gambarAnimasi[];
     BufferedImage gambarKnalpot[];
     BufferedImage gambar;
+    BufferedImage gambar2;
     protected int x,y,width,height,speed;
     protected int cooldown = 0;
     protected int animasi;
@@ -97,16 +97,16 @@ public abstract class Player {
     }
     
     public void gantiAnimasi(){
-        if(this.hp <= 0){
-            this.animasi = 2;
+        if (this.hp <= 0) {
+//            this.animasi =
         }else{
-            if(this.animasi ==0){
-                this.animasi = 1;
+            if(animasi<3){
+                this.animasi++;
             }else{
-                this.animasi = 0;
+                this.animasi=0;
             }
         }
-        this.gambar = gambarAnimasi[this.animasi];
+        this.gambar2=this.gambarKnalpot[this.animasi];
     }
     
     public void gerak(int arah) {
@@ -128,7 +128,7 @@ public abstract class Player {
     public void mati() {
         this.hp = 0;
         this.animasi = 2;
-        this.gambar = this.gambarAnimasi[this.animasi];
+//        this.gambar = ;
     }
     
     public void ketabrak(){

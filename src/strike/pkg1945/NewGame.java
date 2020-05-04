@@ -256,7 +256,7 @@ public class NewGame extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        p.add(new PesawatNorthtrop(nama.getText()));
+        p.add(new PesawatNorthtrop(nama.getText(),1,1));
         GameFrame frame = new GameFrame(this);
         frame.pack();
         frame.setLocationRelativeTo(null);
@@ -266,7 +266,7 @@ public class NewGame extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        p.add(new PesawatThunderbold(nama.getText()));
+        p.add(new PesawatThunderbold(nama.getText(),1,1));
         GameFrame frame = new GameFrame(this);
         frame.pack();
         frame.setLocationRelativeTo(null);
