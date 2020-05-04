@@ -19,7 +19,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.Timer;
-
 /**
  *
  * @author Widean Nagari
@@ -40,6 +39,7 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
     boolean playing = false;
     public MainPanel(GameFrame main) {
         initComponents();
+        daftarmusuh = new ArrayList();
         this.main = main;
         this.addKeyListener(this);
         this.addMouseListener(this);
@@ -49,7 +49,6 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
         }catch(IOException ex){
             ex.printStackTrace();
         }
-        
         Tnormal = new Timer(1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -71,8 +70,17 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
 //                        main.updateStatus(waktu, p.skor, p.nyawa);
 //                        p.gantiAnimasi();
                         int rand = (int)(Math.random()*5);
-                        if (rand == 1) {
-//                            daftarmusuh.add();
+                        int randy = (int)(Math.random()*750);
+                        if (rand == 0) {
+                            daftarmusuh.add(new EnemyAshpest(1700,randy));
+                        }else if (rand == 1) {
+                            daftarmusuh.add(new EnemyBlademorph(1700, randy));
+                        }else if (rand == 2) {
+                            daftarmusuh.add(new EnemyBlazelich(1700, randy));
+                        }else if (rand == 3) {
+                            daftarmusuh.add(new EnemyBlazewing(1700, randy));
+                        }else if (rand == 4) {
+                            daftarmusuh.add(new EnemyGlowstarKing(1700, randy));
                         }
                         for (Enemy musuh : daftarmusuh) {
                             musuh.gantiAnimasi();
@@ -91,7 +99,7 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
         g2.drawImage(background, 0, 0, 1920,900,this);
         
         for (Enemy musuh : daftarmusuh) {
-            g2.drawImage(musuh.gambar, musuh.x, musuh.y, musuh.width,musuh.height,this);
+            g2.drawImage(musuh.getGambar(), musuh.getX(), musuh.getY(), musuh.getWidth(),musuh.getHeight(),this);
         }
     }
     /**

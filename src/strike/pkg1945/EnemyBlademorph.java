@@ -5,6 +5,7 @@
  */
 package strike.pkg1945;
 
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
@@ -15,10 +16,11 @@ import javax.imageio.ImageIO;
  */
 public class EnemyBlademorph extends Enemy{
     
-    public EnemyBlademorph(int x, int y, int width, int height, int speed) {
-        super(x, y, width, height, speed);
+    public EnemyBlademorph(int x, int y) {
+        super(x, y);
+        gambarKnalpot = new BufferedImage[4];
         try{
-            this.gambar= ImageIO.read(new File("./src/strike/pkg1945/Gambar/EnemyBlademorph.png"));
+            this.gambar=ImageIO.read(new File("./src/strike/pkg1945/Gambar/EnemyBlademorph.png"));
             this.gambarKnalpot[0]=ImageIO.read(new File("./Enemy/Enemy3/Exhaust1/exhaust1.png"));
             this.gambarKnalpot[1]=ImageIO.read(new File("./Enemy/Enemy3/Exhaust1/exhaust2.png"));
             this.gambarKnalpot[2]=ImageIO.read(new File("./Enemy/Enemy3/Exhaust1/exhaust3.png"));

@@ -19,8 +19,9 @@ public class EnemyBoss extends Enemy{
     BufferedImage[] gambarAnimasi;
     Random r= new Random();
     
-    public EnemyBoss(int hpPlayer, int x, int y, int width, int height, int speed){
-        super(x, y, width, height, speed);
+    public EnemyBoss(int hpPlayer, int x, int y){
+        super(x, y);
+        gambarAnimasi = new BufferedImage[4];
         try{
             this.gambarAnimasi[0]= ImageIO.read(new File("./src/strike/pkg1945/Gambar/EnemyBoss1.png"));
             this.gambarAnimasi[1]= ImageIO.read(new File("./src/strike/pkg1945/Gambar/EnemyBoss2.png"));

@@ -5,6 +5,7 @@
  */
 package strike.pkg1945;
 
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
@@ -14,9 +15,9 @@ import javax.imageio.ImageIO;
  * @author Asus
  */
 public class EnemyAshpest extends Enemy{
-    
-    public EnemyAshpest(int x, int y, int width, int height, int speed) {
-        super(x, y, width, height, speed);
+    public EnemyAshpest(int x, int y) {
+        super(x, y);
+        gambarKnalpot = new BufferedImage[4];
         try{
             this.gambar= ImageIO.read(new File("./src/strike/pkg1945/Gambar/EnemyAshpest.png"));
             this.gambarKnalpot[0]=ImageIO.read(new File("./Enemy/Enemy4/Exhaust1/exhaust1.png"));

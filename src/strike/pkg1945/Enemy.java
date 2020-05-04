@@ -21,93 +21,54 @@ public abstract class Enemy {
     protected int gold;
     protected int score;
     protected int animasi;
-    public Enemy(int x, int y, int width, int height, int speed) {
+    public Enemy(int x, int y) {
         this.x = x;
         this.y = y;
-        this.width = width;
-        this.height = height;
-        this.speed = speed;       
+        this.width = 200;
+        this.height = 160;
+        this.speed = 1;       
     }    
+
+    public BufferedImage getGambar() {
+        return gambar;
+    }
     
     public int getX() {
         return x;
-    }
-
-    public void setX(int x) {
-        this.x = x;
     }
 
     public int getY() {
         return y;
     }
 
-    public void setY(int y) {
-        this.y = y;
-    }
-
     public int getWidth() {
         return width;
-    }
-
-    public void setWidth(int width) {
-        this.width = width;
     }
 
     public int getHeight() {
         return height;
     }
 
-    public void setHeight(int height) {
-        this.height = height;
-    }
-
     public int getSpeed() {
         return speed;
-    }
-
-    public void setSpeed(int speed) {
-        this.speed = speed;
     }
 
     public int getHp() {
         return hp;
     }
 
-    public void setHp(int hp) {
-        this.hp = hp;
-    }
-
     public int getDamage() {
         return damage;
-    }
-
-    public void setDamage(int damage) {
-        this.damage = damage;
     }
 
     public int getGold() {
         return gold;
     }
 
-    public void setGold(int gold) {
-        this.gold = gold;
-    }
-
     public int getScore() {
         return score;
     }
 
-    public void setScore(int score) {
-        this.score = score;
-    }
-
-    public int getAnimasi() {
-        return animasi;
-    }
-
-    public void setAnimasi(int animasi) {
-        this.animasi = animasi;
-    }
     public void gerak(){
         this.x-=this.speed;
     }
