@@ -16,17 +16,22 @@ import javax.imageio.ImageIO;
  */
 public class PesawatNorthtrop extends Player{
     
-    public PesawatNorthtrop(String nama) {
+    public PesawatNorthtrop(String nama, int x, int y) {
         super(nama);
         this.jenispesawat = "Northtrop F-5";
         gambarAnimasi = new BufferedImage[2];
+        gambarKnalpot = new BufferedImage[4];
         try{
             gambarAnimasi[0] = ImageIO.read(new File("./src/strike/pkg1945/Gambar/Pesawat 2.png"));
+            gambarKnalpot[0] = ImageIO.read(new File("./Player/northtrop/ntapi1.png"));
+            gambarKnalpot[1] = ImageIO.read(new File("./Player/northtrop/ntapi2.png"));
+            gambarKnalpot[2] = ImageIO.read(new File("./Player/northtrop/ntapi3.png"));
+            gambarKnalpot[3] = ImageIO.read(new File("./Player/northtrop/ntapi4.png"));
         }catch(IOException ex){
             ex.printStackTrace();
         }
-        this.x=x;
-        this.y=y;
+        this.x = x;
+        this.y = y;
         this.width = 64;
         this.height = 32;
         this.speed = 15;

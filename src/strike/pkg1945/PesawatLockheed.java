@@ -20,13 +20,18 @@ public class PesawatLockheed extends Player{
         super(nama);
         this.jenispesawat = "Lockheed Martin F-35";
         gambarAnimasi = new BufferedImage[2];
+        gambarKnalpot = new BufferedImage[4];
         try{
             gambarAnimasi[0] = ImageIO.read(new File("./src/strike/pkg1945/Gambar/Pesawat 1.png"));
+            gambarKnalpot[0] = ImageIO.read(new File("./Player/lockheed/lhapi1.png"));
+            gambarKnalpot[1] = ImageIO.read(new File("./Player/lockheed/lhapi2.png"));
+            gambarKnalpot[2] = ImageIO.read(new File("./Player/lockheed/lhapi3.png"));
+            gambarKnalpot[3] = ImageIO.read(new File("./Player/lockheed/lhapi4.png"));
         }catch(IOException ex){
             ex.printStackTrace();
         }
-        this.x=x;
-        this.y=y;
+        this.x = x;
+        this.y = y;
         this.width = 64;
         this.height = 32;
         this.speed = 10;

@@ -13,10 +13,12 @@ import java.awt.image.*;
  */
 public abstract class Player {
     BufferedImage gambarAnimasi[];
+    BufferedImage gambarKnalpot[];
     BufferedImage gambar;
     protected int x,y,width,height,speed;
     protected int cooldown = 0;
     protected int animasi;
+    protected int animasiknalpot;
     protected int durasimati;
     protected int attack = 50;
     protected int defend = 10;
@@ -93,8 +95,6 @@ public abstract class Player {
     public void setJumAngleBox(int jumAngleBox) {
         this.jumAngleBox = jumAngleBox;
     }
-    
-    
     
     public void gantiAnimasi(){
         if(this.hp <= 0){
