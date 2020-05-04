@@ -13,6 +13,7 @@ import java.awt.image.BufferedImage;
  */
 public abstract class Enemy {   
     BufferedImage gambar;
+    BufferedImage[] gambarKnalpot;
     protected int x,y,width,height,speed;
     protected int hp;
     protected int damage;

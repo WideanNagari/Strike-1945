@@ -19,6 +19,10 @@ public class EnemyGlowstarKing extends Enemy{
         super(x, y, width, height, speed);
         try{
             this.gambar= ImageIO.read(new File("./src/strike/pkg1945/Gambar/EnemyGlowstarKing.png"));
+            this.gambarKnalpot[0]=ImageIO.read(new File("./Enemy/Enemy2/Exhaust1/exhaust1.png"));
+            this.gambarKnalpot[1]=ImageIO.read(new File("./Enemy/Enemy2/Exhaust1/exhaust2.png"));
+            this.gambarKnalpot[2]=ImageIO.read(new File("./Enemy/Enemy2/Exhaust1/exhaust3.png"));
+            this.gambarKnalpot[3]=ImageIO.read(new File("./Enemy/Enemy2/Exhaust1/exhaust4.png")); 
             
         }catch(IOException ex){
             ex.printStackTrace();
