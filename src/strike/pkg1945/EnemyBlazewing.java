@@ -27,10 +27,24 @@ public class EnemyBlazewing extends Enemy{
         }catch(IOException ex){
             ex.printStackTrace();
         }
+        this.gambar2 = gambarKnalpot[0];
+        this.animasi = 0;
         this.hp=300;
         this.damage=150;
         this.gold=150;
         this.score=5;
     }
-    
+    @Override
+    public void gantiAnimasi(){
+        if (this.hp <= 0) {
+//            this.animasi =
+        }else{
+            if(animasi<3){
+                this.animasi++;
+            }else{
+                animasi=0;
+            }
+        }
+        this.gambar2=gambarKnalpot[animasi];
+    }
 }

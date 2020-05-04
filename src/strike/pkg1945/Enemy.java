@@ -13,6 +13,7 @@ import java.awt.image.BufferedImage;
  */
 public abstract class Enemy {   
     BufferedImage gambar;
+    BufferedImage gambar2;
     BufferedImage[] gambarKnalpot;
     protected int x,y,width,height,speed;
     protected int hp;
@@ -20,7 +21,6 @@ public abstract class Enemy {
     protected int gold;
     protected int score;
     protected int animasi;
-
     public Enemy(int x, int y, int width, int height, int speed) {
         this.x = x;
         this.y = y;
@@ -124,5 +124,5 @@ public abstract class Enemy {
             this.mati();
         }
     }
-    
+    public abstract void gantiAnimasi();
 }

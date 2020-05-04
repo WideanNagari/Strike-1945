@@ -26,10 +26,24 @@ public class EnemyBlazelich extends Enemy{
         }catch(IOException ex){
             ex.printStackTrace();
         }
+        this.gambar2 = gambarKnalpot[0];
+        this.animasi = 0;
         this.hp=150;
         this.damage=50;
         this.gold=50;
         this.score=1;
     }
-    
+    @Override
+    public void gantiAnimasi(){
+        if (this.hp <= 0) {
+//            this.animasi =
+        }else{
+            if(animasi<3){
+                this.animasi++;
+            }else{
+                animasi=0;
+            }
+        }
+        this.gambar2=gambarKnalpot[animasi];
+    }
 }

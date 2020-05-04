@@ -46,6 +46,10 @@ public abstract class Player {
         return gold;
     }
 
+    public String getNama() {
+        return nama;
+    }
+
     public void setGold(int gold) {
         this.gold = gold;
     }

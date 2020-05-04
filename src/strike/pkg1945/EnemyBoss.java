@@ -15,16 +15,12 @@ import javax.imageio.ImageIO;
  *
  * @author Asus
  */
-public class EnemyBoss {
-    BufferedImage gambar;
+public class EnemyBoss extends Enemy{
     BufferedImage[] gambarAnimasi;
     Random r= new Random();
-    protected int x,y,width,height,speed;
-    protected int hp;
-    protected int attack;
-    protected int ctrGantiAnimasi=0;
     
-    public EnemyBoss(int hpPlayer){
+    public EnemyBoss(int hpPlayer, int x, int y, int width, int height, int speed){
+        super(x, y, width, height, speed);
         try{
             this.gambarAnimasi[0]= ImageIO.read(new File("./src/strike/pkg1945/Gambar/EnemyBoss1.png"));
             this.gambarAnimasi[1]= ImageIO.read(new File("./src/strike/pkg1945/Gambar/EnemyBoss2.png"));
@@ -33,18 +29,22 @@ public class EnemyBoss {
         }catch(IOException ex){
             ex.printStackTrace();
         }
-        this.gambar=gantiAnimasi(gambar);
+        this.animasi = 0;
+        this.gambar=gambarAnimasi[animasi];
         this.hp=hpPlayer*3;
-        this.attack= r.nextInt(90)+10;
+        this.damage= r.nextInt(90)+10;
     }
-    public BufferedImage gantiAnimasi(BufferedImage gambar){
-        if(ctrGantiAnimasi<3){
-            gambar=gambarAnimasi[ctrGantiAnimasi];
-            ctrGantiAnimasi++;
+    @Override
+    public void gantiAnimasi(){
+        if (this.hp <= 0) {
+//            this.animasi =
         }else{
-            ctrGantiAnimasi=0;
-            gambar=gambarAnimasi[0];
+            if(animasi<3){
+                this.animasi++;
+            }else{
+                animasi=0;
+            }
         }
-        return gambar;
+        this.gambar=gambarAnimasi[animasi];
     }
 }

@@ -7,6 +7,8 @@ package strike.pkg1945;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
@@ -14,7 +16,9 @@ import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.imageio.ImageIO;
+import javax.swing.Timer;
 
 /**
  *
@@ -25,24 +29,70 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
     /**
      * Creates new form MainPanel
      */
+    ArrayList<Enemy> daftarmusuh;
+//    ArrayList<Peluru> daftarpeluru;
+    GameFrame main;
     BufferedImage background; 
     BufferedImage background2; 
-    public MainPanel() {
+    Timer Tnormal;
+    Timer Tplay;
+    int count = 3,waktu;
+    boolean playing = false;
+    public MainPanel(GameFrame main) {
         initComponents();
-        
+        this.main = main;
+        this.addKeyListener(this);
+        this.addMouseListener(this);
         try{
             this.background = ImageIO.read(new File("./Background/common.jpg"));
             this.background2 = ImageIO.read(new File("./Background/boss.jpg"));
         }catch(IOException ex){
             ex.printStackTrace();
         }
+        
+        Tnormal = new Timer(1000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (count>=0) {
+                    jLabel1.setVisible(true);
+                    if (count == 0) {
+                        jLabel1.setText("GO!!!!!");
+//                        Tplay.start();
+                    }else{
+                        jLabel1.setText(count+"");
+                    }
+                    count--;
+                }else{
+                    if (playing==false) {
+                        jLabel1.setVisible(false);
+                        playing = true;
+                    }else{
+                        waktu++;
+//                        main.updateStatus(waktu, p.skor, p.nyawa);
+//                        p.gantiAnimasi();
+                        int rand = (int)(Math.random()*5);
+                        if (rand == 1) {
+//                            daftarmusuh.add();
+                        }
+                        for (Enemy musuh : daftarmusuh) {
+                            musuh.gantiAnimasi();
+                        }
+                        repaint();
+                    }
+                }
+            }
+        });
     }
-@Override
+    @Override
     protected void paintComponent(Graphics g){
         super.paintComponent(g);
         Graphics g2 = (Graphics2D) g;
         
         g2.drawImage(background, 0, 0, 1920,900,this);
+        
+        for (Enemy musuh : daftarmusuh) {
+            g2.drawImage(musuh.gambar, musuh.x, musuh.y, musuh.width,musuh.height,this);
+        }
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -53,61 +103,75 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+
         setBackground(new java.awt.Color(0, 0, 0));
+
+        jLabel1.setBackground(new java.awt.Color(240, 0, 0));
+        jLabel1.setFont(new java.awt.Font("Comic Sans MS", 1, 48)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(240, 240, 240));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Press PLAY to play!");
+        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jLabel1.setOpaque(true);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1920, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1920, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 850, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(411, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(372, 372, 372))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     @Override
     public void keyTyped(KeyEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println("type");
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println("press");
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println("release");
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println("click");
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println("pressmouse");
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println("release mouse");
     }
 
     @Override
     public void mouseEntered(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println("entered");
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println("exited");
     }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

@@ -27,11 +27,24 @@ public class EnemyGlowstarKing extends Enemy{
         }catch(IOException ex){
             ex.printStackTrace();
         }
+        this.gambar2 = gambarKnalpot[0];
+        this.animasi = 0;
         this.hp=200;
         this.damage=80;
         this.gold=75;
         this.score=2;
     }
-    
-    
+    @Override
+    public void gantiAnimasi(){
+        if (this.hp <= 0) {
+//            this.animasi =
+        }else{
+            if(animasi<3){
+                this.animasi++;
+            }else{
+                animasi=0;
+            }
+        }
+        this.gambar2=gambarKnalpot[animasi];
+    }
 }

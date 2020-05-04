@@ -6,6 +6,7 @@
 package strike.pkg1945;
 
 import java.awt.event.WindowEvent;
+import java.util.ArrayList;
 import javax.swing.JFrame;
 
 /**
@@ -17,8 +18,11 @@ public class NewGame extends javax.swing.JFrame {
     /**
      * Creates new form NewGame
      */
+    ArrayList<Player> p;
+    
     public NewGame() {
         initComponents();
+        p = new ArrayList();
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
@@ -35,7 +39,7 @@ public class NewGame extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        nama = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -80,14 +84,14 @@ public class NewGame extends javax.swing.JFrame {
         jPanel1.add(jLabel2);
         jLabel2.setBounds(650, 250, 190, 100);
 
-        jTextField1.setFont(new java.awt.Font("Comic Sans MS", 1, 36)); // NOI18N
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        nama.setFont(new java.awt.Font("Comic Sans MS", 1, 36)); // NOI18N
+        nama.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                namaActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField1);
-        jTextField1.setBounds(840, 280, 410, 50);
+        jPanel1.add(nama);
+        nama.setBounds(840, 280, 410, 50);
 
         jLabel4.setFont(new java.awt.Font("Comic Sans MS", 1, 48)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(240, 240, 240));
@@ -231,16 +235,18 @@ public class NewGame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void namaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_namaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_namaActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        GameFrame frame = new GameFrame();
+        p.add(new PesawatLockheed(nama.getText(),1,1));
+        GameFrame frame = new GameFrame(this);
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
+        this.dispatchEvent(new WindowEvent(this,WindowEvent.WINDOW_CLOSING));
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -250,18 +256,22 @@ public class NewGame extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        GameFrame frame = new GameFrame();
+        p.add(new PesawatNorthtrop(nama.getText()));
+        GameFrame frame = new GameFrame(this);
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
+        this.dispatchEvent(new WindowEvent(this,WindowEvent.WINDOW_CLOSING));
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        GameFrame frame = new GameFrame();
+        p.add(new PesawatThunderbold(nama.getText()));
+        GameFrame frame = new GameFrame(this);
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
+        this.dispatchEvent(new WindowEvent(this,WindowEvent.WINDOW_CLOSING));
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
@@ -324,6 +334,6 @@ public class NewGame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField nama;
     // End of variables declaration//GEN-END:variables
 }

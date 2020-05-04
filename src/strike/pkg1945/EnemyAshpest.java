@@ -27,10 +27,27 @@ public class EnemyAshpest extends Enemy{
         }catch(IOException ex){
             ex.printStackTrace();
         }
+        this.gambar2 = gambarKnalpot[0];
+        this.animasi = 0;
         this.hp=250;
         this.damage=100;
         this.gold=100;
         this.score=3;
     }
+
+    @Override
+    public void gantiAnimasi(){
+        if (this.hp <= 0) {
+//            this.animasi =
+        }else{
+            if(animasi<3){
+                this.animasi++;
+            }else{
+                animasi=0;
+            }
+        }
+        this.gambar2=gambarKnalpot[animasi];
+    }
+    
     
 }
