@@ -19,8 +19,19 @@ public class GameFrame extends javax.swing.JFrame {
     /**
      * Creates new form GameFrame
      */
+    MainPanel panel1;
     public GameFrame() {
         initComponents();
+        jButton1.setFocusable(false);
+        
+        panel1 = new MainPanel();
+        panel1.setLocation(0,85);
+        panel1.setSize(1920,915);
+        panel1.setVisible(true);
+        this.add(panel1);
+        
+        panel1.setFocusable(true);
+        panel1.requestFocus();
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
     
@@ -34,6 +45,7 @@ public class GameFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -44,21 +56,30 @@ public class GameFrame extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setText("Play");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addComponent(jButton1)
-                .addContainerGap(1935, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(jButton2)
+                .addContainerGap(1925, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(854, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addComponent(jButton2)))
+                .addContainerGap(936, Short.MAX_VALUE))
         );
 
         pack();
@@ -109,5 +130,6 @@ public class GameFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     // End of variables declaration//GEN-END:variables
 }
