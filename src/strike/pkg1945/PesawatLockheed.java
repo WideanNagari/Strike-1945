@@ -19,11 +19,9 @@ public class PesawatLockheed extends Player{
     public PesawatLockheed(String nama, int x, int y) {
         super(nama);
         this.jenispesawat = "Lockheed Martin F-35";
-        gambarAnimasi = new BufferedImage[3];
+        gambarAnimasi = new BufferedImage[2];
         try{
-            gambarAnimasi[0] = ImageIO.read(new File("./asset/player1.png"));
-            gambarAnimasi[1] = ImageIO.read(new File("./asset/player2.png"));
-            gambarAnimasi[2] = ImageIO.read(new File("./asset/duar.png"));
+            gambarAnimasi[0] = ImageIO.read(new File("./src/strike/pkg1945/Gambar/Pesawat 1.png"));
         }catch(IOException ex){
             ex.printStackTrace();
         }
