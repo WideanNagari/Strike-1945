@@ -114,7 +114,7 @@ public abstract class Enemy {
     public void mati() {
         this.hp = 0;
         this.animasi = 2;
-        this.gambar = this.gambarAnimasi[this.animasi];
+//        this.gambar = this.gambarAnimasi[this.animasi];
     }
     
     public void ketabrak(){
