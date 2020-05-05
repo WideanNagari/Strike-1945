@@ -5,6 +5,7 @@
  */
 package strike.pkg1945;
 
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
@@ -13,13 +14,20 @@ import javax.imageio.ImageIO;
  *
  * @author Jeffrey A
  */
-public class Peluru extends Benda {
+public class Peluru {
+    BufferedImage gambarP;
+    BufferedImage gambarM;
+    int x,y,width,height,speed;
+    int animasi;
+    int nyawa;
+    int durasiMati;
     public Peluru(int x, int y){
-//        try{
-//            this.gambar = ImageIO.read(new File("./asset/peluru.png"));
-//        }catch(IOException ex){
-//            ex.printStackTrace();
-//        }
+        try{
+            this.gambarM = ImageIO.read(new File("./Enemy/peluruM.png"));
+            this.gambarP = ImageIO.read(new File("./Player/peluruP.png"));
+        }catch(IOException ex){
+            ex.printStackTrace();
+        }
         this.x = x;
         this.y = y;
         this.width = 5;
@@ -29,12 +37,14 @@ public class Peluru extends Benda {
         this.durasiMati = 0;
     }
     
-    @Override
-    public void gerak(int arah) {
+    public void gerakP() {
         this.x += this.speed;
     }
+    
+    public void gerakM(){
+        this.x -= this.speed;
+    }
 
-    @Override
     public void mati() {
         this.nyawa = 0;
     }

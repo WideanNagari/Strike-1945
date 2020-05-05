@@ -32,6 +32,14 @@ public abstract class Enemy {
     public BufferedImage getGambar() {
         return gambar;
     }
+
+    public void setHp(int hp) {
+        this.hp = hp;
+    }
+
+    public void setDamage(int damage) {
+        this.damage = damage;
+    }
     
     public int getX() {
         return x;
