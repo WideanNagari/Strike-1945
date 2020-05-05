@@ -38,7 +38,6 @@ public abstract class Player {
     protected int jumMassiveSalve=0;
     protected int jumSackofGold=0;
     protected int jumAngleBox=0;
-    
 
     public Player(String nama) {
         this.nama = nama;

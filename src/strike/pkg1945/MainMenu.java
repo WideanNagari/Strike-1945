@@ -17,8 +17,10 @@ public class MainMenu extends javax.swing.JFrame {
     /**
      * Creates new form MainMenu
      */
+    Player p;
     public MainMenu() {
         initComponents();
+        
     }
 
     /**

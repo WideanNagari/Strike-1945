@@ -11,16 +11,19 @@ package strike.pkg1945;
  */
 public class EaglePotion {
     private int harga;
-  
+    protected int attack;
 
     public EaglePotion() {
-        this.harga = 1200;
-       
+       this.harga = 1200;
+       this.attack = 500;
     }
     public int getHarga() {
         return harga;
     }
-
+    public int getTambahAttack(){
+        return attack;
+    }
+    
 
     
 }

@@ -11,18 +11,28 @@ package strike.pkg1945;
  */
 public class AngelBox {
      private int harga;
+     protected int attackEnemy;
+     protected int defendEnemy;
+     
    
     public AngelBox() {
         this.harga = 2500;
+        this.attackEnemy=attackEnemy/2;
+        this.defendEnemy=defendEnemy/2;
        }
 
-    
-
-   
     public int getHarga() {
         return harga;
     }
-
+    
+    public int getAttackEnemy(){
+        return attackEnemy;
+    }
+    
+    public int getDefendEnemy(){
+        return defendEnemy;
+    }
+    
    
     
     

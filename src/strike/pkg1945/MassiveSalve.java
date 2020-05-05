@@ -11,18 +11,20 @@ package strike.pkg1945;
  */
 public class MassiveSalve {
      private int harga;
+     protected int hp;
    
 
     public MassiveSalve() {
         this.harga = 500;
-     
+        this.hp = 500;
     }
 
-
-
- 
     public int getHarga() {
         return harga;
+    }
+    
+    public int getTambahHp(){
+        return hp;
     }
 
   }

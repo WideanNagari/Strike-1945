@@ -11,23 +11,19 @@ package strike.pkg1945;
  */
 public class SackofGold {
     private int harga;
-    
+    protected int gold;
 
     public SackofGold() {
         this.harga = 500;
-       
+        this.gold = 200;
     }
-
-    public int getHargaSackofGold() {
-        return harga;
-    }
-
-   
 
     public int getHarga() {
         return harga;
     }
 
-    
+    public int getTambahGold(){
+        return gold;
+    }
     
 }
