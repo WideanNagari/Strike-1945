@@ -31,7 +31,12 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
      * Creates new form MainPanel
      */
     ArrayList<Enemy> daftarmusuh;
-//    ArrayList<Peluru> daftarpeluru;
+    ArrayList<Peluru> daftarpeluru;
+    ArrayList<Peluru> pelurua;
+    ArrayList<Peluru> pelurub;
+    ArrayList<Peluru> peluruc;
+    ArrayList<Peluru> pelurud;
+    ArrayList<Peluru> pelurue;
     GameFrame main;
     NewGame n;
     Player p;
@@ -39,7 +44,7 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
     BufferedImage background2; 
     Timer Tnormal;
     Timer Tplay;
-    int count = 3,waktu, ctr = 0;
+    int count = 3,waktu, ctr, ctrm;
     boolean playing = false;
     public MainPanel(GameFrame main, NewGame n) {
         initComponents();
@@ -47,7 +52,14 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
         if (n.newp = true) {
             p = n.p.get(n.p.size()-1);
         }
+        ctrm = 5;
         daftarmusuh = new ArrayList();
+        daftarpeluru = new ArrayList();
+        pelurua = new ArrayList();
+        pelurub = new ArrayList();
+        peluruc = new ArrayList();
+        pelurud = new ArrayList();
+        pelurue = new ArrayList();
         this.main = main;
         this.addKeyListener(this);
         this.addMouseListener(this);
@@ -77,19 +89,23 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
                     }else{
                         waktu++;
 //                        main.updateStatus(waktu, p.skor, p.nyawa);
-                        int rand = (int)(Math.random()*5);
-                        int randy = (int)(Math.random()*750);
-                        if (rand == 0) {
-                            daftarmusuh.add(new EnemyAshpest(1700,randy));
-                        }else if (rand == 1) {
-                            daftarmusuh.add(new EnemyBlademorph(1700, randy));
-                        }else if (rand == 2) {
-                            daftarmusuh.add(new EnemyBlazelich(1700, randy));
-                        }else if (rand == 3) {
-                            daftarmusuh.add(new EnemyBlazewing(1700, randy));
-                        }else if (rand == 4) {
-                            daftarmusuh.add(new EnemyGlowstarKing(1700, randy));
+                        if (ctrm == 5) {
+                            ctrm = 0;
+                            int rand = (int)(Math.random()*5);
+                            int randy = (int)(Math.random()*750);
+                            if (rand == 0) {
+                                daftarmusuh.add(new EnemyAshpest(1700,randy));
+                            }else if (rand == 1) {
+                                daftarmusuh.add(new EnemyBlademorph(1700, randy));
+                            }else if (rand == 2) {
+                                daftarmusuh.add(new EnemyBlazelich(1700, randy));
+                            }else if (rand == 3) {
+                                daftarmusuh.add(new EnemyBlazewing(1700, randy));
+                            }else if (rand == 4) {
+                                daftarmusuh.add(new EnemyGlowstarKing(1700, randy));
+                            }
                         }
+                        ctrm++;
                     }
                 }
             }
@@ -98,12 +114,28 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
             @Override
             public void actionPerformed(ActionEvent e) {
                 repaint();
-//                for (Peluru peluru : daftarpeluru) {
+                p.setCooldown(p.getCooldown()-1);
+                for (Enemy enemy : daftarmusuh) {
+                    enemy.setCooldown(enemy.getCooldown()-1);
+                }
+                for (Peluru peluru : daftarpeluru) {
 //                    if (peluru.y<0) {
 //                        peluru.mati();
 //                    }
-//                    peluru.gerak(0);
-//                }
+                    peluru.gerakP();
+                }
+                for (Peluru peluru : pelurua) {
+                    peluru.gerakM();
+                }for (Peluru peluru : pelurub) {
+                    peluru.gerakM();
+                }for (Peluru peluru : peluruc) {
+                    peluru.gerakM();
+                }for (Peluru peluru : pelurud) {
+                    peluru.gerakM();
+                }for (Peluru peluru : pelurue) {
+                    peluru.gerakM();
+                }
+                
                 for (Enemy musuh : daftarmusuh) {
                     if (musuh.getHp()>0) {
                         musuh.setX(musuh.getX()-musuh.getSpeed());;
@@ -114,8 +146,28 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
                     }else{
 //                        musuh.durasiMati--;
                     }
+                    
+                    if (musuh.getCooldown()<=0) {
+                            if (musuh instanceof EnemyAshpest) {
+                                pelurua.add(new Peluru(musuh.getX(), musuh.getY()));
+                                ((EnemyAshpest) musuh).setCooldown(((EnemyAshpest) musuh).getCd());
+                            }else if (musuh instanceof EnemyBlademorph) {
+                                pelurub.add(new Peluru(musuh.getX(), musuh.getY()));
+                                ((EnemyBlademorph) musuh).setCooldown(((EnemyBlademorph) musuh).getCd());
+                            }else if (musuh instanceof EnemyBlazelich) {
+                                peluruc.add(new Peluru(musuh.getX(), musuh.getY()));
+                                ((EnemyBlazelich) musuh).setCooldown(((EnemyBlazelich) musuh).getCd());
+                            }else if (musuh instanceof EnemyBlazewing) {
+                                pelurud.add(new Peluru(musuh.getX(), musuh.getY()));
+                                ((EnemyBlazewing) musuh).setCooldown(((EnemyBlazewing) musuh).getCd());
+                            }else if (musuh instanceof EnemyGlowstarKing) {
+                                pelurue.add(new Peluru(musuh.getX(), musuh.getY()));
+                                ((EnemyGlowstarKing) musuh).setCooldown(((EnemyGlowstarKing) musuh).getCd());
+                            }
+                            repaint();
+                    }
                 }
-                if (ctr == 5) {
+                if (ctr == 8) {
                     p.gantiAnimasi();
                     for (Enemy musuh : daftarmusuh) {
                         musuh.gantiAnimasi();
@@ -188,6 +240,25 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
         
         g2.drawImage(background, 0, 0, 1920,900,this);
         
+        for (Peluru pp : daftarpeluru) {
+            if (p instanceof PesawatThunderbold) {
+                g2.drawImage(pp.getGambarP(), pp.getX()+80, pp.getY()+50, pp.getWidth(),pp.getHeight(),this);
+            }else{
+                g2.drawImage(pp.getGambarP(), pp.getX()+130, pp.getY()+50, pp.getWidth(),pp.getHeight(),this);
+            }
+        }
+        int yy = 60;
+        for (Peluru pp : pelurua) {
+            g2.drawImage(pp.getGambarM(), pp.getX()+80, pp.getY()+yy, pp.getWidth(),pp.getHeight(),this);
+        }for (Peluru pp : pelurub) {
+            g2.drawImage(pp.getGambarM(), pp.getX()+80, pp.getY()+yy, pp.getWidth(),pp.getHeight(),this);
+        }for (Peluru pp : peluruc) {
+            g2.drawImage(pp.getGambarM(), pp.getX()+80, pp.getY()+yy, pp.getWidth(),pp.getHeight(),this);
+        }for (Peluru pp : pelurud) {
+            g2.drawImage(pp.getGambarM(), pp.getX()+80, pp.getY()+yy, pp.getWidth(),pp.getHeight(),this);
+        }for (Peluru pp : pelurue) {
+            g2.drawImage(pp.getGambarM(), pp.getX()+80, pp.getY()+yy, pp.getWidth(),pp.getHeight(),this);
+        }
         g2.drawImage(p.getGambar2(), p.getX()-p.getXk(), p.getY()-p.getYk(), p.getWidth()+20,p.getHeight()+20,this);
         g2.drawImage(p.getGambar(), p.getX(), p.getY(), p.getWidth(),p.getHeight(),this);
         
@@ -282,6 +353,11 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
     @Override
     public void mouseReleased(MouseEvent e) {
         System.out.println("release mouse");
+        if (p.getCooldown()<=0) {
+            daftarpeluru.add(new Peluru(p.getX()+30,p.getY()));
+            p.setCooldown(p.getCd());
+            repaint();
+        }
     }
 
     @Override

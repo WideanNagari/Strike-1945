@@ -17,7 +17,7 @@ import javax.imageio.ImageIO;
 public class Peluru {
     BufferedImage gambarP;
     BufferedImage gambarM;
-    int x,y,width,height,speed;
+    int x,y,width,height,speed,speedm;
     int animasi;
     int nyawa;
     int durasiMati;
@@ -30,11 +30,40 @@ public class Peluru {
         }
         this.x = x;
         this.y = y;
-        this.width = 5;
-        this.height = 10;
-        this.speed = 1;
+        this.width = 70;
+        this.height = 35;
+        this.speed = 2;
+        this.speedm = 1;
         this.nyawa = 1;
         this.durasiMati = 0;
+    }
+
+    public BufferedImage getGambarP() {
+        return gambarP;
+    }
+
+    public BufferedImage getGambarM() {
+        return gambarM;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public int getSpeed() {
+        return speed;
     }
     
     public void gerakP() {
