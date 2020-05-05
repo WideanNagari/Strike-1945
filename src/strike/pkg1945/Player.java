@@ -11,7 +11,7 @@ import java.awt.image.*;
  *
  * @author TUF
  */
-public abstract class Player {
+public class Player {
     BufferedImage gambarKnalpot[];
     BufferedImage gambar;
     BufferedImage gambar2;
@@ -29,8 +29,8 @@ public abstract class Player {
     protected int skor = 0;
     protected int jumlahpeluru = 1;
     protected int gold = 0;
-    protected int xPlayer;
-    protected int yPlayer;
+    protected int xk;
+    protected int yk;
     protected String jenispesawat;
     protected String nama;
     protected int jumEaglePotion=0;
@@ -41,6 +41,44 @@ public abstract class Player {
 
     public Player(String nama) {
         this.nama = nama;
+        this.x = 300;
+        this.y = 440;
+        this.width = 180;
+        this.height = 140;
+        this.durasimati = 30;
+        this.animasi = 0;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public BufferedImage getGambar() {
+        return gambar;
+    }
+
+    public BufferedImage getGambar2() {
+        return gambar2;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public int getXk() {
+        return xk;
+    }
+
+    public int getYk() {
+        return yk;
     }
 
     public int getGold() {

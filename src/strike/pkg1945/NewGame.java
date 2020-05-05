@@ -18,11 +18,11 @@ public class NewGame extends javax.swing.JFrame {
     /**
      * Creates new form NewGame
      */
-    ArrayList<Player> p;
-    
+    ArrayList<Player> p = new ArrayList();
+    boolean newp;
     public NewGame() {
         initComponents();
-        p = new ArrayList();
+        newp = false;
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
@@ -241,7 +241,8 @@ public class NewGame extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        p.add(new PesawatLockheed(nama.getText(),1,1));
+        p.add(new PesawatLockheed(nama.getText()));
+        newp = true;
         GameFrame frame = new GameFrame(this);
         frame.pack();
         frame.setLocationRelativeTo(null);
@@ -256,7 +257,8 @@ public class NewGame extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        p.add(new PesawatNorthtrop(nama.getText(),1,1));
+        p.add(new PesawatNorthtrop(nama.getText()));
+        newp = true;
         GameFrame frame = new GameFrame(this);
         frame.pack();
         frame.setLocationRelativeTo(null);
@@ -266,7 +268,8 @@ public class NewGame extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        p.add(new PesawatThunderbold(nama.getText(),1,1));
+        p.add(new PesawatThunderbold(nama.getText()));
+        newp = true;
         GameFrame frame = new GameFrame(this);
         frame.pack();
         frame.setLocationRelativeTo(null);

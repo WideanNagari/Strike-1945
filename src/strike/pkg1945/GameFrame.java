@@ -25,7 +25,8 @@ public class GameFrame extends javax.swing.JFrame {
         initComponents();
         this.n = n;
         jButton1.setFocusable(false);
-        panel1 = new MainPanel(this);
+        jButton2.setFocusable(false);
+        panel1 = new MainPanel(this,n);
         panel1.setLocation(0,85);
         panel1.setSize(1920,915);
         panel1.setVisible(true);

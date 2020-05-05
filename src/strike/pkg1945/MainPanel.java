@@ -7,6 +7,7 @@ package strike.pkg1945;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -17,6 +18,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import javax.imageio.ImageIO;
 import javax.swing.Timer;
 /**
@@ -31,14 +33,20 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
     ArrayList<Enemy> daftarmusuh;
 //    ArrayList<Peluru> daftarpeluru;
     GameFrame main;
+    NewGame n;
+    Player p;
     BufferedImage background; 
     BufferedImage background2; 
     Timer Tnormal;
     Timer Tplay;
-    int count = 3,waktu;
+    int count = 3,waktu, ctr = 0;
     boolean playing = false;
-    public MainPanel(GameFrame main) {
+    public MainPanel(GameFrame main, NewGame n) {
         initComponents();
+        this.n = n;
+        if (n.newp = true) {
+            p = n.p.get(n.p.size()-1);
+        }
         daftarmusuh = new ArrayList();
         this.main = main;
         this.addKeyListener(this);
@@ -56,7 +64,8 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
                     jLabel1.setVisible(true);
                     if (count == 0) {
                         jLabel1.setText("GO!!!!!");
-//                        Tplay.start();
+                        Tplay.start();
+                        ctr = 0;
                     }else{
                         jLabel1.setText(count+"");
                     }
@@ -68,7 +77,6 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
                     }else{
                         waktu++;
 //                        main.updateStatus(waktu, p.skor, p.nyawa);
-//                        p.gantiAnimasi();
                         int rand = (int)(Math.random()*5);
                         int randy = (int)(Math.random()*750);
                         if (rand == 0) {
@@ -82,12 +90,94 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
                         }else if (rand == 4) {
                             daftarmusuh.add(new EnemyGlowstarKing(1700, randy));
                         }
-                        for (Enemy musuh : daftarmusuh) {
-                            musuh.gantiAnimasi();
-                        }
-                        repaint();
                     }
                 }
+            }
+        });
+        Tplay = new Timer(10, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                repaint();
+//                for (Peluru peluru : daftarpeluru) {
+//                    if (peluru.y<0) {
+//                        peluru.mati();
+//                    }
+//                    peluru.gerak(0);
+//                }
+                for (Enemy musuh : daftarmusuh) {
+                    if (musuh.getHp()>0) {
+                        musuh.setX(musuh.getX()-musuh.getSpeed());;
+//                        if (musuh.y>800) {
+//                            p.skor-=5;
+//                            musuh.mati();
+//                        }
+                    }else{
+//                        musuh.durasiMati--;
+                    }
+                }
+                if (ctr == 5) {
+                    p.gantiAnimasi();
+                    for (Enemy musuh : daftarmusuh) {
+                        musuh.gantiAnimasi();
+                    }
+                    ctr = 0;
+                }
+                repaint();
+//                for (Musuh musuh : daftarmusuh) {
+//                    if (musuh.nyawa>=0) {
+//                        Rectangle bbMusuh = new Rectangle(musuh.x,musuh.y,musuh.width,musuh.height);
+//                        for (Peluru peluru : daftarpeluru) {
+//                            if (peluru.nyawa>0) {
+//                                Rectangle bbPeluru = new Rectangle(peluru.x,peluru.y,peluru.width,peluru.height);
+//                                if (bbMusuh.intersects(bbPeluru)) {
+//                                    musuh.mati();
+//                                    peluru.mati();
+//                                    repaint();
+//                                    p.skor+=10;
+//                                    ayah.updateStatus(waktu, p.skor, p.nyawa);
+//                                    break;
+//                                }
+//                            }
+//                        }
+//                    }
+//                }
+                //pengecekan musuh nabrak saya
+//                        Rectangle bbPlayer = new Rectangle(p.x,p.y,p.width,p.height);
+//                        for (Musuh musuh : daftarmusuh) {
+//                            if (musuh.nyawa>0) {
+//                                Rectangle bbMusuh = new Rectangle(musuh.x,musuh.y,musuh.width,musuh.height);
+//                                if (bbPlayer.intersects(bbMusuh)) {
+//                                    musuh.mati();
+//                                    p.ketabrak();
+//                                    ayah.updateStatus(waktu, p.skor, p.nyawa);
+//                                    if (p.nyawa <= 0) {
+//                                        lagiMain = false;
+//                                        tNormal.stop();
+//                                        tPlay.stop();
+//                                        jLabel1.setText("GAME OVER");
+//                                        jLabel1.setVisible(true);
+//                                    }
+//                                    repaint();
+//                                    break;
+//                                }
+//                            }
+//                        }
+                
+//                Iterator<Peluru> iPeluru = daftarpeluru.iterator();
+//                while(iPeluru.hasNext()){
+//                    Peluru cek = iPeluru.next();
+//                    if (cek.nyawa == 0) {
+//                        iPeluru.remove();
+//                    }
+//                }
+//                Iterator<Enemy> iMusuh = daftarmusuh.iterator();
+//                while(iMusuh.hasNext()){
+//                    Enemy cek = iMusuh.next();
+//                    if (cek.nyawa == 0 && cek.durasiMati<=0) {
+//                        iMusuh.remove();
+//                    }
+//                }
+                ctr++;
             }
         });
     }
@@ -98,7 +188,11 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
         
         g2.drawImage(background, 0, 0, 1920,900,this);
         
+        g2.drawImage(p.getGambar2(), p.getX()-p.getXk(), p.getY()-p.getYk(), p.getWidth()+20,p.getHeight()+20,this);
+        g2.drawImage(p.getGambar(), p.getX(), p.getY(), p.getWidth(),p.getHeight(),this);
+        
         for (Enemy musuh : daftarmusuh) {
+            g2.drawImage(musuh.getGambar2(), musuh.getX()+musuh.getXk(), musuh.getY()+musuh.getYk(), musuh.getWidth()/2,musuh.getHeight()/2,this);
             g2.drawImage(musuh.getGambar(), musuh.getX(), musuh.getY(), musuh.getWidth(),musuh.getHeight(),this);
         }
     }
@@ -146,6 +240,28 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
     @Override
     public void keyPressed(KeyEvent e) {
         System.out.println("press");
+        if(playing ==  true){
+            if(e.getKeyCode() == 87 && p.y > 0){
+                // atas
+                p.gerak(0);
+                repaint();
+            }
+            if(e.getKeyCode() == 68 && p.x < 1700){
+                // kanan
+                p.gerak(1);
+                repaint();
+            }
+            if(e.getKeyCode() == 83 && p.y < 750){
+                // bawah
+                p.gerak(2);
+                repaint();
+            }
+            if(e.getKeyCode() == 65 && p.x > 5){
+                // kiri
+                p.gerak(3);
+                repaint();
+            }
+        }
     }
 
     @Override

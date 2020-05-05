@@ -21,6 +21,8 @@ public abstract class Enemy {
     protected int gold;
     protected int score;
     protected int animasi;
+    protected int xk;
+    protected int yk;
     public Enemy(int x, int y) {
         this.x = x;
         this.y = y;
@@ -29,8 +31,20 @@ public abstract class Enemy {
         this.speed = 1;       
     }    
 
+    public int getXk() {
+        return xk;
+    }
+
+    public int getYk() {
+        return yk;
+    }
+
     public BufferedImage getGambar() {
         return gambar;
+    }
+
+    public BufferedImage getGambar2() {
+        return gambar2;
     }
 
     public void setHp(int hp) {
@@ -85,6 +99,10 @@ public abstract class Enemy {
         this.hp = 0;
         this.animasi = 2;
 //        this.gambar = this.gambarAnimasi[this.animasi];
+    }
+
+    public void setX(int x) {
+        this.x = x;
     }
     
     public void ketabrak(){

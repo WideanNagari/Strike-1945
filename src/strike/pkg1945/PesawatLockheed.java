@@ -16,12 +16,12 @@ import javax.imageio.ImageIO;
  */
 public class PesawatLockheed extends Player{
     
-    public PesawatLockheed(String nama, int x, int y) {
+    public PesawatLockheed(String nama) {
         super(nama);
         this.jenispesawat = "Lockheed Martin F-35";
         gambarKnalpot = new BufferedImage[4];
         try{
-            this.gambar = ImageIO.read(new File("./src/strike/pkg1945/Gambar/Pesawat 1.png"));
+            this.gambar = ImageIO.read(new File("./Player/Pesawat 2.png"));
             this.gambarKnalpot[0] = ImageIO.read(new File("./Player/lockheed/lhapi1.png"));
             this.gambarKnalpot[1] = ImageIO.read(new File("./Player/lockheed/lhapi2.png"));
             this.gambarKnalpot[2] = ImageIO.read(new File("./Player/lockheed/lhapi3.png"));
@@ -29,13 +29,9 @@ public class PesawatLockheed extends Player{
         }catch(IOException ex){
             ex.printStackTrace();
         }
-        this.x = x;
-        this.y = y;
-        this.width = 64;
-        this.height = 32;
+        this.xk = 140;
+        this.yk = 10;
         this.speed = 10;
-        this.durasimati = 30;
-        this.animasi = 0;
         this.gambar2 = gambarKnalpot[animasi];
     }
 }

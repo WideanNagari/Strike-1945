@@ -29,6 +29,8 @@ public class EnemyGlowstarKing extends Enemy{
         }catch(IOException ex){
             ex.printStackTrace();
         }
+        this.xk = 135;
+        this.yk = 38;
         this.gambar2 = gambarKnalpot[0];
         this.animasi = 0;
         this.hp=200;

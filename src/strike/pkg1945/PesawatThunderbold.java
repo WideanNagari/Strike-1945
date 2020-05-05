@@ -16,12 +16,12 @@ import javax.imageio.ImageIO;
  */
 public class PesawatThunderbold extends Player{
     
-    public PesawatThunderbold(String nama, int x, int y) {
+    public PesawatThunderbold(String nama) {
         super(nama);
         this.jenispesawat = "Thunderbold P-47";
         gambarKnalpot = new BufferedImage[4];
         try{
-            this.gambar = ImageIO.read(new File("./src/strike/pkg1945/Gambar/Pesawat 3.png"));
+            this.gambar = ImageIO.read(new File("./Player/Pesawat 3.png"));
             this.gambarKnalpot[0] = ImageIO.read(new File("./Player/thunderbold/tbapi1.png"));
             this.gambarKnalpot[1] = ImageIO.read(new File("./Player/thunderbold/tbapi2.png"));
             this.gambarKnalpot[2] = ImageIO.read(new File("./Player/thunderbold/tbapi3.png"));
@@ -29,13 +29,9 @@ public class PesawatThunderbold extends Player{
         }catch(IOException ex){
             ex.printStackTrace();
         }
-        this.x = x;
-        this.y = y;
-        this.width = 64;
-        this.height = 32;
+        this.xk = 150;
+        this.yk = 10;
         this.speed = 20;
-        this.durasimati = 30;
-        this.animasi = 0;
         this.gambar2 = gambarKnalpot[animasi];
     }
     

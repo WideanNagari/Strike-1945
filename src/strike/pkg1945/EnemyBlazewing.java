@@ -29,6 +29,8 @@ public class EnemyBlazewing extends Enemy{
         }catch(IOException ex){
             ex.printStackTrace();
         }
+        this.xk = 140;
+        this.yk = 30;
         this.gambar2 = gambarKnalpot[0];
         this.animasi = 0;
         this.hp=300;

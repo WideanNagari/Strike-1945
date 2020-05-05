@@ -28,6 +28,8 @@ public class EnemyAshpest extends Enemy{
         }catch(IOException ex){
             ex.printStackTrace();
         }
+        this.xk = 140;
+        this.yk = 37;
         this.gambar2 = gambarKnalpot[0];
         this.animasi = 0;
         this.hp=250;
