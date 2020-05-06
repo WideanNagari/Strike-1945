@@ -34,5 +34,13 @@ public class PesawatNorthtrop extends Player{
         this.speed = 15;
         this.gambar2 = gambarKnalpot[animasi];
     }
-    
+    public void specialEffect(){
+        if (this.efek>=5) {
+            this.hp+=200;
+            if (this.hp>this.maxhp) {
+                this.hp = this.maxhp;
+            }
+            this.efek = 0;
+        }
+    }
 }

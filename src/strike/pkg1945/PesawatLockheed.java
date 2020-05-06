@@ -15,7 +15,7 @@ import javax.imageio.ImageIO;
  * @author TUF
  */
 public class PesawatLockheed extends Player{
-    
+    private int attack2;
     public PesawatLockheed(String nama) {
         super(nama);
         this.jenispesawat = "Lockheed Martin F-35";
@@ -29,9 +29,19 @@ public class PesawatLockheed extends Player{
         }catch(IOException ex){
             ex.printStackTrace();
         }
+        this.attack2 = this.attack;
         this.xk = 140;
         this.yk = 10;
         this.speed = 10;
         this.gambar2 = gambarKnalpot[animasi];
+    }
+    
+    public int specialEffect(){
+        if (this.efek>=3) {
+            this.efek = 0;
+            return 1;
+        }else{
+            return 0;
+        }
     }
 }

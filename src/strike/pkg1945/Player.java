@@ -22,12 +22,13 @@ public class Player {
     protected int x,y,width,height,speed;
     protected int cooldown,cd;
     protected int animasi,animasiknalpot;
-    protected int attack,defend,level,chancemiss,maxhp,hp,skor,jumlahpeluru,gold;
+    protected int attack,defend,level,levell,chancemiss,maxhp,hp,skor,jumlahpeluru,gold;
     protected int xk,yk;
     protected String jenispesawat;
     protected String nama;
     protected int jumEaglePotion,jumShieldofCrystal,jumMassiveSalve,jumSackofGold,jumAngleBox=0;
-
+    protected int musuhTerbunuh, efek;
+            
     public Player(String nama) {
         gambarLedak = new BufferedImage[11];
         try{
@@ -54,9 +55,10 @@ public class Player {
         this.cooldown = 25;
         this.cd = 25;
         this.attack = 50;
-        this.defend = 50;
+        this.defend = 10;
         this.hp = 1500;
         this.level = 1;
+        this.levell = 1;
         this.chancemiss = 5;
         this.maxhp = 1500;
         this.gold = 0;
@@ -67,6 +69,45 @@ public class Player {
         this.jumMassiveSalve=0;
         this.jumSackofGold=0;
         this.jumAngleBox=0;
+        this.musuhTerbunuh = 0;
+        this.efek = 0;
+    }
+
+    public int getLevell() {
+        return levell;
+    }
+
+    public void setLevell(int levell) {
+        this.levell = levell;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
+    public int getMusuhTerbunuh() {
+        return musuhTerbunuh;
+    }
+
+    public int getEfek() {
+        return efek;
+    }
+
+    public void setEfek(int efek) {
+        this.efek = efek;
+    }
+    
+    public void setMusuhTerbunuh(int musuhTerbunuh) {
+        this.musuhTerbunuh = musuhTerbunuh;
+    }
+
+    
+    public int getDefend() {
+        return defend;
+    }
+
+    public int getChancemiss() {
+        return chancemiss;
     }
 
     public void setHp(int hp) {
@@ -100,9 +141,7 @@ public class Player {
     public void setCooldown(int cooldown) {
         this.cooldown = cooldown;
     }
-    
-    
-    
+
     public int getCooldown() {
         return cooldown;
     }
@@ -110,9 +149,7 @@ public class Player {
     public int getCd() {
         return cd;
     }
-    
-    
-    
+
     public int getWidth() {
         return width;
     }

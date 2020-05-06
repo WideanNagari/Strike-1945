@@ -20,7 +20,6 @@ public class Peluru {
     int x,y,width,height,speed,speedm;
     int animasi;
     int hp;
-    int durasiMati;
     public Peluru(int x, int y){
         try{
             this.gambarM = ImageIO.read(new File("./Enemy/peluruM.png"));
@@ -35,9 +34,7 @@ public class Peluru {
         this.speed = 2;
         this.speedm = 1;
         this.hp = 1;
-        this.durasiMati = 0;
     }
-
     public int getHp() {
         return hp;
     }

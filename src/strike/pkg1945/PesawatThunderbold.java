@@ -34,5 +34,7 @@ public class PesawatThunderbold extends Player{
         this.speed = 20;
         this.gambar2 = gambarKnalpot[animasi];
     }
-    
+    public void specialEffect(){
+        this.gold+=20;
+    }
 }
