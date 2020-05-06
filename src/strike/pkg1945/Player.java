@@ -20,29 +20,13 @@ public class Player {
     BufferedImage gambar;
     BufferedImage gambar2;
     protected int x,y,width,height,speed;
-    protected int cooldown;
-    protected int cd;
-    protected int animasi;
-    protected int animasiknalpot;
-    protected int durasimati;
-    protected int attack = 50;
-    protected int defend = 10;
-    protected int level = 1;
-    protected int chancemiss = 5;
-    protected int hp = 1500;
-    protected int maxhp = 1500;
-    protected int skor = 0;
-    protected int jumlahpeluru = 1;
-    protected int gold = 0;
-    protected int xk;
-    protected int yk;
+    protected int cooldown,cd;
+    protected int animasi,animasiknalpot;
+    protected int attack,defend,level,chancemiss,maxhp,hp,skor,jumlahpeluru,gold;
+    protected int xk,yk;
     protected String jenispesawat;
     protected String nama;
-    protected int jumEaglePotion=0;
-    protected int jumShieldofCrystal=0;
-    protected int jumMassiveSalve=0;
-    protected int jumSackofGold=0;
-    protected int jumAngleBox=0;
+    protected int jumEaglePotion,jumShieldofCrystal,jumMassiveSalve,jumSackofGold,jumAngleBox=0;
 
     public Player(String nama) {
         gambarLedak = new BufferedImage[11];
@@ -66,10 +50,51 @@ public class Player {
         this.y = 440;
         this.width = 180;
         this.height = 140;
-        this.durasimati = 30;
         this.animasi = 0;
         this.cooldown = 25;
         this.cd = 25;
+        this.attack = 50;
+        this.defend = 50;
+        this.hp = 1500;
+        this.level = 1;
+        this.chancemiss = 5;
+        this.maxhp = 1500;
+        this.gold = 0;
+        this.skor = 0;
+        this.jumlahpeluru = 1;
+        this.jumEaglePotion=0;
+        this.jumShieldofCrystal=0;
+        this.jumMassiveSalve=0;
+        this.jumSackofGold=0;
+        this.jumAngleBox=0;
+    }
+
+    public void setHp(int hp) {
+        this.hp = hp;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public int getMaxhp() {
+        return maxhp;
+    }
+
+    public int getHp() {
+        return hp;
+    }
+
+    public int getSkor() {
+        return skor;
+    }
+
+    public void setSkor(int skor) {
+        this.skor = skor;
+    }
+
+    public int getAttack() {
+        return attack;
     }
 
     public void setCooldown(int cooldown) {
@@ -200,17 +225,8 @@ public class Player {
             this.x -= this.speed;
         }
     }
-
-    public void mati() {
-        this.hp = 0;
-        this.animasi = 2;
-//        this.gambar = ;
-    }
     
-    public void ketabrak(){
-        this.hp--;
-        if(this.hp <= 0){
-            this.mati();
-        }
+    public void ketabrak(int x){
+        this.hp-=x;
     }
 }

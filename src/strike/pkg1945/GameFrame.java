@@ -35,10 +35,11 @@ public class GameFrame extends javax.swing.JFrame {
         panel1.requestFocus();
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
-    public void updateStatus(int Hp, int max, int score, int gold){
+    public void updateStatus(int Hp, int max, int score, int gold, int level){
         hp.setText(Hp+"/"+max);
         skor.setText(score+"");
         Gold.setText(gold+"");
+        Level.setText(level+"");
     }
     
     /**

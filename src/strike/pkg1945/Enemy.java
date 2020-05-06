@@ -17,7 +17,6 @@ import javax.imageio.ImageIO;
 public abstract class Enemy {   
     BufferedImage gambar;
     BufferedImage gambar2;
-    BufferedImage gambar3;
     BufferedImage[] gambarKnalpot;
     BufferedImage[] gambarLedak;
     protected int x,y,width,height,speed;
@@ -30,6 +29,11 @@ public abstract class Enemy {
     protected int animasi;
     protected int xk;
     protected int yk;
+    protected int mati;
+    protected int tabrak;
+    public Enemy(){
+        
+    }
     public Enemy(int x, int y) {
         gambarLedak = new BufferedImage[11];
         try{
@@ -47,6 +51,7 @@ public abstract class Enemy {
         }catch(IOException ex){
             ex.printStackTrace();
         }
+        
         this.x = x;
         this.y = y;
         this.width = 200;
@@ -54,7 +59,29 @@ public abstract class Enemy {
         this.speed = 1;   
         this.cooldown = 200;
         this.cd = 500;
+        this.mati = 0;
+        this.tabrak = 0;
     }    
+
+    public int getTabrak() {
+        return tabrak;
+    }
+
+    public void setTabrak(int tabrak) {
+        this.tabrak = tabrak;
+    }
+
+    public void setMati(int mati) {
+        this.mati = mati;
+    }
+
+    public int getMati() {
+        return mati;
+    }
+
+    public int getAnimasi() {
+        return animasi;
+    }
 
     public int getXk() {
         return xk;
@@ -131,22 +158,17 @@ public abstract class Enemy {
     public void gerak(){
         this.x-=this.speed;
     }
-    
-    public void mati() {
-        this.hp = 0;
-        this.animasi = 2;
-//        this.gambar = this.gambarAnimasi[this.animasi];
-    }
 
     public void setX(int x) {
         this.x = x;
     }
     
-    public void ketabrak(){
-        this.hp--;
-        if(this.hp <= 0){
-            this.mati();
-        }
+    public void mati(){
+        this.hp = 0;
+    }
+    
+    public void ketabrak(int x){
+        this.hp-=x;
     }
     public abstract void gantiAnimasi();
 }

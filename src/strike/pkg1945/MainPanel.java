@@ -44,14 +44,24 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
     BufferedImage background2; 
     Timer Tnormal;
     Timer Tplay;
-    int count = 3,waktu, ctr, ctrm;
+    int count = 3, ctr, ctrm;
     boolean playing = false;
+    EnemyAshpest ashpest;
+    EnemyBlademorph blade;
+    EnemyBlazelich lich;
+    EnemyBlazewing wing;
+    EnemyGlowstarKing king;
     public MainPanel(GameFrame main, NewGame n) {
         initComponents();
         this.n = n;
         if (n.newp = true) {
             p = n.p.get(n.p.size()-1);
         }
+        ashpest = new EnemyAshpest();
+        blade = new EnemyBlademorph();
+        lich = new EnemyBlazelich();
+        wing = new EnemyBlazewing();
+        king = new EnemyGlowstarKing();
         ctrm = 5;
         daftarmusuh = new ArrayList();
         daftarpeluru = new ArrayList();
@@ -87,7 +97,6 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
                         jLabel1.setVisible(false);
                         playing = true;
                     }else{
-                        waktu++;
 //                        main.updateStatus(waktu, p.skor, p.nyawa);
                         if (ctrm == 5) {
                             ctrm = 0;
@@ -119,35 +128,54 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
                     enemy.setCooldown(enemy.getCooldown()-1);
                 }
                 for (Peluru peluru : daftarpeluru) {
-//                    if (peluru.y<0) {
-//                        peluru.mati();
-//                    }
+                    if (peluru.getX()>1900) {
+                        peluru.setHp(0);
+                    }
                     peluru.gerakP();
                 }
                 for (Peluru peluru : pelurua) {
-                    peluru.gerakM();
+                    if (peluru.getX()<0) {
+                        peluru.setHp(0);
+                    }peluru.gerakM();
                 }for (Peluru peluru : pelurub) {
-                    peluru.gerakM();
+                    if (peluru.getX()<0) {
+                        peluru.setHp(0);
+                    }peluru.gerakM();
                 }for (Peluru peluru : peluruc) {
-                    peluru.gerakM();
+                    if (peluru.getX()<0) {
+                        peluru.setHp(0);
+                    }peluru.gerakM();
                 }for (Peluru peluru : pelurud) {
-                    peluru.gerakM();
+                    if (peluru.getX()<0) {
+                        peluru.setHp(0);
+                    }peluru.gerakM();
                 }for (Peluru peluru : pelurue) {
-                    peluru.gerakM();
+                    if (peluru.getX()<0) {
+                        peluru.setHp(0);
+                    }peluru.gerakM();
                 }
-                
+               
                 for (Enemy musuh : daftarmusuh) {
                     if (musuh.getHp()>0) {
-                        musuh.setX(musuh.getX()-musuh.getSpeed());;
-//                        if (musuh.y>800) {
-//                            p.skor-=5;
-//                            musuh.mati();
-//                        }
+                        musuh.setX(musuh.getX()-musuh.getSpeed());
                     }else{
-//                        musuh.durasiMati--;
+                        musuh.setMati(musuh.getMati()+1);
                     }
-                    
-                    if (musuh.getCooldown()<=0) {
+                    if (musuh.getX()<(-10)) {
+                        musuh.setTabrak(2);
+                        musuh.setHp(0);
+                    }
+                    if (musuh.getMati()==1) {
+                        if (musuh.getTabrak() == 1) {
+                            p.setSkor(p.getSkor()-2);
+                        }else if (musuh.getTabrak() == 2) {
+                            p.setSkor(p.getSkor()-1);
+                        }else{
+                            p.setGold(p.getGold()+musuh.getGold());
+                            p.setSkor(p.getSkor()+musuh.getScore());}
+                        main.updateStatus(p.getHp(), p.getMaxhp(), p.getSkor(), p.getGold(), p.getLevel());
+                    }
+                    if (musuh.getCooldown()<=0 && musuh.getHp()>0) {
                             if (musuh instanceof EnemyAshpest) {
                                 pelurua.add(new Peluru(musuh.getX(), musuh.getY()));
                                 ((EnemyAshpest) musuh).setCooldown(((EnemyAshpest) musuh).getCd());
@@ -175,60 +203,148 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
                     ctr = 0;
                 }
                 repaint();
-//                for (Musuh musuh : daftarmusuh) {
-//                    if (musuh.nyawa>=0) {
-//                        Rectangle bbMusuh = new Rectangle(musuh.x,musuh.y,musuh.width,musuh.height);
-//                        for (Peluru peluru : daftarpeluru) {
-//                            if (peluru.nyawa>0) {
-//                                Rectangle bbPeluru = new Rectangle(peluru.x,peluru.y,peluru.width,peluru.height);
-//                                if (bbMusuh.intersects(bbPeluru)) {
-//                                    musuh.mati();
-//                                    peluru.mati();
-//                                    repaint();
-//                                    p.skor+=10;
-//                                    ayah.updateStatus(waktu, p.skor, p.nyawa);
-//                                    break;
-//                                }
-//                            }
-//                        }
-//                    }
-//                }
-                //pengecekan musuh nabrak saya
-//                        Rectangle bbPlayer = new Rectangle(p.x,p.y,p.width,p.height);
-//                        for (Musuh musuh : daftarmusuh) {
-//                            if (musuh.nyawa>0) {
-//                                Rectangle bbMusuh = new Rectangle(musuh.x,musuh.y,musuh.width,musuh.height);
-//                                if (bbPlayer.intersects(bbMusuh)) {
-//                                    musuh.mati();
-//                                    p.ketabrak();
-//                                    ayah.updateStatus(waktu, p.skor, p.nyawa);
-//                                    if (p.nyawa <= 0) {
-//                                        lagiMain = false;
-//                                        tNormal.stop();
-//                                        tPlay.stop();
+                for (Enemy musuh : daftarmusuh) {
+                    if (musuh.getHp()>=0) {
+                        Rectangle bbMusuh = new Rectangle(musuh.getX(),musuh.getY(),musuh.getWidth(),musuh.getHeight());
+                        for (Peluru peluru : daftarpeluru) {
+                            if (peluru.getHp()>0) {
+                                Rectangle bbPeluru = new Rectangle(peluru.getX(),peluru.getY(),peluru.getWidth(),peluru.getHeight());
+                                if (bbMusuh.intersects(bbPeluru)) {
+                                    musuh.setHp(musuh.getHp()-p.getAttack());
+                                    peluru.setHp(0);
+                                    repaint();
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+                        Rectangle bbPlayer = new Rectangle(p.getX(),p.getY(),p.getWidth(),p.getHeight());
+                        for (Enemy m : daftarmusuh) {
+                            if (m.getHp()>0) {
+                                Rectangle bbMusuh = new Rectangle(m.getX(),m.getY(),m.getWidth(),m.getHeight());
+                                if (bbPlayer.intersects(bbMusuh)) {
+                                    m.setHp(0);
+                                    m.setTabrak(1);
+                                    p.setHp(p.getHp()-m.getDamage()*2);
+                                    main.updateStatus(p.getHp(),p.getMaxhp(), p.getSkor(), p.getGold(),p.getLevel());
+//                                    if (p.getHp() <= 0) {
+//                                        playing = false;
+//                                        Tnormal.stop();
+//                                        Tplay.stop();
 //                                        jLabel1.setText("GAME OVER");
 //                                        jLabel1.setVisible(true);
 //                                    }
-//                                    repaint();
-//                                    break;
-//                                }
-//                            }
-//                        }
-                
-//                Iterator<Peluru> iPeluru = daftarpeluru.iterator();
-//                while(iPeluru.hasNext()){
-//                    Peluru cek = iPeluru.next();
-//                    if (cek.nyawa == 0) {
-//                        iPeluru.remove();
-//                    }
-//                }
-//                Iterator<Enemy> iMusuh = daftarmusuh.iterator();
-//                while(iMusuh.hasNext()){
-//                    Enemy cek = iMusuh.next();
-//                    if (cek.nyawa == 0 && cek.durasiMati<=0) {
-//                        iMusuh.remove();
-//                    }
-//                }
+                                    repaint();
+                                    break;
+                                }
+                            }
+                        }
+                        for (Peluru peluru : pelurua) {
+                            if (peluru.getHp()>0) {
+                                Rectangle Peluru = new Rectangle(peluru.getX(),peluru.getY(),peluru.getWidth(),peluru.getHeight());
+                                if (Peluru.intersects(bbPlayer)) {
+                                    p.setHp(p.getHp()-ashpest.getDamage());
+                                    peluru.setHp(0);
+                                    main.updateStatus(p.getHp(),p.getMaxhp(), p.getSkor(), p.getGold(),p.getLevel());
+                                    repaint();
+                                    break;
+                                }
+                            }
+                        }for (Peluru peluru : pelurub) {
+                            if (peluru.getHp()>0) {
+                                Rectangle Peluru = new Rectangle(peluru.getX(),peluru.getY(),peluru.getWidth(),peluru.getHeight());
+                                if (Peluru.intersects(bbPlayer)) {
+                                    p.setHp(p.getHp()-blade.getDamage());
+                                    peluru.setHp(0);
+                                    main.updateStatus(p.getHp(),p.getMaxhp(), p.getSkor(), p.getGold(),p.getLevel());
+                                    repaint();
+                                    break;
+                                }
+                            }
+                        }for (Peluru peluru : peluruc) {
+                            if (peluru.getHp()>0) {
+                                Rectangle Peluru = new Rectangle(peluru.getX(),peluru.getY(),peluru.getWidth(),peluru.getHeight());
+                                if (Peluru.intersects(bbPlayer)) {
+                                    p.setHp(p.getHp()-lich.getDamage());
+                                    peluru.setHp(0);
+                                    main.updateStatus(p.getHp(),p.getMaxhp(), p.getSkor(), p.getGold(),p.getLevel());
+                                    repaint();
+                                    break;
+                                }
+                            }
+                        }for (Peluru peluru : pelurud) {
+                            if (peluru.getHp()>0) {
+                                Rectangle Peluru = new Rectangle(peluru.getX(),peluru.getY(),peluru.getWidth(),peluru.getHeight());
+                                if (Peluru.intersects(bbPlayer)) {
+                                    p.setHp(p.getHp()-wing.getDamage());
+                                    peluru.setHp(0);
+                                    main.updateStatus(p.getHp(),p.getMaxhp(), p.getSkor(), p.getGold(),p.getLevel());
+                                    repaint();
+                                    break;
+                                }
+                            }
+                        }for (Peluru peluru : pelurue) {
+                            if (peluru.getHp()>0) {
+                                Rectangle Peluru = new Rectangle(peluru.getX(),peluru.getY(),peluru.getWidth(),peluru.getHeight());
+                                if (Peluru.intersects(bbPlayer)) {
+                                    p.setHp(p.getHp()-king.getDamage());
+                                    peluru.setHp(0);
+                                    main.updateStatus(p.getHp(),p.getMaxhp(), p.getSkor(), p.getGold(),p.getLevel());
+                                    repaint();
+                                    break;
+                                }
+                            }
+                        }
+                Iterator<Peluru> P = daftarpeluru.iterator();
+                while(P.hasNext()){
+                    Peluru cek = P.next();
+                    if (cek.getHp() == 0) {
+                        P.remove();
+                    }
+                }
+                Iterator<Peluru> Pa = pelurua.iterator();
+                while(Pa.hasNext()){
+                    Peluru cek = Pa.next();
+                    if (cek.getHp() == 0) {
+                        Pa.remove();
+                    }
+                }
+                Iterator<Peluru> Pb = pelurub.iterator();
+                while(Pb.hasNext()){
+                    Peluru cek = Pb.next();
+                    if (cek.getHp() == 0) {
+                        Pb.remove();
+                    }
+                }
+                Iterator<Peluru> Pc = peluruc.iterator();
+                while(Pc.hasNext()){
+                    Peluru cek = Pc.next();
+                    if (cek.getHp() == 0) {
+                        Pc.remove();
+                    }
+                }
+                Iterator<Peluru> Pd = pelurud.iterator();
+                while(Pd.hasNext()){
+                    Peluru cek = Pd.next();
+                    if (cek.getHp() == 0) {
+                        Pd.remove();
+                    }
+                }
+                Iterator<Peluru> Pe = pelurue.iterator();
+                while(Pe.hasNext()){
+                    Peluru cek = Pe.next();
+                    if (cek.getHp() == 0) {
+                        Pe.remove();
+                    }
+                }
+                Iterator<Enemy> M = daftarmusuh.iterator();
+                while(M.hasNext()){
+                    Enemy cek = M.next();
+                    if (cek.getHp() <= 0 && cek.getAnimasi()>=11) {
+                        M.remove();
+                    }
+                }
                 ctr++;
             }
         });

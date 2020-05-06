@@ -19,7 +19,7 @@ public class Peluru {
     BufferedImage gambarM;
     int x,y,width,height,speed,speedm;
     int animasi;
-    int nyawa;
+    int hp;
     int durasiMati;
     public Peluru(int x, int y){
         try{
@@ -34,10 +34,18 @@ public class Peluru {
         this.height = 35;
         this.speed = 2;
         this.speedm = 1;
-        this.nyawa = 1;
+        this.hp = 1;
         this.durasiMati = 0;
     }
 
+    public int getHp() {
+        return hp;
+    }
+
+    public void setHp(int hp) {
+        this.hp = hp;
+    }
+    
     public BufferedImage getGambarP() {
         return gambarP;
     }
@@ -74,7 +82,4 @@ public class Peluru {
         this.x -= this.speed;
     }
 
-    public void mati() {
-        this.nyawa = 0;
-    }
 }

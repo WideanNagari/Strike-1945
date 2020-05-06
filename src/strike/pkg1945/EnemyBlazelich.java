@@ -15,7 +15,9 @@ import javax.imageio.ImageIO;
  * @author Asus
  */
 public class EnemyBlazelich extends Enemy{
-
+    public EnemyBlazelich(){
+        this.damage=50;
+    }
     public EnemyBlazelich(int x, int y) {
         super(x, y);
         gambarKnalpot = new BufferedImage[4];
@@ -39,15 +41,23 @@ public class EnemyBlazelich extends Enemy{
     }
     @Override
     public void gantiAnimasi(){
-        if (this.hp <= 0) {
-//            this.animasi =
-        }else{
-            if(animasi<3){
+        if (this.hp > 0) {
+            if(this.animasi<3){
                 this.animasi++;
             }else{
                 this.animasi=0;
             }
+            this.gambar2=this.gambarKnalpot[this.animasi];
+        }else{
+            if (this.getMati() == 1) {
+                this.animasi = 0;
+            }
+            if (this.animasi < 11) {
+                this.animasi++;
+                if (this.animasi<=10) {
+                    this.gambar = this.gambarLedak[this.animasi];
+                }
+            }
         }
-        this.gambar2=this.gambarKnalpot[this.animasi];
     }
 }
