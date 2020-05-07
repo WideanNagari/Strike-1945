@@ -27,22 +27,24 @@ public class Player {
     protected String jenispesawat;
     protected String nama;
     protected int jumEaglePotion,jumShieldofCrystal,jumMassiveSalve,jumSackofGold,jumAngleBox=0;
-    protected int musuhTerbunuh, efek;
+    protected int musuhTerbunuh, efek,mati;
             
     public Player(String nama) {
-        gambarLedak = new BufferedImage[11];
+        gambarLedak = new BufferedImage[13];
         try{
-            this.gambarLedak[0]=ImageIO.read(new File("./Explosion/Explosion1_1.png"));
-            this.gambarLedak[1]=ImageIO.read(new File("./Explosion/Explosion1_2.png"));
-            this.gambarLedak[2]=ImageIO.read(new File("./Explosion/Explosion1_3.png"));
-            this.gambarLedak[3]=ImageIO.read(new File("./Explosion/Explosion1_4.png"));
-            this.gambarLedak[4]=ImageIO.read(new File("./Explosion/Explosion1_5.png"));
-            this.gambarLedak[5]=ImageIO.read(new File("./Explosion/Explosion1_6.png"));
-            this.gambarLedak[6]=ImageIO.read(new File("./Explosion/Explosion1_7.png"));
-            this.gambarLedak[7]=ImageIO.read(new File("./Explosion/Explosion1_8.png"));
-            this.gambarLedak[8]=ImageIO.read(new File("./Explosion/Explosion1_9.png"));
-            this.gambarLedak[9]=ImageIO.read(new File("./Explosion/Explosion1_10.png"));
-            this.gambarLedak[10]=ImageIO.read(new File("./Explosion/Explosion1_11.png"));
+            this.gambarLedak[0]=ImageIO.read(new File("./Explosion/player/1.png"));
+            this.gambarLedak[1]=ImageIO.read(new File("./Explosion/player/2.png"));
+            this.gambarLedak[2]=ImageIO.read(new File("./Explosion/player/3.png"));
+            this.gambarLedak[3]=ImageIO.read(new File("./Explosion/player/4.png"));
+            this.gambarLedak[4]=ImageIO.read(new File("./Explosion/player/5.png"));
+            this.gambarLedak[5]=ImageIO.read(new File("./Explosion/player/6.png"));
+            this.gambarLedak[6]=ImageIO.read(new File("./Explosion/player/7.png"));
+            this.gambarLedak[7]=ImageIO.read(new File("./Explosion/player/8.png"));
+            this.gambarLedak[8]=ImageIO.read(new File("./Explosion/player/9.png"));
+            this.gambarLedak[9]=ImageIO.read(new File("./Explosion/player/10.png"));
+            this.gambarLedak[10]=ImageIO.read(new File("./Explosion/player/11.png"));
+            this.gambarLedak[11]=ImageIO.read(new File("./Explosion/player/12.png"));
+            this.gambarLedak[12]=ImageIO.read(new File("./Explosion/player/13.png"));
         }catch(IOException ex){
             ex.printStackTrace();
         }
@@ -71,6 +73,7 @@ public class Player {
         this.jumAngleBox=0;
         this.musuhTerbunuh = 0;
         this.efek = 0;
+        this.mati = 0;
     }
 
     public int getLevell() {
@@ -233,18 +236,34 @@ public class Player {
     public void setJumAngleBox(int jumAngleBox) {
         this.jumAngleBox = jumAngleBox;
     }
+
+    public int getMati() {
+        return mati;
+    }
+
+    public void setMati(int mati) {
+        this.mati = mati;
+    }
     
     public void gantiAnimasi(){
-        if (this.hp <= 0) {
-//            this.animasi =
-        }else{
-            if(animasi<3){
+        if (this.hp > 0) {
+            if(this.animasi<3){
                 this.animasi++;
             }else{
                 this.animasi=0;
             }
+            this.gambar2=this.gambarKnalpot[this.animasi];
+        }else{
+            if (this.mati == 1) {
+                this.animasi = 0;
+            }
+            if (this.animasi < 13) {
+                this.animasi++;
+                if (this.animasi<=12) {
+                    this.gambar = this.gambarLedak[this.animasi];
+                }
+            }
         }
-        this.gambar2=this.gambarKnalpot[this.animasi];
     }
     
     public void gerak(int arah) {

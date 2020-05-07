@@ -107,6 +107,7 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
                             ctrm = 0;
                             int rand = (int)(Math.random()*5);
                             int randy = (int)(Math.random()*750);
+                            rand = 0;
                             if (rand == 0) {
                                 daftarmusuh.add(new EnemyAshpest(1700,randy));
                             }else if (rand == 1) {
@@ -494,6 +495,10 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
                     if (cek.getHp() <= 0 && cek.getAnimasi()>=11) {
                         M.remove();
                     }
+                }
+                if (p.getHp()<0) {
+                    p.setMati(p.getMati()+1);
+                    p.setHp(0);
                 }
                 if (boss!=null && boss.getHp() <= 0 && boss.getAnimasike() >= 3) {
                     boss = null;
