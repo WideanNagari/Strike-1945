@@ -54,8 +54,6 @@ public abstract class Enemy {
         
         this.x = x;
         this.y = y;
-        this.width = 200;
-        this.height = 160;
         this.speed = 1;   
         this.cooldown = 200;
         this.cd = 500;
