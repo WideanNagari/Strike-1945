@@ -18,14 +18,23 @@ public class Peluru {
     private BufferedImage gambarP;
     private BufferedImage gambarM;
     private BufferedImage gambarB;
+    private BufferedImage gambarLedak[];
     private int x,y,width,height,speed,speedm;
     private int animasi;
     private int hp;
     public Peluru(int x, int y){
+        gambarLedak = new BufferedImage[7];
         try{
             this.gambarM = ImageIO.read(new File("./Enemy/peluruM.png"));
             this.gambarP = ImageIO.read(new File("./Player/peluruP.png"));
             this.gambarB = ImageIO.read(new File("./Enemy/peluruB.png"));
+            this.gambarLedak[0]=ImageIO.read(new File("./Explosion/bullet/1.png"));
+            this.gambarLedak[1]=ImageIO.read(new File("./Explosion/bullet/2.png"));
+            this.gambarLedak[2]=ImageIO.read(new File("./Explosion/bullet/3.png"));
+            this.gambarLedak[3]=ImageIO.read(new File("./Explosion/bullet/4.png"));
+            this.gambarLedak[4]=ImageIO.read(new File("./Explosion/bullet/5.png"));
+            this.gambarLedak[5]=ImageIO.read(new File("./Explosion/bullet/6.png"));
+            this.gambarLedak[6]=ImageIO.read(new File("./Explosion/bullet/7.png"));
         }catch(IOException ex){
             ex.printStackTrace();
         }
@@ -90,4 +99,21 @@ public class Peluru {
         this.x -= this.speedm;
     }
 
+    public void gantiAnimasi(){
+        if (this.hp <= 0) {
+            if (this.animasi < 7) {
+                this.animasi++;
+                if (this.animasi<=6) {
+                    this.gambarP = this.gambarLedak[this.animasi];
+                    this.gambarM = this.gambarLedak[this.animasi];
+                    this.gambarB = this.gambarLedak[this.animasi];
+                }
+            }
+        }
+    }
+
+    public int getAnimasi() {
+        return animasi;
+    }
+    
 }

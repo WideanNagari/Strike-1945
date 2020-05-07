@@ -408,52 +408,84 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
                 while(P.hasNext()){
                     Peluru cek = P.next();
                     if (cek.getHp() == 0) {
-                        P.remove();
+                        if (cek.getAnimasi() == 6) {
+                            P.remove();
+                        }else{
+                            cek.gantiAnimasi();
+                        }
                     }
                 }
                 if (specialBullet!=null && specialBullet.getHp()==0) {
-                    specialBullet = null;
+                    if (specialBullet.getAnimasi() == 6) {
+                        specialBullet = null;
+                    }else{
+                        specialBullet.gantiAnimasi();
+                    }
                 }
                 Iterator<Peluru> Pa = pelurua.iterator();
                 while(Pa.hasNext()){
                     Peluru cek = Pa.next();
                     if (cek.getHp() == 0) {
-                        Pa.remove();
+                        if (cek.getAnimasi() == 6) {
+                            Pa.remove();
+                        }else{
+                            cek.gantiAnimasi();
+                        }
                     }
                 }
                 Iterator<Peluru> Pb = pelurub.iterator();
                 while(Pb.hasNext()){
                     Peluru cek = Pb.next();
                     if (cek.getHp() == 0) {
-                        Pb.remove();
+                        if (cek.getAnimasi() == 6) {
+                            Pb.remove();
+                        }else{
+                            cek.gantiAnimasi();
+                        }
                     }
                 }
                 Iterator<Peluru> Pc = peluruc.iterator();
                 while(Pc.hasNext()){
                     Peluru cek = Pc.next();
                     if (cek.getHp() == 0) {
-                        Pc.remove();
+                        if (cek.getAnimasi() == 6) {
+                            Pc.remove();
+                        }else{
+                            cek.gantiAnimasi();
+                        }
                     }
                 }
                 Iterator<Peluru> Pd = pelurud.iterator();
                 while(Pd.hasNext()){
                     Peluru cek = Pd.next();
                     if (cek.getHp() == 0) {
-                        Pd.remove();
+                        if (cek.getAnimasi() == 6) {
+                            Pd.remove();
+                        }else{
+                            cek.gantiAnimasi();
+                        }
                     }
                 }
                 Iterator<Peluru> Pe = pelurue.iterator();
                 while(Pe.hasNext()){
                     Peluru cek = Pe.next();
                     if (cek.getHp() == 0) {
-                        Pe.remove();
+                        if (cek.getAnimasi() == 6) {
+                            Pe.remove();
+                        }else{
+                            cek.gantiAnimasi();
+                        }
                     }
                 }
                 Iterator<Peluru> Pboss = peluruBoss.iterator();
                 while(Pboss.hasNext()){
                     Peluru cek = Pboss.next();
                     if (cek.getHp() == 0) {
-                        Pboss.remove();
+                        if (cek.getAnimasi() == 6) {
+                            Pboss.remove();
+                        }else{
+                            cek.gantiAnimasi();
+                        }
                     }
                 }
                 Iterator<Enemy> M = daftarmusuh.iterator();
