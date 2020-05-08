@@ -252,6 +252,7 @@ public class Upgrade extends javax.swing.JFrame {
             p.setGold(p.getGold()-harga);
             p.setHp(p.getHp()+500);
             p.setMaxhp(p.getMaxhp()+500);
+            p.setLevelhp(p.getLevelhp()+1);
             tombolhp.setText((harga*p.getLevelhp())+"");
             Hp.setText(p.getHp()+"/"+p.getMaxhp());
             gold.setText(p.getGold()+"");
