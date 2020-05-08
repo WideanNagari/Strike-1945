@@ -23,9 +23,10 @@ public class Shop extends javax.swing.JFrame {
     /**
      * Creates new form Shop
      */    
-    
-    public Shop() {
+    static Player p;
+    public Shop(Player p) {
         initComponents();
+        this.p = p;
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
     /**
@@ -373,7 +374,7 @@ public class Shop extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Shop().setVisible(true);
+                new Shop(p).setVisible(true);
             }
         });
     }

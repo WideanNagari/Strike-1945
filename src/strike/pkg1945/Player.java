@@ -76,6 +76,14 @@ public class Player {
         this.mati = 0;
     }
 
+    public int getJumlahpeluru() {
+        return jumlahpeluru;
+    }
+
+    public String getJenispesawat() {
+        return jenispesawat;
+    }
+
     public int getLevell() {
         return levell;
     }

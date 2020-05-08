@@ -107,7 +107,6 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
                             ctrm = 0;
                             int rand = (int)(Math.random()*5);
                             int randy = (int)(Math.random()*750);
-                            rand = 0;
                             if (rand == 0) {
                                 daftarmusuh.add(new EnemyAshpest(1700,randy));
                             }else if (rand == 1) {
@@ -215,7 +214,7 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
                             }
                             p.setGold(p.getGold()+musuh.getGold());
                             p.setSkor(p.getSkor()+musuh.getScore());}
-                        main.updateStatus(p.getHp(), p.getMaxhp(), p.getSkor(), p.getGold(), p.getLevel());
+                        main.updateStatus(p,p.getHp(), p.getMaxhp(), p.getSkor(), p.getGold(), p.getLevel());
                     }
                     if (musuh.getCooldown()<=0 && musuh.getHp()>0) {
                             if (musuh instanceof EnemyAshpest) {
@@ -293,7 +292,7 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
                                     if ((m.getDamage()*2)>p.getDefend()) {
                                         p.setHp(p.getHp()-((m.getDamage()*2)-p.getDefend()));
                                     }
-                                    main.updateStatus(p.getHp(),p.getMaxhp(), p.getSkor(), p.getGold(),p.getLevel());
+                                    main.updateStatus(p,p.getHp(),p.getMaxhp(), p.getSkor(), p.getGold(),p.getLevel());
 //                                    if (p.getHp() <= 0) {
 //                                        playing = false;
 //                                        Tnormal.stop();
@@ -317,7 +316,7 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
                                         }
                                     }
                                     peluru.setHp(0);
-                                    main.updateStatus(p.getHp(),p.getMaxhp(), p.getSkor(), p.getGold(),p.getLevel());
+                                    main.updateStatus(p,p.getHp(),p.getMaxhp(), p.getSkor(), p.getGold(),p.getLevel());
                                     repaint();
                                     break;
                                 }
@@ -333,7 +332,7 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
                                         }
                                     }
                                     peluru.setHp(0);
-                                    main.updateStatus(p.getHp(),p.getMaxhp(), p.getSkor(), p.getGold(),p.getLevel());
+                                    main.updateStatus(p,p.getHp(),p.getMaxhp(), p.getSkor(), p.getGold(),p.getLevel());
                                     repaint();
                                     break;
                                 }
@@ -349,7 +348,7 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
                                         }
                                     }
                                     peluru.setHp(0);
-                                    main.updateStatus(p.getHp(),p.getMaxhp(), p.getSkor(), p.getGold(),p.getLevel());
+                                    main.updateStatus(p,p.getHp(),p.getMaxhp(), p.getSkor(), p.getGold(),p.getLevel());
                                     repaint();
                                     break;
                                 }
@@ -365,7 +364,7 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
                                         }
                                     }
                                     peluru.setHp(0);
-                                    main.updateStatus(p.getHp(),p.getMaxhp(), p.getSkor(), p.getGold(),p.getLevel());
+                                    main.updateStatus(p,p.getHp(),p.getMaxhp(), p.getSkor(), p.getGold(),p.getLevel());
                                     repaint();
                                     break;
                                 }
@@ -381,7 +380,7 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
                                         }
                                     }
                                     peluru.setHp(0);
-                                    main.updateStatus(p.getHp(),p.getMaxhp(), p.getSkor(), p.getGold(),p.getLevel());
+                                    main.updateStatus(p,p.getHp(),p.getMaxhp(), p.getSkor(), p.getGold(),p.getLevel());
                                     repaint();
                                     break;
                                 }
@@ -398,7 +397,7 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
                                         }
                                     }
                                     peluru.setHp(0);
-                                    main.updateStatus(p.getHp(),p.getMaxhp(), p.getSkor(), p.getGold(),p.getLevel());
+                                    main.updateStatus(p,p.getHp(),p.getMaxhp(), p.getSkor(), p.getGold(),p.getLevel());
                                     repaint();
                                     break;
                                 }
@@ -504,7 +503,7 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
                     boss = null;
                     p.setGold(p.getGold()+1500);
                     p.setSkor(p.getSkor()+100);
-                    main.updateStatus(p.getHp(),p.getMaxhp(), p.getSkor(), p.getGold(),p.getLevel());
+                    main.updateStatus(p,p.getHp(),p.getMaxhp(), p.getSkor(), p.getGold(),p.getLevel());
                     p.setMusuhTerbunuh(10);
                 }
                 ctr++;
@@ -517,7 +516,7 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
                         p.setLevell(1);
                     }else{
                     p.setLevell(p.getLevell()+1);}
-                    main.updateStatus(p.getHp(),p.getMaxhp(), p.getSkor(), p.getGold(),p.getLevel());
+                    main.updateStatus(p,p.getHp(),p.getMaxhp(), p.getSkor(), p.getGold(),p.getLevel());
                 }
             }
         });

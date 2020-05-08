@@ -21,9 +21,11 @@ public class GameFrame extends javax.swing.JFrame {
      */
     MainPanel panel1;
     static NewGame n;
+    Player p;
     public GameFrame(NewGame n) {
         initComponents();
         this.n = n;
+        this.p = new Player("");
         jButton1.setFocusable(false);
         jButton2.setFocusable(false);
         panel1 = new MainPanel(this,n);
@@ -35,11 +37,12 @@ public class GameFrame extends javax.swing.JFrame {
         panel1.requestFocus();
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
-    public void updateStatus(int Hp, int max, int score, int gold, int level){
+    public void updateStatus(Player p, int Hp, int max, int score, int gold, int level){
         hp.setText(Hp+"/"+max);
         skor.setText(score+"");
         Gold.setText(gold+"");
         Level.setText(level+"");
+        this.p = p;
     }
     
     /**
@@ -156,7 +159,7 @@ public class GameFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         panel1.Tnormal.stop();
 //        panel1.Tplay.stop();
-        Pause frame = new Pause();
+        Pause frame = new Pause(this.p);
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);

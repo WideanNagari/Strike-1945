@@ -17,8 +17,18 @@ public class Status extends javax.swing.JFrame {
     /**
      * Creates new form Status
      */
-    public Status() {
+    static Player p;
+    public Status(Player p) {
         initComponents();
+        this.p = p;
+        nama.setText(p.getNama());
+        skor.setText(p.getSkor()+"");
+        hp.setText(p.getHp()+"/"+p.getMaxhp());
+        gold.setText(p.getGold()+"");
+        attack.setText(p.getAttack()+"");
+        defend.setText(p.getDefend()+"");
+        type.setText(p.getJenispesawat()+"");
+        bullet.setText(p.getJumlahpeluru()+"");
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
@@ -218,7 +228,7 @@ public class Status extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Status().setVisible(true);
+                new Status(p).setVisible(true);
             }
         });
     }

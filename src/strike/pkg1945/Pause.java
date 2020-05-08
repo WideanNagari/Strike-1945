@@ -17,8 +17,10 @@ public class Pause extends javax.swing.JFrame {
     /**
      * Creates new form Pause
      */
-    public Pause() {
+    static Player p;
+    public Pause(Player p) {
         initComponents();
+        this.p = p;
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
@@ -129,7 +131,7 @@ public class Pause extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        Status frame = new Status();
+        Status frame = new Status(this.p);
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
@@ -141,7 +143,7 @@ public class Pause extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        Upgrade frame = new Upgrade();
+        Upgrade frame = new Upgrade(this.p);
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
@@ -154,7 +156,7 @@ public class Pause extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        Shop frame = new Shop();
+        Shop frame = new Shop(this.p);
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
@@ -195,7 +197,7 @@ public class Pause extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Pause().setVisible(true);
+                new Pause(p).setVisible(true);
             }
         });
     }

@@ -17,8 +17,10 @@ public class Upgrade extends javax.swing.JFrame {
     /**
      * Creates new form Upgrade
      */
-    public Upgrade() {
+    static Player p;
+    public Upgrade(Player p) {
         initComponents();
+        this.p = p;
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
@@ -235,7 +237,7 @@ public class Upgrade extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Upgrade().setVisible(true);
+                new Upgrade(p).setVisible(true);
             }
         });
     }
