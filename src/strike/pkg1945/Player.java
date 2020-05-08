@@ -27,7 +27,7 @@ public class Player {
     protected int levelhp,levelattack,leveldefend;
     protected String jenispesawat;
     protected String nama;
-    protected int jumEaglePotion,jumShieldofCrystal,jumMassiveSalve,jumSackofGold,jumAngleBox=0;
+    protected int jumEaglePotion,jumShieldofCrystal,jumMassiveSalve,jumSackofGold,jumAngelBox=0;
     protected int musuhTerbunuh, efek,mati;
             
     public Player(String nama) {
@@ -71,7 +71,7 @@ public class Player {
         this.jumShieldofCrystal=0;
         this.jumMassiveSalve=0;
         this.jumSackofGold=0;
-        this.jumAngleBox=0;
+        this.jumAngelBox=0;
         this.musuhTerbunuh = 0;
         this.efek = 0;
         this.mati = 0;
@@ -279,12 +279,12 @@ public class Player {
         this.jumSackofGold = jumSackofGold;
     }
 
-    public int getJumAngleBox() {
-        return jumAngleBox;
+    public int getJumAngelBox() {
+        return jumAngelBox;
     }
 
-    public void setJumAngleBox(int jumAngleBox) {
-        this.jumAngleBox = jumAngleBox;
+    public void setJumAngleBox(int jumAngelBox) {
+        this.jumAngelBox = jumAngelBox;
     }
 
     public int getMati() {
