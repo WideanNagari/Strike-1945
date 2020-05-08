@@ -24,6 +24,7 @@ public class Player {
     protected int animasi,animasiknalpot;
     protected int attack,defend,level,levell,chancemiss,maxhp,hp,skor,jumlahpeluru,gold;
     protected int xk,yk;
+    protected int levelhp,levelattack,leveldefend;
     protected String jenispesawat;
     protected String nama;
     protected int jumEaglePotion,jumShieldofCrystal,jumMassiveSalve,jumSackofGold,jumAngleBox=0;
@@ -74,6 +75,47 @@ public class Player {
         this.musuhTerbunuh = 0;
         this.efek = 0;
         this.mati = 0;
+        this.levelattack = 1; this.levelhp = 1; this.leveldefend = 1;
+    }
+
+    public void setAttack(int attack) {
+        this.attack = attack;
+    }
+
+    public void setDefend(int defend) {
+        this.defend = defend;
+    }
+
+    public void setJumlahpeluru(int jumlahpeluru) {
+        this.jumlahpeluru = jumlahpeluru;
+    }
+
+    public void setMaxhp(int maxhp) {
+        this.maxhp = maxhp;
+    }
+
+    public int getLevelhp() {
+        return levelhp;
+    }
+
+    public void setLevelhp(int levelhp) {
+        this.levelhp = levelhp;
+    }
+
+    public int getLevelattack() {
+        return levelattack;
+    }
+
+    public void setLevelattack(int levelattack) {
+        this.levelattack = levelattack;
+    }
+
+    public int getLeveldefend() {
+        return leveldefend;
+    }
+
+    public void setLeveldefend(int leveldefend) {
+        this.leveldefend = leveldefend;
     }
 
     public int getJumlahpeluru() {

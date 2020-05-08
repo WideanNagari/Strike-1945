@@ -21,6 +21,11 @@ public class Upgrade extends javax.swing.JFrame {
     public Upgrade(Player p) {
         initComponents();
         this.p = p;
+        Hp.setText(p.getHp()+"/"+p.getMaxhp());
+        Attack.setText(p.getAttack()+"");
+        Defend.setText(p.getDefend()+"");
+        Bullet.setText(p.getJumlahpeluru()+"");
+        gold.setText(p.getGold()+"");
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
@@ -44,10 +49,10 @@ public class Upgrade extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        tombolattack = new javax.swing.JButton();
+        tombolbullet = new javax.swing.JButton();
+        tomboldefend = new javax.swing.JButton();
+        tombolhp = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
         Hp = new javax.swing.JLabel();
         Attack = new javax.swing.JLabel();
@@ -56,6 +61,8 @@ public class Upgrade extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        gold = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -73,7 +80,7 @@ public class Upgrade extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton1);
-        jButton1.setBounds(880, 800, 200, 75);
+        jButton1.setBounds(1590, 860, 200, 75);
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/strike/pkg1945/Gambar/Attack.png"))); // NOI18N
         jPanel1.add(jLabel4);
@@ -115,25 +122,45 @@ public class Upgrade extends javax.swing.JFrame {
         jPanel1.add(jLabel9);
         jLabel9.setBounds(1230, 310, 300, 51);
 
-        jButton2.setFont(new java.awt.Font("Comic Sans MS", 1, 24)); // NOI18N
-        jButton2.setText("250 Gold");
-        jPanel1.add(jButton2);
-        jButton2.setBounds(690, 530, 250, 50);
+        tombolattack.setFont(new java.awt.Font("Comic Sans MS", 1, 24)); // NOI18N
+        tombolattack.setText("250 Gold");
+        tombolattack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tombolattackActionPerformed(evt);
+            }
+        });
+        jPanel1.add(tombolattack);
+        tombolattack.setBounds(690, 530, 250, 50);
 
-        jButton3.setFont(new java.awt.Font("Comic Sans MS", 1, 24)); // NOI18N
-        jButton3.setText("500 Gold");
-        jPanel1.add(jButton3);
-        jButton3.setBounds(1530, 520, 250, 50);
+        tombolbullet.setFont(new java.awt.Font("Comic Sans MS", 1, 24)); // NOI18N
+        tombolbullet.setText("500 Gold");
+        tombolbullet.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tombolbulletActionPerformed(evt);
+            }
+        });
+        jPanel1.add(tombolbullet);
+        tombolbullet.setBounds(1530, 520, 250, 50);
 
-        jButton4.setFont(new java.awt.Font("Comic Sans MS", 1, 24)); // NOI18N
-        jButton4.setText("300 Gold");
-        jPanel1.add(jButton4);
-        jButton4.setBounds(1530, 310, 250, 50);
+        tomboldefend.setFont(new java.awt.Font("Comic Sans MS", 1, 24)); // NOI18N
+        tomboldefend.setText("300 Gold");
+        tomboldefend.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tomboldefendActionPerformed(evt);
+            }
+        });
+        jPanel1.add(tomboldefend);
+        tomboldefend.setBounds(1530, 310, 250, 50);
 
-        jButton5.setFont(new java.awt.Font("Comic Sans MS", 1, 24)); // NOI18N
-        jButton5.setText("350 Gold");
-        jPanel1.add(jButton5);
-        jButton5.setBounds(680, 320, 250, 50);
+        tombolhp.setFont(new java.awt.Font("Comic Sans MS", 1, 24)); // NOI18N
+        tombolhp.setText("350 Gold");
+        tombolhp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tombolhpActionPerformed(evt);
+            }
+        });
+        jPanel1.add(tombolhp);
+        tombolhp.setBounds(680, 320, 250, 50);
 
         jLabel11.setFont(new java.awt.Font("Comic Sans MS", 1, 36)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(240, 240, 240));
@@ -183,6 +210,18 @@ public class Upgrade extends javax.swing.JFrame {
         jPanel1.add(jLabel14);
         jLabel14.setBounds(370, 590, 150, 50);
 
+        jLabel15.setFont(new java.awt.Font("Comic Sans MS", 1, 48)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(240, 240, 240));
+        jLabel15.setText("Gold :");
+        jPanel1.add(jLabel15);
+        jLabel15.setBounds(860, 810, 150, 60);
+
+        gold.setFont(new java.awt.Font("Comic Sans MS", 1, 48)); // NOI18N
+        gold.setForeground(new java.awt.Color(240, 240, 240));
+        gold.setText("0");
+        jPanel1.add(gold);
+        gold.setBounds(1040, 810, 500, 60);
+
         jLabel1.setForeground(new java.awt.Color(240, 240, 240));
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/strike/pkg1945/Gambar/menu.jpg"))); // NOI18N
         jPanel1.add(jLabel1);
@@ -206,6 +245,30 @@ public class Upgrade extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.dispatchEvent(new WindowEvent(this,WindowEvent.WINDOW_CLOSING));
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void tombolhpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tombolhpActionPerformed
+        int harga = Integer.parseInt(tombolhp.getText());
+        if (p.getGold()>harga) {
+            p.setGold(p.getGold()-harga);
+            p.setHp(p.getHp()+500);
+            p.setMaxhp(p.getMaxhp()+500);
+            tombolhp.setText((harga*p.getLevelhp())+"");
+            Hp.setText(p.getHp()+"/"+p.getMaxhp());
+            gold.setText(p.getGold()+"");
+        }
+    }//GEN-LAST:event_tombolhpActionPerformed
+
+    private void tombolattackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tombolattackActionPerformed
+        //tombolattack
+    }//GEN-LAST:event_tombolattackActionPerformed
+
+    private void tomboldefendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tomboldefendActionPerformed
+        //tomboldefend
+    }//GEN-LAST:event_tomboldefendActionPerformed
+
+    private void tombolbulletActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tombolbulletActionPerformed
+        //tombolbullet
+    }//GEN-LAST:event_tombolbulletActionPerformed
 
     /**
      * @param args the command line arguments
@@ -247,17 +310,15 @@ public class Upgrade extends javax.swing.JFrame {
     private javax.swing.JLabel Bullet;
     private javax.swing.JLabel Defend;
     private javax.swing.JLabel Hp;
+    private javax.swing.JLabel gold;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -267,5 +328,9 @@ public class Upgrade extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton tombolattack;
+    private javax.swing.JButton tombolbullet;
+    private javax.swing.JButton tomboldefend;
+    private javax.swing.JButton tombolhp;
     // End of variables declaration//GEN-END:variables
 }
