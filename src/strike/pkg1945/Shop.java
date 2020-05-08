@@ -329,7 +329,7 @@ public class Shop extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        if (p.getGold()>potion2.getHarga()) {
+        if (p.getGold()>=potion2.getHarga()) {
             p.setJumEaglePotion(p.getJumEaglePotion()+1);
             p.setGold(p.getGold()-potion2.getHarga());
             potion.setText(p.getJumEaglePotion()+"");
@@ -338,7 +338,7 @@ public class Shop extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        if (p.getGold()>shield2.getHarga()) {
+        if (p.getGold()>=shield2.getHarga()) {
             p.setJumShieldofCrystal(p.getJumShieldofCrystal()+1);
             p.setGold(p.getGold()-shield2.getHarga());
             shield.setText(p.getJumShieldofCrystal()+"");
@@ -347,7 +347,7 @@ public class Shop extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-       if (p.getGold()>salve2.getHarga()) {
+       if (p.getGold()>=salve2.getHarga()) {
             p.setJumMassiveSalve(p.getJumMassiveSalve()+1);
             p.setGold(p.getGold()-salve2.getHarga());
             heal.setText(p.getJumMassiveSalve()+"");
@@ -356,7 +356,7 @@ public class Shop extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        if (p.getGold()>sack2.getHarga()) {
+        if (p.getGold()>=sack2.getHarga()) {
             p.setJumSackofGold(p.getJumSackofGold()+1);
             p.setGold(p.getGold()-sack2.getHarga());
             sack.setText(p.getJumSackofGold()+"");
