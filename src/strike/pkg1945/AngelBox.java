@@ -11,6 +11,7 @@ package strike.pkg1945;
  */
 public class AngelBox {
     private int harga;
+    public AngelBox(){this.harga = 2500;}
     public AngelBox(Enemy e,int attackEnemy, int defendEnemy) {
         this.harga = 2500;
         e.setDamage(attackEnemy/2);

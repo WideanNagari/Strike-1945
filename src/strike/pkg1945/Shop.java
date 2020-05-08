@@ -30,7 +30,13 @@ public class Shop extends javax.swing.JFrame {
     ShieldofCrystalBarrier shield2;
     public Shop(Player p) {
         initComponents();
+        box2 = new AngelBox();
+        potion2 = new EaglePotion();
+        salve2 = new MassiveSalve();
+        sack2 = new SackofGold();
+        shield2 = new ShieldofCrystalBarrier();
         this.p = p;
+        gold.setText(p.getGold()+"");
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
     /**

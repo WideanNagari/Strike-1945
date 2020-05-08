@@ -14,7 +14,7 @@ public class SackofGold {
     private int gold;
 
     public SackofGold() {
-        this.harga = 500;
+        this.harga = 1000;
         this.gold = 200;
     }
 

@@ -60,6 +60,7 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
         if (n.newp = true) {
             p = n.p.get(n.p.size()-1);
         }
+        main.updateStatus(p,p.getHp(),p.getMaxhp(), p.getSkor(), p.getGold(),p.getLevel());
         ashpest = new EnemyAshpest();
         blade = new EnemyBlademorph();
         lich = new EnemyBlazelich();
@@ -499,7 +500,7 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
                     p.setMati(p.getMati()+1);
                     p.setHp(0);
                 }
-                if (boss!=null && boss.getHp() <= 0 && boss.getAnimasike() >= 3) {
+                if (boss!=null && boss.getHp() <= 0 && boss.getAnimasi() >= 15) {
                     boss = null;
                     p.setGold(p.getGold()+1500);
                     p.setSkor(p.getSkor()+100);

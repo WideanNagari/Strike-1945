@@ -28,7 +28,6 @@ public class EnemyBoss{
     protected int gold;
     protected int score;
     protected int animasi;
-    protected int animasike;
     protected int xk;
     protected int yk;
     protected int mati;
@@ -44,19 +43,23 @@ public class EnemyBoss{
         }catch(IOException ex){
             ex.printStackTrace();
         }
-        gambarLedak = new BufferedImage[11];
+        gambarLedak = new BufferedImage[15];
         try{
-            this.gambarLedak[0]=ImageIO.read(new File("./Explosion/Explosion1_1.png"));
-            this.gambarLedak[1]=ImageIO.read(new File("./Explosion/Explosion1_2.png"));
-            this.gambarLedak[2]=ImageIO.read(new File("./Explosion/Explosion1_3.png"));
-            this.gambarLedak[3]=ImageIO.read(new File("./Explosion/Explosion1_4.png"));
-            this.gambarLedak[4]=ImageIO.read(new File("./Explosion/Explosion1_5.png"));
-            this.gambarLedak[5]=ImageIO.read(new File("./Explosion/Explosion1_6.png"));
-            this.gambarLedak[6]=ImageIO.read(new File("./Explosion/Explosion1_7.png"));
-            this.gambarLedak[7]=ImageIO.read(new File("./Explosion/Explosion1_8.png"));
-            this.gambarLedak[8]=ImageIO.read(new File("./Explosion/Explosion1_9.png"));
-            this.gambarLedak[9]=ImageIO.read(new File("./Explosion/Explosion1_10.png"));
-            this.gambarLedak[10]=ImageIO.read(new File("./Explosion/Explosion1_11.png"));
+            this.gambarLedak[0]=ImageIO.read(new File("./Explosion/boss/1.png"));
+            this.gambarLedak[1]=ImageIO.read(new File("./Explosion/boss/2.png"));
+            this.gambarLedak[2]=ImageIO.read(new File("./Explosion/boss/3.png"));
+            this.gambarLedak[3]=ImageIO.read(new File("./Explosion/boss/4.png"));
+            this.gambarLedak[4]=ImageIO.read(new File("./Explosion/boss/5.png"));
+            this.gambarLedak[5]=ImageIO.read(new File("./Explosion/boss/6.png"));
+            this.gambarLedak[6]=ImageIO.read(new File("./Explosion/boss/7.png"));
+            this.gambarLedak[7]=ImageIO.read(new File("./Explosion/boss/8.png"));
+            this.gambarLedak[8]=ImageIO.read(new File("./Explosion/boss/9.png"));
+            this.gambarLedak[9]=ImageIO.read(new File("./Explosion/boss/10.png"));
+            this.gambarLedak[10]=ImageIO.read(new File("./Explosion/boss/11.png"));
+            this.gambarLedak[11]=ImageIO.read(new File("./Explosion/boss/12.png"));
+            this.gambarLedak[12]=ImageIO.read(new File("./Explosion/boss/13.png"));
+            this.gambarLedak[13]=ImageIO.read(new File("./Explosion/boss/14.png"));
+            this.gambarLedak[14]=ImageIO.read(new File("./Explosion/boss/15.png"));
         }catch(IOException ex){
             ex.printStackTrace();
         }
@@ -70,15 +73,23 @@ public class EnemyBoss{
         this.height = 500;
         this.cooldown = 300;
         this.cd = 300;
-        this.animasike = 0;
+        this.mati = 0;
+    }
+
+    public int getAnimasi() {
+        return animasi;
+    }
+
+    public int getMati() {
+        return mati;
+    }
+
+    public void setMati(int mati) {
+        this.mati = mati;
     }
 
     public void setHp(int hp) {
         this.hp = hp;
-    }
-
-    public int getAnimasike() {
-        return animasike;
     }
 
     public int getCd() {
@@ -133,34 +144,10 @@ public class EnemyBoss{
             if (this.mati == 1) {
                 this.animasi = 0;
             }
-            if (this.animasike == 0 ) {
-                if (this.animasi < 3) {
-                    this.animasi++;
-                    if (this.animasi<=2) {
-                        this.gambar = this.gambarLedak[this.animasi];
-                    }else{
-                        this.animasi = 0;
-                        this.animasike++;
-                    }
-                }
-            }else if (this.animasike == 1) {
-                if (this.animasi < 6) {
-                    this.animasi++;
-                    if (this.animasi<=5) {
-                        this.gambar = this.gambarLedak[this.animasi];
-                    }else{
-                        this.animasi = 0;
-                        this.animasike++;
-                    }
-                }
-            }else{
-                if (this.animasi < 11) {
-                    this.animasi++;
-                    if (this.animasi<=10) {
-                        this.gambar = this.gambarLedak[this.animasi];
-                    }else{
-                        this.animasike++;
-                    }
+            if (this.animasi < 15) {
+                this.animasi++;
+                if (this.animasi<=14) {
+                    this.gambar = this.gambarLedak[this.animasi];
                 }
             }
         }
