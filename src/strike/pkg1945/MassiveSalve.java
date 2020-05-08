@@ -11,7 +11,7 @@ package strike.pkg1945;
  */
 public class MassiveSalve {
      private int harga;
-     protected int hp;
+     private int hp;
    
 
     public MassiveSalve() {

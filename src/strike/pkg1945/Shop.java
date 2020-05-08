@@ -338,19 +338,39 @@ public class Shop extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        //shield2
+        if (p.getGold()>shield2.getHarga()) {
+            p.setJumShieldofCrystal(p.getJumShieldofCrystal()+1);
+            p.setGold(p.getGold()-shield2.getHarga());
+            potion.setText(p.getJumShieldofCrystal()+"");
+            gold.setText(p.getGold()+"");
+        }
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        //salve2
+       if (p.getGold()>salve2.getHarga()) {
+            p.setJumMassiveSalve(p.getJumMassiveSalve()+1);
+            p.setGold(p.getGold()-salve2.getHarga());
+            potion.setText(p.getJumMassiveSalve()+"");
+            gold.setText(p.getGold()+"");
+        }
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        //sack2
+        if (p.getGold()>sack2.getHarga()) {
+            p.setJumSackofGold(p.getJumSackofGold()+1);
+            p.setGold(p.getGold()-sack2.getHarga());
+            potion.setText(p.getJumSackofGold()+"");
+            gold.setText(p.getGold()+"");
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        //box2
+        if (p.getGold()>box2.getHarga()) {
+            p.setJumAngleBox(p.getJumAngleBox()+1);
+            p.setGold(p.getGold()-box2.getHarga());
+            potion.setText(p.getJumAngleBox()+"");
+            gold.setText(p.getGold()+"");
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
     
     /**

@@ -11,7 +11,7 @@ package strike.pkg1945;
  */
 public class SackofGold {
     private int harga;
-    protected int gold;
+    private int gold;
 
     public SackofGold() {
         this.harga = 500;

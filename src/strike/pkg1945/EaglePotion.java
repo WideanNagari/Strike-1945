@@ -11,7 +11,7 @@ package strike.pkg1945;
  */
 public class EaglePotion {
     private int harga;
-    protected int attack;
+    private int attack;
 
     public EaglePotion() {
        this.harga = 1200;

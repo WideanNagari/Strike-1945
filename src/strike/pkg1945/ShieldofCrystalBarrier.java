@@ -11,7 +11,7 @@ package strike.pkg1945;
  */
 public class ShieldofCrystalBarrier {
       private int harga;
-      protected int defend;
+      private int defend;
       
     public ShieldofCrystalBarrier() {
         this.harga = 700;
