@@ -87,6 +87,7 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
         Tnormal = new Timer(1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                main.updateStatus(p,p.getHp(),p.getMaxhp(), p.getSkor(), p.getGold(),p.getLevel());
                 if (count>=0) {
                     jLabel1.setVisible(true);
                     if (count == 0) {
@@ -630,6 +631,13 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
                 p.gerak(3);
                 repaint();
             }
+        }
+        char a = e.getKeyChar();
+        if (a == 'C') {
+            Cheat frame = new Cheat(this.p);
+            frame.pack();
+            frame.setLocationRelativeTo(null);
+            frame.setVisible(true);
         }
     }
 

@@ -285,7 +285,7 @@ public class Shop extends javax.swing.JFrame {
         potion.setForeground(new java.awt.Color(240, 240, 240));
         potion.setText("0");
         jPanel1.add(potion);
-        potion.setBounds(480, 300, 130, 42);
+        potion.setBounds(480, 300, 160, 42);
 
         shield.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         shield.setForeground(new java.awt.Color(240, 240, 240));
