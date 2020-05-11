@@ -158,7 +158,8 @@ public class GameFrame extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         panel1.Tnormal.stop();
-//        panel1.Tplay.stop();
+        panel1.Tplay.stop();
+        panel1.playing = false;
         Pause frame = new Pause(this.p);
         frame.pack();
         frame.setLocationRelativeTo(null);

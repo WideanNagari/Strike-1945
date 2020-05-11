@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import javax.imageio.ImageIO;
+import javax.swing.JPanel;
 import javax.swing.Timer;
 /**
  *
@@ -92,7 +93,6 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
                     jLabel1.setVisible(true);
                     if (count == 0) {
                         jLabel1.setText("GO!!!!!");
-                        Tplay.start();
                         ctr = 0;
                     }else{
                         jLabel1.setText(count+"");
@@ -102,8 +102,8 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
                     if (playing==false) {
                         jLabel1.setVisible(false);
                         playing = true;
+                        Tplay.start();
                     }else{
-//                        main.updateStatus(waktu, p.skor, p.nyawa);
                         if (p.getLevell()!=5) {
                             if (ctrm == 5) {
                             ctrm = 0;
@@ -126,6 +126,10 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
                     }
                     if (p.getLevell()==5 && boss==null) {
                         boss = new EnemyBoss(p.getHp(), 1920, 230);
+                        playing = false;
+                        Tnormal.stop();
+                        jLabel1.setText("BOSS ROUND!!!!");
+                        jLabel1.setVisible(true);
                     }
                 }
             }
@@ -136,54 +140,59 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
                 repaint();
                 p.setCooldown(p.getCooldown()-1);
                 for (Enemy enemy : daftarmusuh) {
-                    enemy.setCooldown(enemy.getCooldown()-1);
+                    if (playing) {
+                        enemy.setCooldown(enemy.getCooldown()-1);
+                    }
                 }
                 for (Peluru peluru : daftarpeluru) {
-                    if (peluru.getX()>1900) {
-                        peluru.setHp(0);
-                    }
-                    peluru.gerakP();
+                    if (peluru.getX()>1900) {peluru.setHp(0);}
+                    if (playing) {peluru.gerakP();}
                 }
                 if (specialBullet!=null) {
-                    if (specialBullet.getX()>1900) {
-                        specialBullet = null;
-                    }
-                    specialBullet.gerakP();
+                    if (specialBullet.getX()>1900) {specialBullet = null;}
+                    else{specialBullet.gerakP();}
                 }
-                for (Peluru peluru : pelurua) {
-                    if (peluru.getX()<0) {
-                        peluru.setHp(0);
-                    }peluru.gerakM();
-                }for (Peluru peluru : pelurub) {
-                    if (peluru.getX()<0) {
-                        peluru.setHp(0);
-                    }peluru.gerakM();
-                }for (Peluru peluru : peluruc) {
-                    if (peluru.getX()<0) {
-                        peluru.setHp(0);
-                    }peluru.gerakM();
-                }for (Peluru peluru : pelurud) {
-                    if (peluru.getX()<0) {
-                        peluru.setHp(0);
-                    }peluru.gerakM();
-                }for (Peluru peluru : pelurue) {
-                    if (peluru.getX()<0) {
-                        peluru.setHp(0);
-                    }peluru.gerakM();
-                }for (Peluru peluru : peluruBoss) {
-                    if (peluru.getX()<0) {
-                        peluru.setHp(0);
-                    }peluru.gerakB();
+                if (playing) {
+                    for (Peluru peluru : pelurua) {
+                        if (peluru.getX()<0) {
+                            peluru.setHp(0);
+                        }peluru.gerakM();
+                    }for (Peluru peluru : pelurub) {
+                        if (peluru.getX()<0) {
+                            peluru.setHp(0);
+                        }peluru.gerakM();
+                    }for (Peluru peluru : peluruc) {
+                        if (peluru.getX()<0) {
+                            peluru.setHp(0);
+                        }peluru.gerakM();
+                    }for (Peluru peluru : pelurud) {
+                        if (peluru.getX()<0) {
+                            peluru.setHp(0);
+                        }peluru.gerakM();
+                    }for (Peluru peluru : pelurue) {
+                        if (peluru.getX()<0) {
+                            peluru.setHp(0);
+                        }peluru.gerakM();
+                    }for (Peluru peluru : peluruBoss) {
+                        if (peluru.getX()<0) {
+                            peluru.setHp(0);
+                        }peluru.gerakB();
+                    }
                 }
                 if (boss!=null) {
-                    boss.setCooldown(boss.getCooldown()-1);
-                    if (boss.getX()>1400) {
+                    if (playing) {
+                        boss.setCooldown(boss.getCooldown()-1);
+                    }if (boss.getX()>1400) {
                         boss.setX(boss.getX()-1);
+                        if (boss.getX()==1400) {
+                            count = 3;
+                            Tnormal.start();
+                        }
                     }
                     if (ctrboss == 15) {
                         boss.gantiAnimasi();
                         ctrboss = 0;
-                    }if (boss.getCooldown()==0 && boss.getHp()>0) {
+                    }if (boss.getCooldown()==0 && boss.getHp()>0 && playing) {
                         for (int i = 0; i < 3; i++) {
                             int rr = (int)(Math.random()*boss.getHeight()-70)+1;
                             peluruBoss.add(new Peluru(boss.getX(), boss.getY()+rr));
@@ -192,7 +201,7 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
                     }
                 }
                 for (Enemy musuh : daftarmusuh) {
-                    if (musuh.getHp()>0) {
+                    if (musuh.getHp()>0 && playing) {
                         musuh.setX(musuh.getX()-musuh.getSpeed());
                     }else{
                         musuh.setMati(musuh.getMati()+1);
@@ -218,7 +227,7 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
                             p.setSkor(p.getSkor()+musuh.getScore());}
                         main.updateStatus(p,p.getHp(), p.getMaxhp(), p.getSkor(), p.getGold(), p.getLevel());
                     }
-                    if (musuh.getCooldown()<=0 && musuh.getHp()>0) {
+                    if (musuh.getCooldown()<=0 && musuh.getHp()>0 && playing) {
                             if (musuh instanceof EnemyAshpest) {
                                 pelurua.add(new Peluru(musuh.getX()+80, musuh.getY()+15));
                                 ((EnemyAshpest) musuh).setCooldown(((EnemyAshpest) musuh).getCd());
@@ -238,7 +247,7 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
                             repaint();
                     }
                 }
-                if (ctr == 8) {
+                if (ctr == 8 && playing) {
                     p.gantiAnimasi();
                     for (Enemy musuh : daftarmusuh) {
                         musuh.gantiAnimasi();
@@ -270,7 +279,7 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
                         }
                     }
                 }
-                if (boss!=null) {
+                if (boss!=null && playing) {
                     Rectangle Boss = new Rectangle(boss.getX(),boss.getY(),boss.getWidth(),boss.getHeight()-70);
                         for (Peluru peluru : daftarpeluru) {
                             if (peluru.getHp()>0) {
@@ -506,15 +515,17 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
                     p.setGold(p.getGold()+1500);
                     p.setSkor(p.getSkor()+100);
                     main.updateStatus(p,p.getHp(),p.getMaxhp(), p.getSkor(), p.getGold(),p.getLevel());
-                    p.setMusuhTerbunuh(10);
+                    p.setMusuhTerbunuh(2);
                 }
-                ctr++;
+                if (playing) {
+                    ctr++;
+                }
                 if (boss!=null) {ctrboss++;}
                 if (p.getMusuhTerbunuh()==10) {
                     p.setMusuhTerbunuh(0);
                     p.setGold(p.getGold()+1000);
                     p.setLevel(p.getLevel()+1);
-                    if (p.getLevell()==6) {
+                    if (p.getLevell()==5) {
                         p.setLevell(1);
                     }else{
                     p.setLevell(p.getLevell()+1);}
@@ -556,7 +567,6 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
         }for (Peluru pp : pelurue) {
             g2.drawImage(pp.getGambarM(), pp.getX(), pp.getY(), pp.getWidth(),pp.getHeight(),this);
         }
-        
         
         g2.drawImage(p.getGambar2(), p.getX()-p.getXk(), p.getY()-p.getYk(), p.getWidth()+20,p.getHeight()+20,this);
         g2.drawImage(p.getGambar(), p.getX(), p.getY(), p.getWidth(),p.getHeight(),this);
@@ -611,6 +621,7 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
     public void keyPressed(KeyEvent e) {
         System.out.println("press");
         if(playing ==  true){
+            char a = e.getKeyChar();
             if(e.getKeyCode() == 87 && p.y > 0){
                 // atas
                 p.gerak(0);
@@ -631,13 +642,25 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
                 p.gerak(3);
                 repaint();
             }
-        }
-        char a = e.getKeyChar();
-        if (a == 'C') {
-            Cheat frame = new Cheat(this.p);
-            frame.pack();
-            frame.setLocationRelativeTo(null);
-            frame.setVisible(true);
+            if (a == 'C') {
+                Tnormal.stop();
+                Tplay.stop();
+                playing = false;
+                Cheat frame = new Cheat(this.p);
+                frame.pack();
+                frame.setLocationRelativeTo(null);
+                frame.setVisible(true);
+            }else if (a == 'y') {
+                //eagle potion
+            }else if (a == 'u') {
+                //shield
+            }else if (a == 'i') {
+                //sack of gold
+            }else if (a == 'o') {
+                //massive heal
+            }else if (a == 'p') {
+                //angel box
+            }
         }
     }
 
@@ -659,7 +682,7 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
     @Override
     public void mouseReleased(MouseEvent e) {
         System.out.println("release mouse");
-        if (p.getCooldown()<=0) {
+        if (p.getCooldown()<=0 && playing == true) {
             if (p instanceof PesawatLockheed) {
                 int y = ((PesawatLockheed)p).specialEffect();
                 if (y == 1) {
