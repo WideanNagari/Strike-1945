@@ -18,9 +18,11 @@ public class Pause extends javax.swing.JFrame {
      * Creates new form Pause
      */
     static Player p;
-    public Pause(Player p) {
+    static GameFrame g;
+    public Pause(Player p, GameFrame g) {
         initComponents();
         this.p = p;
+        this.g = g;
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
@@ -164,6 +166,7 @@ public class Pause extends javax.swing.JFrame {
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
+        g.dispatchEvent(new WindowEvent(this,WindowEvent.WINDOW_CLOSING));
         this.dispatchEvent(new WindowEvent(this,WindowEvent.WINDOW_CLOSING));
     }//GEN-LAST:event_jButton6ActionPerformed
 
@@ -197,7 +200,7 @@ public class Pause extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Pause(p).setVisible(true);
+                new Pause(p,g).setVisible(true);
             }
         });
     }

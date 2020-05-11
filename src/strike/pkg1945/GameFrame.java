@@ -160,7 +160,7 @@ public class GameFrame extends javax.swing.JFrame {
         panel1.Tnormal.stop();
         panel1.Tplay.stop();
         panel1.playing = false;
-        Pause frame = new Pause(this.p);
+        Pause frame = new Pause(this.p,this);
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
