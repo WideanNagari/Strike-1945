@@ -28,7 +28,7 @@ public class Player {
     protected String jenispesawat;
     protected String nama;
     protected int jumEaglePotion,jumShieldofCrystal,jumMassiveSalve,jumSackofGold,jumAngelBox=0;
-    protected int musuhTerbunuh, efek,mati;
+    protected int musuhTerbunuh, efek,mati,jumlahMusuh;
             
     public Player(String nama) {
         gambarLedak = new BufferedImage[13];
@@ -66,6 +66,7 @@ public class Player {
         this.maxhp = 1500;
         this.gold = 0;
         this.skor = 0;
+        this.jumlahMusuh = 1;
         this.jumlahpeluru = 1;
         this.jumEaglePotion=0;
         this.jumShieldofCrystal=0;
@@ -76,6 +77,14 @@ public class Player {
         this.efek = 0;
         this.mati = 0;
         this.levelattack = 1; this.levelhp = 1; this.leveldefend = 1;
+    }
+
+    public int getJumlahMusuh() {
+        return jumlahMusuh;
+    }
+
+    public void setJumlahMusuh(int jumlahMusuh) {
+        this.jumlahMusuh = jumlahMusuh;
     }
 
     public void setAttack(int attack) {
