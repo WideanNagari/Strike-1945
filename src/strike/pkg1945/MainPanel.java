@@ -517,13 +517,13 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
                     p.setGold(p.getGold()+1500);
                     p.setSkor(p.getSkor()+100);
                     main.updateStatus(p,p.getHp(),p.getMaxhp(), p.getSkor(), p.getGold(),p.getLevel());
-                    p.setMusuhTerbunuh(10);
+                    p.setMusuhTerbunuh(1);
                 }
                 if (playing) {
                     ctr++;
                 }
                 if (boss!=null) {ctrboss++;}
-                if (p.getMusuhTerbunuh()==10) {
+                if (p.getMusuhTerbunuh()==1) {
                     p.setMusuhTerbunuh(0);
                     p.setGold(p.getGold()+1000);
                     p.setLevel(p.getLevel()+1);
