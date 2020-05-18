@@ -48,7 +48,8 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
     BufferedImage background2; 
     Timer Tnormal;
     Timer Tplay;
-    int count = 3, ctr, ctrm,ctrm2,ctrboss;
+    int count = 3, ctr, ctrm,ctrm2,ctrboss,ctrjlabel2;
+    int eagle,angel,shield,sack;
     boolean playing = false;
     EnemyAshpest ashpest;
     EnemyBlademorph blade;
@@ -57,6 +58,8 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
     EnemyGlowstarKing king;
     public MainPanel(GameFrame main, NewGame n) {
         initComponents();
+        jLabel2.setVisible(false);
+        eagle=0;angel=0;shield=0;sack=0;
         this.n = n;
         if (n.newp = true) {
             p = n.p.get(n.p.size()-1);
@@ -120,7 +123,8 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
                                         daftarmusuh.add(new EnemyBlazewing(1700, randy));
                                     }else if (rand == 4) {
                                         daftarmusuh.add(new EnemyGlowstarKing(1700, randy));
-                                    } 
+                                    }
+                                    if (p.getAngelBox()>0) {daftarmusuh.get(daftarmusuh.size()-1).setHp(daftarmusuh.get(daftarmusuh.size()-1).getHp()/2);}
                                 }
                             }
                             ctrm++;  
@@ -132,6 +136,11 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
                         Tnormal.stop();
                         jLabel1.setText("BOSS ROUND!!!!");
                         jLabel1.setVisible(true);
+                    }
+                    if (ctrjlabel2>1) {
+                        ctrjlabel2--;
+                    }else{
+                        jLabel2.setVisible(false);
                     }
                 }
             }
@@ -150,7 +159,7 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
                     if (peluru.getX()>1900) {peluru.setHp(0);}
                     if (playing) {peluru.gerakP();}
                 }
-                if (specialBullet!=null) {
+                if (specialBullet!=null && playing) {
                     if (specialBullet.getX()>1900) {specialBullet = null;}
                     else{specialBullet.gerakP();}
                 }
@@ -225,8 +234,13 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
                             }else if (p instanceof PesawatNorthtrop) {
                                 ((PesawatNorthtrop)p).specialEffect();
                             }
-                            p.setGold(p.getGold()+musuh.getGold());
-                            p.setSkor(p.getSkor()+musuh.getScore());}
+                            if (p.getSackofGold()>0) {p.setGold(p.getGold()+200);
+                            }else{p.setGold(p.getGold()+musuh.getGold());}
+                            p.setSkor(p.getSkor()+musuh.getScore());
+                            p.setSackofGold(p.getSackofGold()-1);
+                            p.setEaglePotion(p.getEaglePotion()-1);
+                            p.setShieldofCrystal(p.getShieldofCrystal()-1);
+                        }
                         main.updateStatus(p,p.getHp(), p.getMaxhp(), p.getSkor(), p.getGold(), p.getLevel());
                     }
                     if (musuh.getCooldown()<=0 && musuh.getHp()>0 && playing) {
@@ -325,7 +339,9 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
                                     if (p.getDefend()<ashpest.getDamage()) {
                                         int rr = (int)(Math.random()*100)+1;
                                         if (rr>p.getChancemiss()) {
-                                            p.setHp(p.getHp()-(ashpest.getDamage()-p.getDefend()));
+                                            if (p.getAngelBox()>0) {
+                                                p.setHp(p.getHp()-((ashpest.getDamage()/2)-p.getDefend()));
+                                            }else{p.setHp(p.getHp()-(ashpest.getDamage()-p.getDefend()));}
                                         }
                                     }
                                     peluru.setHp(0);
@@ -341,7 +357,9 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
                                     if (p.getDefend()<blade.getDamage()) {
                                         int rr = (int)(Math.random()*100)+1;
                                         if (rr>p.getChancemiss()) {
-                                            p.setHp(p.getHp()-(blade.getDamage()-p.getDefend()));
+                                            if (p.getAngelBox()>0) {
+                                                p.setHp(p.getHp()-((blade.getDamage()/2)-p.getDefend()));
+                                            }else{p.setHp(p.getHp()-(blade.getDamage()-p.getDefend()));}
                                         }
                                     }
                                     peluru.setHp(0);
@@ -357,7 +375,9 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
                                     if (p.getDefend()<lich.getDamage()) {
                                         int rr = (int)(Math.random()*100)+1;
                                         if (rr>p.getChancemiss()) {
-                                            p.setHp(p.getHp()-(lich.getDamage()-p.getDefend()));
+                                            if (p.getAngelBox()>0) {
+                                                p.setHp(p.getHp()-((lich.getDamage()/2)-p.getDefend()));
+                                            }else{p.setHp(p.getHp()-(lich.getDamage()-p.getDefend()));}
                                         }
                                     }
                                     peluru.setHp(0);
@@ -373,7 +393,9 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
                                     if (p.getDefend()<wing.getDamage()) {
                                         int rr = (int)(Math.random()*100)+1;
                                         if (rr>p.getChancemiss()) {
-                                            p.setHp(p.getHp()-(wing.getDamage()-p.getDefend()));
+                                            if (p.getAngelBox()>0) {
+                                                p.setHp(p.getHp()-((wing.getDamage()/2)-p.getDefend()));
+                                            }else{p.setHp(p.getHp()-(wing.getDamage()-p.getDefend()));}
                                         }
                                     }
                                     peluru.setHp(0);
@@ -389,7 +411,9 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
                                     if (p.getDefend()<king.getDamage()) {
                                         int rr = (int)(Math.random()*100)+1;
                                         if (rr>p.getChancemiss()) {
-                                            p.setHp(p.getHp()-(king.getDamage()-p.getDefend()));
+                                            if (p.getAngelBox()>0) {
+                                                p.setHp(p.getHp()-((king.getDamage()/2)-p.getDefend()));
+                                            }else{p.setHp(p.getHp()-(king.getDamage()-p.getDefend()));}
                                         }
                                     }
                                     peluru.setHp(0);
@@ -406,7 +430,9 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
                                     if (p.getDefend()<rr2) {
                                         int rr = (int)(Math.random()*100)+1;
                                         if (rr>p.getChancemiss()) {
-                                            p.setHp(p.getHp()-(rr2-p.getDefend()));
+                                            if (p.getAngelBox()>0) {
+                                                p.setHp(p.getHp()-((rr2/2)-p.getDefend()));
+                                            }else{p.setHp(p.getHp()-(rr2-p.getDefend()));}
                                         }
                                     }
                                     peluru.setHp(0);
@@ -518,12 +544,14 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
                     p.setSkor(p.getSkor()+100);
                     main.updateStatus(p,p.getHp(),p.getMaxhp(), p.getSkor(), p.getGold(),p.getLevel());
                     p.setMusuhTerbunuh(1);
+                    p.setAngelBox(0);
                 }
                 if (playing) {
                     ctr++;
                 }
                 if (boss!=null) {ctrboss++;}
-                if (p.getMusuhTerbunuh()==1) {
+                if (p.getMusuhTerbunuh()==10) {
+                    p.setAngelBox(p.getAngelBox()-1);
                     p.setMusuhTerbunuh(0);
                     p.setGold(p.getGold()+1000);
                     p.setLevel(p.getLevel()+1);
@@ -539,6 +567,28 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
                         }
                     }
                     main.updateStatus(p,p.getHp(),p.getMaxhp(), p.getSkor(), p.getGold(),p.getLevel());
+                }
+                if (p.getEaglePotion()<=0 && eagle == 1) {
+                    jLabel2.setText("Efek Eagle Potion Telah Habis!");
+                    jLabel2.setVisible(true);
+                    ctrjlabel2 = 2;eagle--;
+                    p.setAttack(p.getAttack()-500);
+                }if (p.getShieldofCrystal()<=0 && shield == 1) {
+                    jLabel2.setText("Efek Shield of Crystal Barrier Telah Habis!");
+                    jLabel2.setVisible(true);
+                    ctrjlabel2 = 2;shield--;
+                    p.setDefend(p.getDefend()-20);
+                }if (p.getAngelBox()<=0 && angel == 1) {
+                    jLabel2.setText("Efek Angel Box Telah Habis!");
+                    jLabel2.setVisible(true);ctrjlabel2 = 2;
+                    for (Enemy enemy : daftarmusuh) {
+                        enemy.setHp(enemy.getHp()*2);
+                    }
+                    angel--;
+                }if (p.getSackofGold()<=0 && sack==1) {
+                    jLabel2.setText("Efek Sack of Gold Telah Habis!");
+                    jLabel2.setVisible(true);
+                    ctrjlabel2 = 2;sack--;
                 }
             }
         });
@@ -595,6 +645,7 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(0, 0, 0));
 
@@ -606,16 +657,26 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
         jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel1.setOpaque(true);
 
+        jLabel2.setFont(new java.awt.Font("Comic Sans MS", 1, 48)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(240, 240, 240));
+        jLabel2.setText("x");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1920, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(429, 429, 429)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 1063, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(411, Short.MAX_VALUE)
+                .addGap(103, 103, 103)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 241, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(372, 372, 372))
         );
@@ -660,15 +721,51 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
                 frame.setLocationRelativeTo(null);
                 frame.setVisible(true);
             }else if (a == 'y') {
-                //eagle potion
+                if (p.getJumEaglePotion()>=1 && playing) {
+                    p.setJumEaglePotion(p.getJumEaglePotion()-1);
+                    jLabel2.setText("Eagle Potion Activated! "+p.getJumEaglePotion()+" Left");
+                    p.setEaglePotion(5);
+                    p.setAttack(p.getAttack()+500);eagle = 1;
+                }else{
+                    jLabel2.setText("No Eagle Potion Left!");
+                }jLabel2.setVisible(true);ctrjlabel2 = 2;
             }else if (a == 'u') {
-                //shield
+                if (p.getJumShieldofCrystal()>=1 && playing) {
+                    p.setJumShieldofCrystal(p.getJumShieldofCrystal()-1);
+                    jLabel2.setText("Shield of Crystal Barrier Activated! "+p.getJumShieldofCrystal()+" Left");
+                    p.setShieldofCrystal(5);
+                    p.setDefend(p.getDefend()+20); shield = 1;
+                }else{
+                    jLabel2.setText("No Shield of Crystal Barrier Left!");
+                }jLabel2.setVisible(true);ctrjlabel2 = 2;
             }else if (a == 'i') {
-                //sack of gold
+                if (p.getJumSackofGold()>=1 && playing) {
+                    p.setJumSackofGold(p.getJumSackofGold()-1);
+                    jLabel2.setText("Sack of Gold Activated! "+p.getJumSackofGold()+" Left");
+                    p.setSackofGold(5);sack = 1;
+                }else{
+                    jLabel2.setText("No Sack of Gold Left!");
+                }jLabel2.setVisible(true);ctrjlabel2 = 2;
             }else if (a == 'o') {
-                //massive heal
+                if (p.getJumMassiveSalve()>=1 && playing) {
+                    p.setJumMassiveSalve(p.getJumMassiveSalve()-1);
+                    jLabel2.setText("Massive Heal Activated! " + p.getJumMassiveSalve()+" Left");
+                    p.setHp(p.getHp()+500);
+                    if (p.getHp()>p.getMaxhp()) {p.setHp(p.getMaxhp());}
+                }else{
+                    jLabel2.setText("No Massive Heal Left!");
+                }jLabel2.setVisible(true);ctrjlabel2 = 2;
             }else if (a == 'p') {
-                //angel box
+                if (p.getJumAngelBox()>=1 && playing) {
+                    p.setJumAngleBox(p.getJumAngelBox()-1);
+                    jLabel2.setText("Angel Box Activated! "+p.getJumAngelBox()+" Left!");
+                    p.setAngelBox(3);angel = 1;
+                    for (Enemy enemy : daftarmusuh) {
+                        enemy.setHp(enemy.getHp()/2);
+                    }
+                }else{
+                    jLabel2.setText("No Angel Box Left!");
+                }jLabel2.setVisible(true);ctrjlabel2 = 2;
             }
         }
     }
@@ -755,5 +852,6 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }

@@ -27,7 +27,8 @@ public class Player {
     protected int levelhp,levelattack,leveldefend;
     protected String jenispesawat;
     protected String nama;
-    protected int jumEaglePotion,jumShieldofCrystal,jumMassiveSalve,jumSackofGold,jumAngelBox=0;
+    protected int jumEaglePotion,jumShieldofCrystal,jumMassiveSalve,jumSackofGold,jumAngelBox;
+    protected int EaglePotion,ShieldofCrystal,SackofGold,AngelBox;
     protected int musuhTerbunuh, efek,mati,jumlahMusuh;
             
     public Player(String nama) {
@@ -68,15 +69,44 @@ public class Player {
         this.skor = 0;
         this.jumlahMusuh = 1;
         this.jumlahpeluru = 1;
-        this.jumEaglePotion=0;
-        this.jumShieldofCrystal=0;
-        this.jumMassiveSalve=0;
-        this.jumSackofGold=0;
-        this.jumAngelBox=0;
+        this.jumEaglePotion=0;this.jumShieldofCrystal=0;this.jumMassiveSalve=0;this.jumSackofGold=0;this.jumAngelBox=1;
         this.musuhTerbunuh = 0;
         this.efek = 0;
         this.mati = 0;
+        this.EaglePotion = 0;this.ShieldofCrystal = 0;this.SackofGold = 0;this.AngelBox = 0;
         this.levelattack = 1; this.levelhp = 1; this.leveldefend = 1;
+    }
+
+    public int getEaglePotion() {
+        return EaglePotion;
+    }
+
+    public void setEaglePotion(int EaglePotion) {
+        this.EaglePotion = EaglePotion;
+    }
+
+    public int getShieldofCrystal() {
+        return ShieldofCrystal;
+    }
+
+    public void setShieldofCrystal(int ShieldofCrystal) {
+        this.ShieldofCrystal = ShieldofCrystal;
+    }
+    
+    public int getSackofGold() {
+        return SackofGold;
+    }
+
+    public void setSackofGold(int SackofGold) {
+        this.SackofGold = SackofGold;
+    }
+
+    public int getAngelBox() {
+        return AngelBox;
+    }
+
+    public void setAngelBox(int AngelBox) {
+        this.AngelBox = AngelBox;
     }
 
     public int getJumlahMusuh() {

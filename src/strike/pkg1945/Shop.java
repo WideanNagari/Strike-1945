@@ -36,6 +36,11 @@ public class Shop extends javax.swing.JFrame {
         sack2 = new SackofGold();
         shield2 = new ShieldofCrystalBarrier();
         this.p = p;
+        potion.setText(p.getJumEaglePotion()+"");
+        shield.setText(p.getJumShieldofCrystal()+"");
+        heal.setText(p.getJumMassiveSalve()+"");
+        sack.setText(p.getJumSackofGold()+"");
+        box.setText(p.getJumAngelBox()+"");
         gold.setText(p.getGold()+"");
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
@@ -371,7 +376,7 @@ public class Shop extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        if (p.getGold()>box2.getHarga()) {
+        if (p.getGold()>=box2.getHarga()) {
             p.setJumAngleBox(p.getJumAngelBox()+1);
             p.setGold(p.getGold()-box2.getHarga());
             box.setText(p.getJumAngelBox()+"");
