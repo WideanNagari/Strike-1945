@@ -4,12 +4,14 @@
  * and open the template in the editor.
  */
 package strike.pkg1945;
+import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  *
  * @author Widean Nagari
  */
-public class HighScores {
+public class HighScores implements Serializable{
     String nama;
     int uang;
     int skor;
@@ -23,7 +25,7 @@ public class HighScores {
         this.level = level;
         this.letak = letak;
     }
-
+    
     public int getLetak() {
         return letak;
     }

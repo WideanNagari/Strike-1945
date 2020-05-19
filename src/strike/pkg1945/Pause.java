@@ -6,6 +6,9 @@
 package strike.pkg1945;
 
 import java.awt.event.WindowEvent;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import javax.swing.JFrame;
 
@@ -154,6 +157,15 @@ public class Pause extends javax.swing.JFrame {
         if (ctr==0) {
             high.add(hh);
         }
+        try{
+            FileOutputStream fo = new FileOutputStream("Highscore.txt");
+            ObjectOutputStream out = new ObjectOutputStream(fo);
+            out.writeObject(high);
+            out.close();
+            fo.close();
+        }catch(IOException ex){
+            ex.printStackTrace();
+        }  
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
