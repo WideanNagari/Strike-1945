@@ -12,11 +12,11 @@ import java.util.ArrayList;
  * @author Widean Nagari
  */
 public class HighScores implements Serializable{
-    String nama;
-    int uang;
-    int skor;
-    int level;
-    int letak;
+    private String nama;
+    private int uang;
+    private int skor;
+    private int level;
+    private int letak;
 
     public HighScores(String nama, int uang, int skor, int level, int letak) {
         this.nama = nama;

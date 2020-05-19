@@ -19,26 +19,42 @@ public class HighScore extends javax.swing.JFrame {
      * Creates new form HighScore
      */
     static ArrayList<HighScores> high;
+    int[] high2;
+    String[] high3;
     public HighScore(ArrayList<HighScores> h) {
         initComponents();
         high = h;
-        if (high.size()>0 && high.get(0)!=null) {
-            satu.setText(high.get(0).getNama()+" - "+ high.get(0).getSkor()+" - "+ high.get(0).getUang()+" - "+ high.get(0).getLevel());
-        }else{
-            satu.setText("-");
+        high2 = new int[3];
+        high3 = new String[3];
+        int ctr = 0;
+        for (HighScores h2 : high) {
+            high2[ctr] = h2.getSkor();
+            high3[ctr] = h2.getNama();
+            ctr++;
         }
         
-        if (high.size()>1 && high.get(1)!=null) {
-            dua.setText(high.get(1).getNama()+" - "+ high.get(1).getSkor()+" - "+ high.get(1).getUang()+" - "+ high.get(1).getLevel());
-        }else{
-            dua.setText("-");
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 2; j++) {
+                if (high2[j]<high2[j+1]) {
+                    int c = high2[j];
+                    high2[j]=high2[j+1];
+                    high2[j+1] = c;
+                    String c2 = high3[j];
+                    high3[j]=high3[j+1];
+                    high3[j+1] = c2;
+                }
+            }
         }
-        
-        if (high.size()>2 && high.get(2)!=null) {
-            tiga.setText(high.get(2).getNama()+" - "+ high.get(2).getSkor()+" - "+ high.get(2).getUang()+" - "+ high.get(2).getLevel());
-        }else{
-            tiga.setText("-");
-        }
+            for (HighScores hh : high) {
+                if (hh.getSkor() == high2[0] && hh.getNama().equals(high3[0])) {
+                    satu.setText(hh.getNama()+" - "+ hh.getSkor()+" - "+ hh.getUang()+" - "+ hh.getLevel());
+                }else if (hh.getSkor() == high2[1] && hh.getNama().equals(high3[1])&&high.size()>1) {
+                    dua.setText(hh.getNama()+" - "+ hh.getSkor()+" - "+ hh.getUang()+" - "+ hh.getLevel());
+                }else if (hh.getSkor() == high2[2] && hh.getNama().equals(high3[2]) && high.size()>2) {
+                    tiga.setText(hh.getNama()+" - "+ hh.getSkor()+" - "+ hh.getUang()+" - "+ hh.getLevel());
+                }
+            }
+            
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 

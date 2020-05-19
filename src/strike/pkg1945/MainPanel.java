@@ -132,7 +132,7 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
                             ctrm++;  
                         }
                     }
-                    if (p.getLevell()==1 && boss==null) {
+                    if (p.getLevell()==5 && boss==null) {
                         boss = new EnemyBoss(p.getHp()*p.getBossKe(), 1920, 230);
                         progressboss.setMinimum(0);
                         progressboss.setMaximum(boss.getHp());
@@ -570,7 +570,7 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
                     ctr++;
                 }
                 if (boss!=null) {ctrboss++;}
-                if (p.getMusuhTerbunuh()==1) {
+                if (p.getMusuhTerbunuh()==10) {
                     p.setAngelBox(p.getAngelBox()-1);
                     p.setMusuhTerbunuh(0);
                     p.setGold(p.getGold()+1000);
