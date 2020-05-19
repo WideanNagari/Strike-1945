@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
+import javax.swing.JProgressBar;
 import javax.swing.Timer;
 /**
  *
@@ -58,6 +59,7 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
     EnemyGlowstarKing king;
     public MainPanel(GameFrame main, NewGame n) {
         initComponents();
+        progressboss.setVisible(false);
         jLabel2.setVisible(false);
         eagle=0;angel=0;shield=0;sack=0;
         this.n = n;
@@ -130,8 +132,13 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
                             ctrm++;  
                         }
                     }
-                    if (p.getLevell()==5 && boss==null) {
-                        boss = new EnemyBoss(p.getHp(), 1920, 230);
+                    if (p.getLevell()==1 && boss==null) {
+                        boss = new EnemyBoss(p.getHp()*p.getBossKe(), 1920, 230);
+                        progressboss.setMinimum(0);
+                        progressboss.setMaximum(boss.getHp());
+                        progressboss.setLocation(1970,100);
+                        progressboss.setVisible(true);
+                        progressboss.setValue(boss.getHp());
                         playing = false;
                         Tnormal.stop();
                         jLabel1.setText("BOSS ROUND!!!!");
@@ -195,11 +202,12 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
                         boss.setCooldown(boss.getCooldown()-1);
                     }if (boss.getX()>1400) {
                         boss.setX(boss.getX()-1);
+                        progressboss.setLocation(boss.getX()+100, 200);
                         if (boss.getX()==1400) {
                             count = 3;
                             Tnormal.start();
                         }
-                    }
+                    }else{progressboss.setLocation(1500,200);}
                     if (ctrboss == 15) {
                         boss.gantiAnimasi();
                         ctrboss = 0;
@@ -302,11 +310,21 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
                                 Rectangle bbPeluru = new Rectangle(peluru.getX(),peluru.getY(),peluru.getWidth(),peluru.getHeight());
                                 if (Boss.intersects(bbPeluru)) {
                                     boss.setHp(boss.getHp()-p.getAttack());
+                                    progressboss.setValue(boss.getHp());
                                     peluru.setHp(0);
                                     repaint();
                                     break;
                                 }
                             }
+                        }
+                        if (specialBullet!=null && specialBullet.getHp() > 0) {
+                            Rectangle bbPeluru = new Rectangle(specialBullet.getX(),specialBullet.getY(),specialBullet.getWidth()*2,specialBullet.getHeight()*2);
+                                if (Boss.intersects(bbPeluru)) {
+                                    specialBullet.setHp(0);
+                                    boss.setHp(boss.getHp()-(p.getAttack()*3));
+                                    progressboss.setValue(boss.getHp());
+                                    repaint();
+                                }
                         }
                 }
                         Rectangle bbPlayer = new Rectangle(p.getX(),p.getY(),p.getWidth(),p.getHeight());
@@ -545,12 +563,14 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
                     main.updateStatus(p,p.getHp(),p.getMaxhp(), p.getSkor(), p.getGold(),p.getLevel());
                     p.setMusuhTerbunuh(1);
                     p.setAngelBox(0);
+                    p.setBossKe(p.getBossKe()+1);
+                    progressboss.setVisible(false);
                 }
                 if (playing) {
                     ctr++;
                 }
                 if (boss!=null) {ctrboss++;}
-                if (p.getMusuhTerbunuh()==10) {
+                if (p.getMusuhTerbunuh()==1) {
                     p.setAngelBox(p.getAngelBox()-1);
                     p.setMusuhTerbunuh(0);
                     p.setGold(p.getGold()+1000);
@@ -634,6 +654,7 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
             g2.drawImage(musuh.getGambar2(), musuh.getX()+musuh.getXk(), musuh.getY()+musuh.getYk(), musuh.getWidth(),musuh.getHeight(),this);
             g2.drawImage(musuh.getGambar(), musuh.getX(), musuh.getY(), musuh.getWidth(),musuh.getHeight(),this);
         }
+        if (boss!=null) {progressboss.setLocation(boss.getX()+100, 200);}
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -646,6 +667,7 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        progressboss = new javax.swing.JProgressBar();
 
         setBackground(new java.awt.Color(0, 0, 0));
 
@@ -670,13 +692,19 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
                 .addGap(429, 429, 429)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 1063, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(progressboss, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(115, 115, 115))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(103, 103, 103)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 241, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 151, Short.MAX_VALUE)
+                .addComponent(progressboss, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(76, 76, 76)
                 .addComponent(jLabel1)
                 .addGap(372, 372, 372))
         );
@@ -853,5 +881,6 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JProgressBar progressboss;
     // End of variables declaration//GEN-END:variables
 }

@@ -18,11 +18,14 @@ public class NewGame extends javax.swing.JFrame {
     /**
      * Creates new form NewGame
      */
-    ArrayList<Player> p = new ArrayList();
+    static ArrayList<Player> p;
+    static ArrayList<HighScores> high;
     boolean newp;
-    public NewGame() {
+    public NewGame(ArrayList<HighScores> h, ArrayList<Player> player) {
         initComponents();
         newp = false;
+        high = h;
+        p = player;
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
@@ -241,9 +244,9 @@ public class NewGame extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        p.add(new PesawatLockheed(nama.getText()));
+        p.add(new PesawatLockheed(nama.getText(),p.size()));
         newp = true;
-        GameFrame frame = new GameFrame(this);
+        GameFrame frame = new GameFrame(this,high);
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
@@ -257,9 +260,9 @@ public class NewGame extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        p.add(new PesawatNorthtrop(nama.getText()));
+        p.add(new PesawatNorthtrop(nama.getText(),p.size()));
         newp = true;
-        GameFrame frame = new GameFrame(this);
+        GameFrame frame = new GameFrame(this,high);
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
@@ -268,9 +271,9 @@ public class NewGame extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        p.add(new PesawatThunderbold(nama.getText()));
+        p.add(new PesawatThunderbold(nama.getText(),p.size()));
         newp = true;
-        GameFrame frame = new GameFrame(this);
+        GameFrame frame = new GameFrame(this,high);
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
@@ -307,7 +310,7 @@ public class NewGame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new NewGame().setVisible(true);
+                new NewGame(high,p).setVisible(true);
             }
         });
     }

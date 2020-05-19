@@ -8,6 +8,7 @@ package strike.pkg1945;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
+import java.util.ArrayList;
 import javax.swing.JFrame;
 
 /**
@@ -22,10 +23,12 @@ public class GameFrame extends javax.swing.JFrame {
     MainPanel panel1;
     static NewGame n;
     Player p;
-    public GameFrame(NewGame n) {
+    static ArrayList<HighScores> high;
+    public GameFrame(NewGame n, ArrayList<HighScores> h) {
         initComponents();
         this.n = n;
-        this.p = new Player("");
+        this.p = new Player("",0);
+        high = h;
         jButton1.setFocusable(false);
         jButton2.setFocusable(false);
         panel1 = new MainPanel(this,n);
@@ -160,7 +163,7 @@ public class GameFrame extends javax.swing.JFrame {
         panel1.Tnormal.stop();
         panel1.Tplay.stop();
         panel1.playing = false;
-        Pause frame = new Pause(this.p,this);
+        Pause frame = new Pause(this.p,this,this.high);
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
@@ -201,7 +204,7 @@ public class GameFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new GameFrame(n).setVisible(true);
+                new GameFrame(n, high).setVisible(true);
             }
         });
     }

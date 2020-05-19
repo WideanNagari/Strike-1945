@@ -65,7 +65,7 @@ public class EnemyBoss{
         }
         this.animasi = 0;
         this.gambar=gambarAnimasi[animasi];
-        this.hp = hpPlayer*3;
+        this.hp = hpPlayer;
         this.x = x;
         this.y = y;
         this.mati = 0;

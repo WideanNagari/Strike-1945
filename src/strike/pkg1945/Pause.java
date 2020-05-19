@@ -6,6 +6,7 @@
 package strike.pkg1945;
 
 import java.awt.event.WindowEvent;
+import java.util.ArrayList;
 import javax.swing.JFrame;
 
 /**
@@ -19,8 +20,10 @@ public class Pause extends javax.swing.JFrame {
      */
     static Player p;
     static GameFrame g;
-    public Pause(Player p, GameFrame g) {
+    static ArrayList<HighScores> high;
+    public Pause(Player p, GameFrame g, ArrayList<HighScores> h) {
         initComponents();
+        high = h;
         this.p = p;
         this.g = g;
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -141,6 +144,16 @@ public class Pause extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
+        HighScores hh = new HighScores(this.p.getNama(), this.p.getGold(), this.p.getSkor(), this.p.getLevel(),this.p.getPosisiSave());
+        int ctr = 0;
+        for (HighScores h : high) {
+            if (h.getLetak() == this.p.getPosisiSave()) {
+                h = hh;ctr++;
+            }
+        }
+        if (ctr==0) {
+            high.add(hh);
+        }
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -200,7 +213,7 @@ public class Pause extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Pause(p,g).setVisible(true);
+                new Pause(p,g,high).setVisible(true);
             }
         });
     }

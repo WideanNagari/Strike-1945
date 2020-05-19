@@ -29,9 +29,10 @@ public class Player {
     protected String nama;
     protected int jumEaglePotion,jumShieldofCrystal,jumMassiveSalve,jumSackofGold,jumAngelBox;
     protected int EaglePotion,ShieldofCrystal,SackofGold,AngelBox;
-    protected int musuhTerbunuh, efek,mati,jumlahMusuh;
+    protected int musuhTerbunuh, efek,mati,jumlahMusuh,bossKe;
+    protected int posisiSave;
             
-    public Player(String nama) {
+    public Player(String nama,int save) {
         gambarLedak = new BufferedImage[13];
         try{
             this.gambarLedak[0]=ImageIO.read(new File("./Explosion/player/1.png"));
@@ -50,6 +51,8 @@ public class Player {
         }catch(IOException ex){
             ex.printStackTrace();
         }
+        this.posisiSave = save;
+        this.bossKe = 1;
         this.nama = nama;
         this.x = 300;
         this.y = 440;
@@ -75,6 +78,18 @@ public class Player {
         this.mati = 0;
         this.EaglePotion = 0;this.ShieldofCrystal = 0;this.SackofGold = 0;this.AngelBox = 0;
         this.levelattack = 1; this.levelhp = 1; this.leveldefend = 1;
+    }
+
+    public int getPosisiSave() {
+        return posisiSave;
+    }
+
+    public int getBossKe() {
+        return bossKe;
+    }
+
+    public void setBossKe(int bossKe) {
+        this.bossKe = bossKe;
     }
 
     public int getEaglePotion() {

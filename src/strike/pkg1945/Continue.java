@@ -6,6 +6,7 @@
 package strike.pkg1945;
 
 import java.awt.event.WindowEvent;
+import java.util.ArrayList;
 import javax.swing.JFrame;
 
 /**
@@ -17,8 +18,10 @@ public class Continue extends javax.swing.JFrame {
     /**
      * Creates new form Continue
      */
-    public Continue() {
+    static ArrayList<HighScores> high;
+    public Continue(ArrayList<HighScores> h) {
         initComponents();
+        high = h;
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
@@ -34,6 +37,12 @@ public class Continue extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        satu = new javax.swing.JButton();
+        dua = new javax.swing.JButton();
+        tiga = new javax.swing.JButton();
+        buang1 = new javax.swing.JButton();
+        buang2 = new javax.swing.JButton();
+        buang3 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -51,7 +60,49 @@ public class Continue extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton1);
-        jButton1.setBounds(880, 800, 200, 75);
+        jButton1.setBounds(880, 850, 200, 75);
+
+        satu.setFont(new java.awt.Font("Comic Sans MS", 1, 48)); // NOI18N
+        satu.setText("1. Save Data Not Found!");
+        satu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                satuActionPerformed(evt);
+            }
+        });
+        jPanel1.add(satu);
+        satu.setBounds(230, 260, 1300, 130);
+
+        dua.setFont(new java.awt.Font("Comic Sans MS", 1, 48)); // NOI18N
+        dua.setText("2. Save Data Not Found!");
+        dua.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                duaActionPerformed(evt);
+            }
+        });
+        jPanel1.add(dua);
+        dua.setBounds(230, 440, 1300, 130);
+
+        tiga.setFont(new java.awt.Font("Comic Sans MS", 1, 48)); // NOI18N
+        tiga.setText("3. Save Data Not Found!");
+        tiga.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tigaActionPerformed(evt);
+            }
+        });
+        jPanel1.add(tiga);
+        tiga.setBounds(230, 630, 1300, 130);
+
+        buang1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/strike/pkg1945/Gambar/sampah.png"))); // NOI18N
+        jPanel1.add(buang1);
+        buang1.setBounds(1620, 260, 110, 130);
+
+        buang2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/strike/pkg1945/Gambar/sampah.png"))); // NOI18N
+        jPanel1.add(buang2);
+        buang2.setBounds(1620, 440, 110, 130);
+
+        buang3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/strike/pkg1945/Gambar/sampah.png"))); // NOI18N
+        jPanel1.add(buang3);
+        buang3.setBounds(1620, 630, 110, 130);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/strike/pkg1945/Gambar/Main Menu.jpg"))); // NOI18N
         jPanel1.add(jLabel1);
@@ -75,6 +126,18 @@ public class Continue extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.dispatchEvent(new WindowEvent(this,WindowEvent.WINDOW_CLOSING));
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void satuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_satuActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_satuActionPerformed
+
+    private void duaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_duaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_duaActionPerformed
+
+    private void tigaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tigaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tigaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -106,15 +169,21 @@ public class Continue extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Continue().setVisible(true);
+                new Continue(high).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton buang1;
+    private javax.swing.JButton buang2;
+    private javax.swing.JButton buang3;
+    private javax.swing.JButton dua;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton satu;
+    private javax.swing.JButton tiga;
     // End of variables declaration//GEN-END:variables
 }

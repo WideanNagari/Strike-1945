@@ -6,6 +6,7 @@
 package strike.pkg1945;
 
 import java.awt.event.WindowEvent;
+import java.util.ArrayList;
 import javax.swing.JFrame;
 
 /**
@@ -17,8 +18,27 @@ public class HighScore extends javax.swing.JFrame {
     /**
      * Creates new form HighScore
      */
-    public HighScore() {
+    static ArrayList<HighScores> high;
+    public HighScore(ArrayList<HighScores> h) {
         initComponents();
+        high = h;
+        if (high.size()>0 && high.get(0)!=null) {
+            satu.setText(high.get(0).getNama()+" - "+ high.get(0).getSkor()+" - "+ high.get(0).getUang()+" - "+ high.get(0).getLevel());
+        }else{
+            satu.setText("-");
+        }
+        
+        if (high.size()>1 && high.get(1)!=null) {
+            dua.setText(high.get(1).getNama()+" - "+ high.get(1).getSkor()+" - "+ high.get(1).getUang()+" - "+ high.get(1).getLevel());
+        }else{
+            dua.setText("-");
+        }
+        
+        if (high.size()>2 && high.get(2)!=null) {
+            tiga.setText(high.get(2).getNama()+" - "+ high.get(2).getSkor()+" - "+ high.get(2).getUang()+" - "+ high.get(2).getLevel());
+        }else{
+            tiga.setText("-");
+        }
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
@@ -34,6 +54,12 @@ public class HighScore extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        dua = new javax.swing.JLabel();
+        tiga = new javax.swing.JLabel();
+        satu = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -52,6 +78,42 @@ public class HighScore extends javax.swing.JFrame {
         });
         jPanel1.add(jButton1);
         jButton1.setBounds(880, 800, 200, 75);
+
+        jLabel2.setFont(new java.awt.Font("Comic Sans MS", 1, 80)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(240, 240, 240));
+        jLabel2.setText("3. ");
+        jPanel1.add(jLabel2);
+        jLabel2.setBounds(500, 590, 120, 110);
+
+        jLabel4.setFont(new java.awt.Font("Comic Sans MS", 1, 80)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(240, 240, 240));
+        jLabel4.setText("2. ");
+        jPanel1.add(jLabel4);
+        jLabel4.setBounds(500, 410, 120, 110);
+
+        jLabel5.setFont(new java.awt.Font("Comic Sans MS", 1, 80)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(240, 240, 240));
+        jLabel5.setText("1. ");
+        jPanel1.add(jLabel5);
+        jLabel5.setBounds(500, 250, 120, 110);
+
+        dua.setFont(new java.awt.Font("Comic Sans MS", 1, 80)); // NOI18N
+        dua.setForeground(new java.awt.Color(240, 240, 240));
+        dua.setText("-");
+        jPanel1.add(dua);
+        dua.setBounds(660, 410, 1040, 110);
+
+        tiga.setFont(new java.awt.Font("Comic Sans MS", 1, 80)); // NOI18N
+        tiga.setForeground(new java.awt.Color(240, 240, 240));
+        tiga.setText("-");
+        jPanel1.add(tiga);
+        tiga.setBounds(660, 600, 1060, 110);
+
+        satu.setFont(new java.awt.Font("Comic Sans MS", 1, 80)); // NOI18N
+        satu.setForeground(new java.awt.Color(240, 240, 240));
+        satu.setText("-");
+        jPanel1.add(satu);
+        satu.setBounds(660, 250, 1030, 110);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/strike/pkg1945/Gambar/Main Menu.jpg"))); // NOI18N
         jPanel1.add(jLabel1);
@@ -106,15 +168,21 @@ public class HighScore extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new HighScore().setVisible(true);
+                new HighScore(high).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel dua;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel satu;
+    private javax.swing.JLabel tiga;
     // End of variables declaration//GEN-END:variables
 }

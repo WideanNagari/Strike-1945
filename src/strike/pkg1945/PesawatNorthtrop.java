@@ -16,8 +16,8 @@ import javax.imageio.ImageIO;
  */
 public class PesawatNorthtrop extends Player{
     
-    public PesawatNorthtrop(String nama) {
-        super(nama);
+    public PesawatNorthtrop(String nama,int a) {
+        super(nama,a);
         this.jenispesawat = "Northtrop F-5";
         gambarKnalpot = new BufferedImage[4];
         try{

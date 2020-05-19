@@ -6,6 +6,7 @@
 package strike.pkg1945;
 
 import java.awt.event.WindowEvent;
+import java.util.ArrayList;
 import javax.swing.JFrame;
 
 /**
@@ -17,10 +18,12 @@ public class MainMenu extends javax.swing.JFrame {
     /**
      * Creates new form MainMenu
      */
-    Player p;
-    public MainMenu() {
+    static ArrayList<HighScores> high;
+    static ArrayList<Player> p;
+    public MainMenu(ArrayList<HighScores> h,ArrayList<Player> player) {
         initComponents();
-        
+        p = player;
+        high = h;
     }
 
     /**
@@ -119,7 +122,7 @@ public class MainMenu extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        HighScore frame = new HighScore();
+        HighScore frame = new HighScore(high);
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
@@ -127,7 +130,7 @@ public class MainMenu extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        NewGame frame = new NewGame();
+        NewGame frame = new NewGame(high,p);
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
@@ -135,7 +138,7 @@ public class MainMenu extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        Continue frame = new Continue();
+        Continue frame = new Continue(high);
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
@@ -179,7 +182,7 @@ public class MainMenu extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MainMenu().setVisible(true);
+                new MainMenu(high,p).setVisible(true);
             }
         });
     }
