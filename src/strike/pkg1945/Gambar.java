@@ -34,6 +34,7 @@ public class Gambar {
     private BufferedImage Knalpot3[];
     private BufferedImage Knalpot4[];
     private BufferedImage Knalpot5[];
+    private BufferedImage boss[];
     
     public Gambar(){
         gambarLedak = new BufferedImage[13];
@@ -150,6 +151,35 @@ public class Gambar {
         }catch(IOException ex){
             ex.printStackTrace();
         }
+        boss = new BufferedImage[4];
+        try{
+            this.boss[0]= ImageIO.read(new File("./src/strike/pkg1945/Gambar/EnemyBoss1.png"));
+            this.boss[1]= ImageIO.read(new File("./src/strike/pkg1945/Gambar/EnemyBoss2.png"));
+            this.boss[2]= ImageIO.read(new File("./src/strike/pkg1945/Gambar/EnemyBoss3.png"));
+            this.boss[3]= ImageIO.read(new File("./src/strike/pkg1945/Gambar/EnemyBoss4.png"));
+        }catch(IOException ex){
+            ex.printStackTrace();
+        }
+        gambarLedakBoss = new BufferedImage[15];
+        try{
+            this.gambarLedakBoss[0]=ImageIO.read(new File("./Explosion/boss/1.png"));
+            this.gambarLedakBoss[1]=ImageIO.read(new File("./Explosion/boss/2.png"));
+            this.gambarLedakBoss[2]=ImageIO.read(new File("./Explosion/boss/3.png"));
+            this.gambarLedakBoss[3]=ImageIO.read(new File("./Explosion/boss/4.png"));
+            this.gambarLedakBoss[4]=ImageIO.read(new File("./Explosion/boss/5.png"));
+            this.gambarLedakBoss[5]=ImageIO.read(new File("./Explosion/boss/6.png"));
+            this.gambarLedakBoss[6]=ImageIO.read(new File("./Explosion/boss/7.png"));
+            this.gambarLedakBoss[7]=ImageIO.read(new File("./Explosion/boss/8.png"));
+            this.gambarLedakBoss[8]=ImageIO.read(new File("./Explosion/boss/9.png"));
+            this.gambarLedakBoss[9]=ImageIO.read(new File("./Explosion/boss/10.png"));
+            this.gambarLedakBoss[10]=ImageIO.read(new File("./Explosion/boss/11.png"));
+            this.gambarLedakBoss[11]=ImageIO.read(new File("./Explosion/boss/12.png"));
+            this.gambarLedakBoss[12]=ImageIO.read(new File("./Explosion/boss/13.png"));
+            this.gambarLedakBoss[13]=ImageIO.read(new File("./Explosion/boss/14.png"));
+            this.gambarLedakBoss[14]=ImageIO.read(new File("./Explosion/boss/15.png"));
+        }catch(IOException ex){
+            ex.printStackTrace();
+        }
     }
 
     public BufferedImage getAshpest() {
@@ -170,6 +200,10 @@ public class Gambar {
 
     public BufferedImage getGlow() {
         return glow;
+    }
+
+    public BufferedImage getBoss(int i) {
+        return boss[i];
     }
 
     public BufferedImage getKnalpot1(int i) {
@@ -201,8 +235,8 @@ public class Gambar {
         return gambarLedakMusuh[i];
     }
 
-    public BufferedImage[] getGambarLedakBoss() {
-        return gambarLedakBoss;
+    public BufferedImage getGambarLedakBoss(int i) {
+        return gambarLedakBoss[i];
     }
 
     public BufferedImage getGambarKnalpot1(int i) {

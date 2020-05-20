@@ -28,9 +28,7 @@ public abstract class Enemy implements Serializable{
     protected int yk;
     protected int mati;
     protected int tabrak;
-    public Enemy(){
-        
-    }
+    public Enemy(){}
     public Enemy(int x, int y) {
         this.x = x;
         this.y = y;
