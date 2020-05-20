@@ -25,9 +25,11 @@ public class Pause extends javax.swing.JFrame {
     static GameFrame g;
     static ArrayList<HighScores> high;
     static ArrayList<Player> player;
-    public Pause(Player p, GameFrame g, ArrayList<HighScores> h, ArrayList<Player> play) {
+    static ArrayList<inGameData> data;
+    public Pause(Player p, GameFrame g, ArrayList<HighScores> h, ArrayList<Player> play, ArrayList<inGameData> d) {
         initComponents();
         high = h;
+        data = d;
         this.player = play;
         this.p = p;
         this.g = g;
@@ -178,6 +180,16 @@ public class Pause extends javax.swing.JFrame {
         }catch(IOException ex){
             ex.printStackTrace();
         } 
+        
+        try{
+            FileOutputStream fo = new FileOutputStream("Data.txt");
+            ObjectOutputStream out = new ObjectOutputStream(fo);
+            out.writeObject(data);
+            out.close();
+            fo.close();
+        }catch(IOException ex){
+            ex.printStackTrace();
+        } 
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -237,7 +249,7 @@ public class Pause extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Pause(p,g,high,player).setVisible(true);
+                new Pause(p,g,high,player,data).setVisible(true);
             }
         });
     }

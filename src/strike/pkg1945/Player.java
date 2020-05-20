@@ -42,11 +42,11 @@ public class Player implements Serializable{
         this.cd = 25;
         this.attack = 50;
         this.defend = 10;
-        this.hp = 10;
+        this.hp = 1500;
         this.level = 1;
         this.levell = 1;
         this.chancemiss = 5;
-        this.maxhp = 10;
+        this.maxhp = 1500;
         this.gold = 0;
         this.skor = 0;
         this.jumlahMusuh = 1;

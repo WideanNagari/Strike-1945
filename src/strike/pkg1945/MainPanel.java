@@ -40,6 +40,8 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
     ArrayList<Peluru> pelurud;
     ArrayList<Peluru> pelurue;
     ArrayList<Peluru> peluruBoss;
+    ArrayList<BufferedImage> pm;
+    ArrayList<BufferedImage> km;
     Gambar gambar;
     GameFrame main;
     NewGame n;
@@ -72,6 +74,7 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
         if (p instanceof PesawatLockheed) {pesawat = gambar.getGambar1(); knalpot = gambar.getGambarKnalpot1(0);}
         else if (p instanceof PesawatNorthtrop) {pesawat = gambar.getGambar2(); knalpot = gambar.getGambarKnalpot2(0);}
         else if (p instanceof PesawatThunderbold) {pesawat = gambar.getGambar3(); knalpot = gambar.getGambarKnalpot3(0);}
+        
         main.updateStatus(p,p.getHp(),p.getMaxhp(), p.getSkor(), p.getGold(),p.getLevel());
         ashpest = new EnemyAshpest();
         blade = new EnemyBlademorph();
@@ -87,6 +90,15 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
         peluruc = new ArrayList();
         pelurud = new ArrayList();
         pelurue = new ArrayList();
+        pm = new ArrayList();
+        km = new ArrayList();
+        for (Enemy enemy : daftarmusuh) {
+            if (enemy instanceof EnemyAshpest) {pm.add(gambar.getAshpest());km.add(gambar.getKnalpot1(0));}
+            else if (enemy instanceof EnemyBlademorph) {pm.add(gambar.getMorph());km.add(gambar.getKnalpot2(0));}
+            else if (enemy instanceof EnemyBlazelich) {pm.add(gambar.getLich());km.add(gambar.getKnalpot3(0));}
+            else if (enemy instanceof EnemyBlazewing) {pm.add(gambar.getWing());km.add(gambar.getKnalpot4(0));}
+            else if (enemy instanceof EnemyGlowstarKing) {pm.add(gambar.getGlow());km.add(gambar.getKnalpot5(0));}
+        }
         this.main = main;
         this.addKeyListener(this);
         this.addMouseListener(this);
@@ -121,16 +133,27 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
                                 for (int i = 0; i < p.getJumlahMusuh(); i++) {
                                     int rand = (int)(Math.random()*5);
                                     int randy = (int)(Math.random()*750);
+                                    rand = 0;
                                     if (rand == 0) {
                                         daftarmusuh.add(new EnemyAshpest(1700,randy));
+                                        pm.add(gambar.getAshpest());
+                                        km.add(gambar.getKnalpot1(0));
                                     }else if (rand == 1) {
                                         daftarmusuh.add(new EnemyBlademorph(1700, randy));
+                                        pm.add(gambar.getMorph());
+                                        km.add(gambar.getKnalpot2(0));
                                     }else if (rand == 2) {
                                         daftarmusuh.add(new EnemyBlazelich(1700, randy));
+                                        pm.add(gambar.getLich());
+                                        km.add(gambar.getKnalpot3(0));
                                     }else if (rand == 3) {
                                         daftarmusuh.add(new EnemyBlazewing(1700, randy));
+                                        pm.add(gambar.getWing());
+                                        km.add(gambar.getKnalpot4(0));
                                     }else if (rand == 4) {
                                         daftarmusuh.add(new EnemyGlowstarKing(1700, randy));
+                                        pm.add(gambar.getGlow());
+                                        km.add(gambar.getKnalpot5(0));
                                     }
                                     if (p.getAngelBox()>0) {daftarmusuh.get(daftarmusuh.size()-1).setHp(daftarmusuh.get(daftarmusuh.size()-1).getHp()/2);}
                                 }
@@ -162,6 +185,7 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
             @Override
             public void actionPerformed(ActionEvent e) {
                 repaint();
+                main.data.get(p.getPosisiSave()).setE(daftarmusuh);
                 p.setCooldown(p.getCooldown()-1);
                 for (Enemy enemy : daftarmusuh) {
                     if (playing) {
@@ -311,8 +335,16 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
                                 pesawat = p.ledak(gambar.getGambarLedak(p.getAnimasi()));}}
                         }
                     }
-                    for (Enemy musuh : daftarmusuh) {
-                        musuh.gantiAnimasi();
+                    for (int i = 0; i < daftarmusuh.size(); i++) {
+                        if (daftarmusuh.get(i) instanceof EnemyAshpest) {
+                            if (daftarmusuh.get(i).getHp()>0) {
+                                km.set(i, daftarmusuh.get(i).gantiAnimasi(gambar.getKnalpot1(daftarmusuh.get(i).getAnimasi())));
+                            }else{
+                                if (daftarmusuh.get(i).getAnimasi()<11) {
+                                    pm.set(i, daftarmusuh.get(i).ledak(gambar.getGambarLedakMusuh(daftarmusuh.get(i).getAnimasi())));
+                                }
+                            }
+                        }
                     }
                     ctr = 0;
                 }
@@ -583,6 +615,12 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
                         }
                     }
                 }
+                for (int i = 0; i < daftarmusuh.size(); i++) {
+                    if (daftarmusuh.get(i).getHp() <= 0 && daftarmusuh.get(i).getAnimasi()>=11) {
+                        pm.remove(i);
+                        km.remove(i);
+                    }
+                }
                 Iterator<Enemy> M = daftarmusuh.iterator();
                 while(M.hasNext()){
                     Enemy cek = M.next();
@@ -688,9 +726,9 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
         g2.drawImage(knalpot, p.getX()-p.getXk(), p.getY()-p.getYk(), p.getWidth()+20,p.getHeight()+20,this);
         g2.drawImage(pesawat, p.getX(), p.getY(), p.getWidth(),p.getHeight(),this);
         
-        for (Enemy musuh : daftarmusuh) {
-            g2.drawImage(musuh.getGambar2(), musuh.getX()+musuh.getXk(), musuh.getY()+musuh.getYk(), musuh.getWidth(),musuh.getHeight(),this);
-            g2.drawImage(musuh.getGambar(), musuh.getX(), musuh.getY(), musuh.getWidth(),musuh.getHeight(),this);
+        for (int i = 0; i < daftarmusuh.size(); i++) {
+            g2.drawImage(km.get(i), daftarmusuh.get(i).getX()+daftarmusuh.get(i).getXk(), daftarmusuh.get(i).getY()+daftarmusuh.get(i).getYk(), daftarmusuh.get(i).getWidth(),daftarmusuh.get(i).getHeight(),this);
+            g2.drawImage(pm.get(i), daftarmusuh.get(i).getX(), daftarmusuh.get(i).getY(), daftarmusuh.get(i).getWidth(),daftarmusuh.get(i).getHeight(),this);
         }
         if (boss!=null) {progressboss.setLocation(boss.getX()+100, 200);}
     }

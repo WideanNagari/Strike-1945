@@ -26,7 +26,8 @@ public class Strike1945 {
         // TODO code application logic here
         ArrayList<HighScores> high = new ArrayList<HighScores>();
         ArrayList<Player> p = new ArrayList<Player>();
-
+        ArrayList<inGameData> data = new ArrayList<inGameData>();
+        
         File f = new File("Highscore.txt");
         if(!f.exists()) { 
             try{
@@ -85,7 +86,36 @@ public class Strike1945 {
             ex2.printStackTrace();
         }
         
-        MainMenu main = new MainMenu(high,p);
+        File fil = new File("Data.txt");
+        if(!fil.exists()) { 
+            try{
+                fil.createNewFile();
+                try{
+                    FileOutputStream fo = new FileOutputStream("Data.txt");
+                    ObjectOutputStream out = new ObjectOutputStream(fo);
+                    out.writeObject(data);
+                    out.close();
+                    fo.close();
+                }catch(IOException ex){
+                    ex.printStackTrace();
+                }      
+            }catch(IOException ex){
+                ex.printStackTrace();
+            }
+        }
+        try{
+            FileInputStream fin = new FileInputStream("Data.txt");
+            ObjectInputStream in = new ObjectInputStream(fin);
+            data = (ArrayList<inGameData>)in.readObject();
+            in.close();
+            fin.close();
+        }catch(IOException ex){
+            ex.printStackTrace();
+        }catch(ClassNotFoundException ex2){
+            ex2.printStackTrace();
+        }
+        
+        MainMenu main = new MainMenu(high,p,data);
         main.pack();
         main.setLocationRelativeTo(null);
         main.setVisible(true);

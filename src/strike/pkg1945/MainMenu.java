@@ -20,10 +20,12 @@ public class MainMenu extends javax.swing.JFrame {
      */
     static ArrayList<HighScores> high;
     static ArrayList<Player> p;
-    public MainMenu(ArrayList<HighScores> h,ArrayList<Player> player) {
+    static ArrayList<inGameData> data;
+    public MainMenu(ArrayList<HighScores> h,ArrayList<Player> player, ArrayList<inGameData> d) {
         initComponents();
         p = player;
         high = h;
+        data = d;
     }
 
     /**
@@ -130,7 +132,7 @@ public class MainMenu extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        NewGame frame = new NewGame(high,p);
+        NewGame frame = new NewGame(high,p,data);
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
@@ -138,7 +140,7 @@ public class MainMenu extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        Continue frame = new Continue(high,p);
+        Continue frame = new Continue(high,p,data);
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
@@ -182,7 +184,7 @@ public class MainMenu extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MainMenu(high,p).setVisible(true);
+                new MainMenu(high,p,data).setVisible(true);
             }
         });
     }

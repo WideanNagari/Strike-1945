@@ -15,15 +15,25 @@ import javax.imageio.ImageIO;
  * @author Widean Nagari
  */
 public class Gambar {
-    BufferedImage gambarLedak[];
-    BufferedImage gambarLedakMusuh[];
-    BufferedImage gambarLedakBoss[];
-    BufferedImage gambarKnalpot1[];
-    BufferedImage gambar1;
-    BufferedImage gambarKnalpot2[];
-    BufferedImage gambar2;
-    BufferedImage gambarKnalpot3[];
-    BufferedImage gambar3;
+    private BufferedImage gambarLedak[];
+    private BufferedImage gambarLedakMusuh[];
+    private BufferedImage gambarLedakBoss[];
+    private BufferedImage gambarKnalpot1[];
+    private BufferedImage gambar1;
+    private BufferedImage gambarKnalpot2[];
+    private BufferedImage gambar2;
+    private BufferedImage gambarKnalpot3[];
+    private BufferedImage gambar3;
+    private BufferedImage ashpest;
+    private BufferedImage morph;
+    private BufferedImage lich;
+    private BufferedImage wing;
+    private BufferedImage glow;
+    private BufferedImage Knalpot1[];
+    private BufferedImage Knalpot2[];
+    private BufferedImage Knalpot3[];
+    private BufferedImage Knalpot4[];
+    private BufferedImage Knalpot5[];
     
     public Gambar(){
         gambarLedak = new BufferedImage[13];
@@ -74,14 +84,121 @@ public class Gambar {
         }catch(IOException ex){
             ex.printStackTrace();
         }
+        Knalpot1 = new BufferedImage[4];
+        try{
+            this.ashpest= ImageIO.read(new File("./src/strike/pkg1945/Gambar/EnemyAshpest.png"));
+            this.Knalpot1[0]=ImageIO.read(new File("./Enemy/Enemy4/Exhaust1/exhaust1.png"));
+            this.Knalpot1[1]=ImageIO.read(new File("./Enemy/Enemy4/Exhaust1/exhaust2.png"));
+            this.Knalpot1[2]=ImageIO.read(new File("./Enemy/Enemy4/Exhaust1/exhaust3.png"));
+            this.Knalpot1[3]=ImageIO.read(new File("./Enemy/Enemy4/Exhaust1/exhaust4.png")); 
+        }catch(IOException ex){
+            ex.printStackTrace();
+        }
+        Knalpot2 = new BufferedImage[4];
+        try{
+            this.morph=ImageIO.read(new File("./src/strike/pkg1945/Gambar/EnemyBlademorph.png"));
+            this.Knalpot2[0]=ImageIO.read(new File("./Enemy/Enemy3/Exhaust1/exhaust1.png"));
+            this.Knalpot2[1]=ImageIO.read(new File("./Enemy/Enemy3/Exhaust1/exhaust2.png"));
+            this.Knalpot2[2]=ImageIO.read(new File("./Enemy/Enemy3/Exhaust1/exhaust3.png"));
+            this.Knalpot2[3]=ImageIO.read(new File("./Enemy/Enemy3/Exhaust1/exhaust4.png")); 
+        }catch(IOException ex){
+            ex.printStackTrace();
+        }
+        Knalpot3 = new BufferedImage[4];
+        try{
+            this.lich= ImageIO.read(new File("./src/strike/pkg1945/Gambar/EnemyBlazelich.png"));
+            this.Knalpot3[0]=ImageIO.read(new File("./Enemy/Enemy1/Exhaust1/exhaust1.png"));
+            this.Knalpot3[1]=ImageIO.read(new File("./Enemy/Enemy1/Exhaust1/exhaust2.png"));
+            this.Knalpot3[2]=ImageIO.read(new File("./Enemy/Enemy1/Exhaust1/exhaust3.png"));
+            this.Knalpot3[3]=ImageIO.read(new File("./Enemy/Enemy1/Exhaust1/exhaust4.png")); 
+        }catch(IOException ex){
+            ex.printStackTrace();
+        }
+        Knalpot4 = new BufferedImage[4];
+        try{
+            this.wing= ImageIO.read(new File("./src/strike/pkg1945/Gambar/EnemyBlazewing.png"));
+            this.Knalpot4[0]=ImageIO.read(new File("./Enemy/Enemy5/Exhaust1/exhaust1.png"));
+            this.Knalpot4[1]=ImageIO.read(new File("./Enemy/Enemy5/Exhaust1/exhaust2.png"));
+            this.Knalpot4[2]=ImageIO.read(new File("./Enemy/Enemy5/Exhaust1/exhaust3.png"));
+            this.Knalpot4[3]=ImageIO.read(new File("./Enemy/Enemy5/Exhaust1/exhaust4.png"));
+        }catch(IOException ex){
+            ex.printStackTrace();
+        }
+        Knalpot5 = new BufferedImage[4];
+        try{
+            this.glow= ImageIO.read(new File("./src/strike/pkg1945/Gambar/EnemyGlowstarKing.png"));
+            this.Knalpot5[0]=ImageIO.read(new File("./Enemy/Enemy2/Exhaust1/exhaust1.png"));
+            this.Knalpot5[1]=ImageIO.read(new File("./Enemy/Enemy2/Exhaust1/exhaust2.png"));
+            this.Knalpot5[2]=ImageIO.read(new File("./Enemy/Enemy2/Exhaust1/exhaust3.png"));
+            this.Knalpot5[3]=ImageIO.read(new File("./Enemy/Enemy2/Exhaust1/exhaust4.png")); 
+        }catch(IOException ex){
+            ex.printStackTrace();
+        }
+        gambarLedakMusuh = new BufferedImage[11];
+        try{
+            this.gambarLedakMusuh[0]=ImageIO.read(new File("./Explosion/Explosion1_1.png"));
+            this.gambarLedakMusuh[1]=ImageIO.read(new File("./Explosion/Explosion1_2.png"));
+            this.gambarLedakMusuh[2]=ImageIO.read(new File("./Explosion/Explosion1_3.png"));
+            this.gambarLedakMusuh[3]=ImageIO.read(new File("./Explosion/Explosion1_4.png"));
+            this.gambarLedakMusuh[4]=ImageIO.read(new File("./Explosion/Explosion1_5.png"));
+            this.gambarLedakMusuh[5]=ImageIO.read(new File("./Explosion/Explosion1_6.png"));
+            this.gambarLedakMusuh[6]=ImageIO.read(new File("./Explosion/Explosion1_7.png"));
+            this.gambarLedakMusuh[7]=ImageIO.read(new File("./Explosion/Explosion1_8.png"));
+            this.gambarLedakMusuh[8]=ImageIO.read(new File("./Explosion/Explosion1_9.png"));
+            this.gambarLedakMusuh[9]=ImageIO.read(new File("./Explosion/Explosion1_10.png"));
+            this.gambarLedakMusuh[10]=ImageIO.read(new File("./Explosion/Explosion1_11.png"));
+        }catch(IOException ex){
+            ex.printStackTrace();
+        }
     }
+
+    public BufferedImage getAshpest() {
+        return ashpest;
+    }
+
+    public BufferedImage getMorph() {
+        return morph;
+    }
+
+    public BufferedImage getLich() {
+        return lich;
+    }
+
+    public BufferedImage getWing() {
+        return wing;
+    }
+
+    public BufferedImage getGlow() {
+        return glow;
+    }
+
+    public BufferedImage getKnalpot1(int i) {
+        return Knalpot1[i];
+    }
+
+    public BufferedImage getKnalpot2(int i) {
+        return Knalpot2[i];
+    }
+
+    public BufferedImage getKnalpot3(int i) {
+        return Knalpot3[i];
+    }
+
+    public BufferedImage getKnalpot4(int i) {
+        return Knalpot4[i];
+    }
+
+    public BufferedImage getKnalpot5(int i) {
+        return Knalpot5[i];
+    }
+    
 
     public BufferedImage getGambarLedak(int i) {
         return gambarLedak[i];
     }
 
-    public BufferedImage[] getGambarLedakMusuh() {
-        return gambarLedakMusuh;
+    public BufferedImage getGambarLedakMusuh(int i) {
+        return gambarLedakMusuh[i];
     }
 
     public BufferedImage[] getGambarLedakBoss() {

@@ -20,10 +20,12 @@ public class Continue extends javax.swing.JFrame {
      */
     static ArrayList<Player> p;
     static ArrayList<HighScores> high;
-    public Continue(ArrayList<HighScores> h, ArrayList<Player> player) {
+    static ArrayList<inGameData> data;
+    public Continue(ArrayList<HighScores> h, ArrayList<Player> player, ArrayList<inGameData> d) {
         initComponents();
         high = h;
         p = player;
+        data = d;
         
         for (Player play : player) {
             if (play.getPosisiSave() == 0) {
@@ -181,7 +183,7 @@ public class Continue extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Continue(high,p).setVisible(true);
+                new Continue(high,p,data).setVisible(true);
             }
         });
     }
