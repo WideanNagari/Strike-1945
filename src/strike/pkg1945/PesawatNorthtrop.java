@@ -19,20 +19,9 @@ public class PesawatNorthtrop extends Player{
     public PesawatNorthtrop(String nama,int a) {
         super(nama,a);
         this.jenispesawat = "Northtrop F-5";
-        gambarKnalpot = new BufferedImage[4];
-        try{
-            this.gambar = ImageIO.read(new File("./Player/Pesawat 1.png"));
-            this.gambarKnalpot[0] = ImageIO.read(new File("./Player/northtrop/ntapi1.png"));
-            this.gambarKnalpot[1] = ImageIO.read(new File("./Player/northtrop/ntapi2.png"));
-            this.gambarKnalpot[2] = ImageIO.read(new File("./Player/northtrop/ntapi3.png"));
-            this.gambarKnalpot[3] = ImageIO.read(new File("./Player/northtrop/ntapi4.png"));
-        }catch(IOException ex){
-            ex.printStackTrace();
-        }
         this.xk = 157;
         this.yk = 10;
         this.speed = 15;
-        this.gambar2 = gambarKnalpot[animasi];
     }
     public void specialEffect(){
         if (this.efek>=5) {

@@ -8,17 +8,14 @@ package strike.pkg1945;
 import java.awt.image.*;
 import java.io.File;
 import java.io.IOException;
+import java.io.Serializable;
 import javax.imageio.ImageIO;
 
 /**
  *
  * @author TUF
  */
-public class Player {
-    BufferedImage gambarKnalpot[];
-    BufferedImage gambarLedak[];
-    BufferedImage gambar;
-    BufferedImage gambar2;
+public class Player implements Serializable{
     protected int x,y,width,height,speed;
     protected int cooldown,cd;
     protected int animasi,animasiknalpot;
@@ -33,24 +30,6 @@ public class Player {
     protected int posisiSave;
             
     public Player(String nama,int save) {
-        gambarLedak = new BufferedImage[13];
-        try{
-            this.gambarLedak[0]=ImageIO.read(new File("./Explosion/player/1.png"));
-            this.gambarLedak[1]=ImageIO.read(new File("./Explosion/player/2.png"));
-            this.gambarLedak[2]=ImageIO.read(new File("./Explosion/player/3.png"));
-            this.gambarLedak[3]=ImageIO.read(new File("./Explosion/player/4.png"));
-            this.gambarLedak[4]=ImageIO.read(new File("./Explosion/player/5.png"));
-            this.gambarLedak[5]=ImageIO.read(new File("./Explosion/player/6.png"));
-            this.gambarLedak[6]=ImageIO.read(new File("./Explosion/player/7.png"));
-            this.gambarLedak[7]=ImageIO.read(new File("./Explosion/player/8.png"));
-            this.gambarLedak[8]=ImageIO.read(new File("./Explosion/player/9.png"));
-            this.gambarLedak[9]=ImageIO.read(new File("./Explosion/player/10.png"));
-            this.gambarLedak[10]=ImageIO.read(new File("./Explosion/player/11.png"));
-            this.gambarLedak[11]=ImageIO.read(new File("./Explosion/player/12.png"));
-            this.gambarLedak[12]=ImageIO.read(new File("./Explosion/player/13.png"));
-        }catch(IOException ex){
-            ex.printStackTrace();
-        }
         this.posisiSave = save;
         this.bossKe = 1;
         this.nama = nama;
@@ -63,11 +42,11 @@ public class Player {
         this.cd = 25;
         this.attack = 50;
         this.defend = 10;
-        this.hp = 1500;
+        this.hp = 10;
         this.level = 1;
         this.levell = 1;
         this.chancemiss = 5;
-        this.maxhp = 1500;
+        this.maxhp = 10;
         this.gold = 0;
         this.skor = 0;
         this.jumlahMusuh = 1;
@@ -265,14 +244,6 @@ public class Player {
         return height;
     }
 
-    public BufferedImage getGambar() {
-        return gambar;
-    }
-
-    public BufferedImage getGambar2() {
-        return gambar2;
-    }
-
     public int getX() {
         return x;
     }
@@ -348,26 +319,28 @@ public class Player {
     public void setMati(int mati) {
         this.mati = mati;
     }
+
+    public int getAnimasi() {
+        return animasi;
+    }
     
-    public void gantiAnimasi(){
-        if (this.hp > 0) {
+    public BufferedImage gantiAnimasi(BufferedImage gambarKnalpot){
             if(this.animasi<3){
                 this.animasi++;
             }else{
                 this.animasi=0;
             }
-            this.gambar2=this.gambarKnalpot[this.animasi];
-        }else{
+            return gambarKnalpot;
+    }
+    public BufferedImage ledak(BufferedImage gambarLedak){
             if (this.mati == 1) {
                 this.animasi = 0;
             }
             if (this.animasi < 13) {
                 this.animasi++;
-                if (this.animasi<=12) {
-                    this.gambar = this.gambarLedak[this.animasi];
-                }
-            }
-        }
+                return gambarLedak;
+            }else{
+                return null;}
     }
     
     public void gerak(int arah) {

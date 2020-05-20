@@ -40,6 +40,7 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
     ArrayList<Peluru> pelurud;
     ArrayList<Peluru> pelurue;
     ArrayList<Peluru> peluruBoss;
+    Gambar gambar;
     GameFrame main;
     NewGame n;
     Player p;
@@ -57,15 +58,20 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
     EnemyBlazelich lich;
     EnemyBlazewing wing;
     EnemyGlowstarKing king;
+    BufferedImage pesawat,knalpot;
     public MainPanel(GameFrame main, NewGame n) {
         initComponents();
         progressboss.setVisible(false);
         jLabel2.setVisible(false);
         eagle=0;angel=0;shield=0;sack=0;
+        gambar = new Gambar();
         this.n = n;
         if (n.newp = true) {
             p = n.p.get(n.p.size()-1);
         }
+        if (p instanceof PesawatLockheed) {pesawat = gambar.getGambar1(); knalpot = gambar.getGambarKnalpot1(0);}
+        else if (p instanceof PesawatNorthtrop) {pesawat = gambar.getGambar2(); knalpot = gambar.getGambarKnalpot2(0);}
+        else if (p instanceof PesawatThunderbold) {pesawat = gambar.getGambar3(); knalpot = gambar.getGambarKnalpot3(0);}
         main.updateStatus(p,p.getHp(),p.getMaxhp(), p.getSkor(), p.getGold(),p.getLevel());
         ashpest = new EnemyAshpest();
         blade = new EnemyBlademorph();
@@ -272,7 +278,39 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
                     }
                 }
                 if (ctr == 8 && playing) {
-                    p.gantiAnimasi();
+                    if (p instanceof PesawatLockheed) {
+                        if (p.getHp()>0) {
+                            knalpot = p.gantiAnimasi(gambar.getGambarKnalpot1(p.getAnimasi()));
+                        }else{
+                            if (p.getAnimasi()<=13) {
+                                if (p.getAnimasi()==13) {
+                                    pesawat = null;
+                                }else{
+                                pesawat = p.ledak(gambar.getGambarLedak(p.getAnimasi()));}}
+                        }
+                    }
+                    else if (p instanceof PesawatNorthtrop) {
+                        if (p.getHp()>0) {
+                            knalpot = p.gantiAnimasi(gambar.getGambarKnalpot2(p.getAnimasi()));
+                        }else{
+                            if (p.getAnimasi()<=13) {
+                                if (p.getAnimasi()==13) {
+                                    pesawat = null;
+                                }else{
+                                pesawat = p.ledak(gambar.getGambarLedak(p.getAnimasi()));}}
+                        }
+                    }
+                    else if (p instanceof PesawatThunderbold) {
+                        if (p.getHp()>0) {
+                            knalpot = p.gantiAnimasi(gambar.getGambarKnalpot3(p.getAnimasi()));
+                        }else{
+                            if (p.getAnimasi()<=13) {
+                                if (p.getAnimasi()==13) {
+                                    pesawat = null;
+                                }else{
+                                pesawat = p.ledak(gambar.getGambarLedak(p.getAnimasi()));}}
+                        }
+                    }
                     for (Enemy musuh : daftarmusuh) {
                         musuh.gantiAnimasi();
                     }
@@ -552,7 +590,7 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
                         M.remove();
                     }
                 }
-                if (p.getHp()<0) {
+                if (p.getHp()<=0) {
                     p.setMati(p.getMati()+1);
                     p.setHp(0);
                 }
@@ -647,8 +685,8 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
             g2.drawImage(pp.getGambarM(), pp.getX(), pp.getY(), pp.getWidth(),pp.getHeight(),this);
         }
         
-        g2.drawImage(p.getGambar2(), p.getX()-p.getXk(), p.getY()-p.getYk(), p.getWidth()+20,p.getHeight()+20,this);
-        g2.drawImage(p.getGambar(), p.getX(), p.getY(), p.getWidth(),p.getHeight(),this);
+        g2.drawImage(knalpot, p.getX()-p.getXk(), p.getY()-p.getYk(), p.getWidth()+20,p.getHeight()+20,this);
+        g2.drawImage(pesawat, p.getX(), p.getY(), p.getWidth(),p.getHeight(),this);
         
         for (Enemy musuh : daftarmusuh) {
             g2.drawImage(musuh.getGambar2(), musuh.getX()+musuh.getXk(), musuh.getY()+musuh.getYk(), musuh.getWidth(),musuh.getHeight(),this);

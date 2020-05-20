@@ -138,7 +138,7 @@ public class MainMenu extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        Continue frame = new Continue(high);
+        Continue frame = new Continue(high,p);
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);

@@ -25,6 +25,8 @@ public class Strike1945 {
     public static void main(String[] args) {
         // TODO code application logic here
         ArrayList<HighScores> high = new ArrayList<HighScores>();
+        ArrayList<Player> p = new ArrayList<Player>();
+
         File f = new File("Highscore.txt");
         if(!f.exists()) { 
             try{
@@ -54,7 +56,35 @@ public class Strike1945 {
             ex2.printStackTrace();
         }
         
-        ArrayList<Player> p = new ArrayList<Player>();
+        File fi = new File("Player.txt");
+        if(!fi.exists()) { 
+            try{
+                fi.createNewFile();
+                try{
+                    FileOutputStream fo = new FileOutputStream("Player.txt");
+                    ObjectOutputStream out = new ObjectOutputStream(fo);
+                    out.writeObject(p);
+                    out.close();
+                    fo.close();
+                }catch(IOException ex){
+                    ex.printStackTrace();
+                }      
+            }catch(IOException ex){
+                ex.printStackTrace();
+            }
+        }
+        try{
+            FileInputStream fin = new FileInputStream("Player.txt");
+            ObjectInputStream in = new ObjectInputStream(fin);
+            p = (ArrayList<Player>)in.readObject();
+            in.close();
+            fin.close();
+        }catch(IOException ex){
+            ex.printStackTrace();
+        }catch(ClassNotFoundException ex2){
+            ex2.printStackTrace();
+        }
+        
         MainMenu main = new MainMenu(high,p);
         main.pack();
         main.setLocationRelativeTo(null);

@@ -24,10 +24,12 @@ public class GameFrame extends javax.swing.JFrame {
     static NewGame n;
     Player p;
     static ArrayList<HighScores> high;
-    public GameFrame(NewGame n, ArrayList<HighScores> h) {
+    static ArrayList<Player> player;
+    public GameFrame(NewGame n, ArrayList<HighScores> h, ArrayList<Player> play) {
         initComponents();
         this.n = n;
         this.p = new Player("",0);
+        this.player = play;
         high = h;
         jButton1.setFocusable(false);
         jButton2.setFocusable(false);
@@ -163,7 +165,7 @@ public class GameFrame extends javax.swing.JFrame {
         panel1.Tnormal.stop();
         panel1.Tplay.stop();
         panel1.playing = false;
-        Pause frame = new Pause(this.p,this,this.high);
+        Pause frame = new Pause(this.p,this,this.high, this.player);
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
@@ -204,7 +206,7 @@ public class GameFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new GameFrame(n, high).setVisible(true);
+                new GameFrame(n, high,player).setVisible(true);
             }
         });
     }

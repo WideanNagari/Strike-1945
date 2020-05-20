@@ -21,11 +21,13 @@ public class NewGame extends javax.swing.JFrame {
     static ArrayList<Player> p;
     static ArrayList<HighScores> high;
     boolean newp;
+    Gambar gambar;
     public NewGame(ArrayList<HighScores> h, ArrayList<Player> player) {
         initComponents();
         newp = false;
         high = h;
         p = player;
+        gambar = new Gambar();
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
@@ -246,7 +248,7 @@ public class NewGame extends javax.swing.JFrame {
         // TODO add your handling code here:
         p.add(new PesawatLockheed(nama.getText(),p.size()));
         newp = true;
-        GameFrame frame = new GameFrame(this,high);
+        GameFrame frame = new GameFrame(this,high,p);
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
@@ -262,7 +264,7 @@ public class NewGame extends javax.swing.JFrame {
         // TODO add your handling code here:
         p.add(new PesawatNorthtrop(nama.getText(),p.size()));
         newp = true;
-        GameFrame frame = new GameFrame(this,high);
+        GameFrame frame = new GameFrame(this,high,p);
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
@@ -273,7 +275,7 @@ public class NewGame extends javax.swing.JFrame {
         // TODO add your handling code here:
         p.add(new PesawatThunderbold(nama.getText(),p.size()));
         newp = true;
-        GameFrame frame = new GameFrame(this,high);
+        GameFrame frame = new GameFrame(this,high,p);
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);

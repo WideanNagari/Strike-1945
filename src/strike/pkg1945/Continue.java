@@ -18,10 +18,22 @@ public class Continue extends javax.swing.JFrame {
     /**
      * Creates new form Continue
      */
+    static ArrayList<Player> p;
     static ArrayList<HighScores> high;
-    public Continue(ArrayList<HighScores> h) {
+    public Continue(ArrayList<HighScores> h, ArrayList<Player> player) {
         initComponents();
         high = h;
+        p = player;
+        
+        for (Player play : player) {
+            if (play.getPosisiSave() == 0) {
+                satu.setText("1. "+play.getNama());
+            }else if (play.getPosisiSave() == 1) {
+                dua.setText("2. "+play.getNama());
+            }else if (play.getPosisiSave() == 2) {
+                tiga.setText("3. "+play.getNama());
+            }
+        }
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
@@ -169,7 +181,7 @@ public class Continue extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Continue(high).setVisible(true);
+                new Continue(high,p).setVisible(true);
             }
         });
     }
