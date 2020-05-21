@@ -29,7 +29,6 @@ public class NewGame extends javax.swing.JFrame {
         high = h;
         p = player;
         data = d;
-        gambar = new Gambar();
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
@@ -251,7 +250,7 @@ public class NewGame extends javax.swing.JFrame {
         p.add(new PesawatLockheed(nama.getText(),p.size()));
         data.add(new inGameData());
         newp = true;
-        GameFrame frame = new GameFrame(this,high,p,data);
+        GameFrame frame = new GameFrame(high,p,data,0,newp);
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
@@ -268,7 +267,7 @@ public class NewGame extends javax.swing.JFrame {
         p.add(new PesawatNorthtrop(nama.getText(),p.size()));
         data.add(new inGameData());
         newp = true;
-        GameFrame frame = new GameFrame(this,high,p,data);
+        GameFrame frame = new GameFrame(high,p,data,0,newp);
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
@@ -280,7 +279,7 @@ public class NewGame extends javax.swing.JFrame {
         p.add(new PesawatThunderbold(nama.getText(),p.size()));
         data.add(new inGameData());
         newp = true;
-        GameFrame frame = new GameFrame(this,high,p,data);
+        GameFrame frame = new GameFrame(high,p,data,0,newp);
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);

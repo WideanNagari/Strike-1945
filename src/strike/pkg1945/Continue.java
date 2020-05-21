@@ -6,8 +6,15 @@
 package strike.pkg1945;
 
 import java.awt.event.WindowEvent;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import javax.swing.JFrame;
+import static strike.pkg1945.Pause.high;
 
 /**
  *
@@ -21,13 +28,97 @@ public class Continue extends javax.swing.JFrame {
     static ArrayList<Player> p;
     static ArrayList<HighScores> high;
     static ArrayList<inGameData> data;
-    public Continue(ArrayList<HighScores> h, ArrayList<Player> player, ArrayList<inGameData> d) {
+    public Continue() {
         initComponents();
-        high = h;
-        p = player;
-        data = d;
+        high = new ArrayList<>();
+        p = new ArrayList<>();
+        data = new ArrayList<>();
+        File f = new File("Highscore.txt");
+        if(!f.exists()) { 
+            try{
+                f.createNewFile();
+                try{
+                    FileOutputStream fo = new FileOutputStream("Highscore.txt");
+                    ObjectOutputStream out = new ObjectOutputStream(fo);
+                    out.writeObject(high);
+                    out.close();
+                    fo.close();
+                }catch(IOException ex){
+                    ex.printStackTrace();
+                }      
+            }catch(IOException ex){
+                ex.printStackTrace();
+            }
+        }
+        try{
+            FileInputStream fin = new FileInputStream("Highscore.txt");
+            ObjectInputStream in = new ObjectInputStream(fin);
+            high = (ArrayList<HighScores>)in.readObject();
+            in.close();
+            fin.close();
+        }catch(IOException ex){
+            ex.printStackTrace();
+        }catch(ClassNotFoundException ex2){
+            ex2.printStackTrace();
+        }
         
-        for (Player play : player) {
+        File fi = new File("Player.txt");
+        if(!fi.exists()) { 
+            try{
+                fi.createNewFile();
+                try{
+                    FileOutputStream fo = new FileOutputStream("Player.txt");
+                    ObjectOutputStream out = new ObjectOutputStream(fo);
+                    out.writeObject(p);
+                    out.close();
+                    fo.close();
+                }catch(IOException ex){
+                    ex.printStackTrace();
+                }      
+            }catch(IOException ex){
+                ex.printStackTrace();
+            }
+        }
+        try{
+            FileInputStream fin = new FileInputStream("Player.txt");
+            ObjectInputStream in = new ObjectInputStream(fin);
+            p = (ArrayList<Player>)in.readObject();
+            in.close();
+            fin.close();
+        }catch(IOException ex){
+            ex.printStackTrace();
+        }catch(ClassNotFoundException ex2){
+            ex2.printStackTrace();
+        }
+        File fil = new File("Data.txt");
+        if(!fil.exists()) { 
+            try{
+                fil.createNewFile();
+                try{
+                    FileOutputStream fo = new FileOutputStream("Data.txt");
+                    ObjectOutputStream out = new ObjectOutputStream(fo);
+                    out.writeObject(data);
+                    out.close();
+                    fo.close();
+                }catch(IOException ex){
+                    ex.printStackTrace();
+                }      
+            }catch(IOException ex){
+                ex.printStackTrace();
+            }
+        }
+        try{
+            FileInputStream fin = new FileInputStream("Data.txt");
+            ObjectInputStream in = new ObjectInputStream(fin);
+            data = (ArrayList<inGameData>)in.readObject();
+            in.close();
+            fin.close();
+        }catch(IOException ex){
+            ex.printStackTrace();
+        }catch(ClassNotFoundException ex2){
+            ex2.printStackTrace();
+        }
+        for (Player play : p) {
             if (play.getPosisiSave() == 0) {
                 satu.setText("1. "+play.getNama());
             }else if (play.getPosisiSave() == 1) {
@@ -143,6 +234,11 @@ public class Continue extends javax.swing.JFrame {
 
     private void satuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_satuActionPerformed
         // TODO add your handling code here:
+        GameFrame frame = new GameFrame(high,p,data,0,false);
+        frame.pack();
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
+        this.dispatchEvent(new WindowEvent(this,WindowEvent.WINDOW_CLOSING));
     }//GEN-LAST:event_satuActionPerformed
 
     private void duaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_duaActionPerformed
@@ -183,7 +279,7 @@ public class Continue extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Continue(high,p,data).setVisible(true);
+                new Continue().setVisible(true);
             }
         });
     }

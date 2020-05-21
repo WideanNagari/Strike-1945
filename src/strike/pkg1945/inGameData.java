@@ -15,15 +15,13 @@ import java.util.ArrayList;
 public class inGameData implements Serializable{
     private ArrayList<Enemy> e;
     private EnemyBoss boss;
-    private int count, ctr, ctrm,ctrm2,ctrboss,ctrjlabel2;
+    private int ctr, ctrm,ctrm2,ctrboss,ctrjlabel2;
     private int eagle,angel,shield,sack;
-    private boolean playing;
     public inGameData() {
         this.e = new ArrayList();
         this.boss = null;
         this.eagle = 0;this.angel = 0;this.shield = 0;this.sack = 0;
-        this.playing = false;
-        this.count = 3;this.ctrm = 5;this.ctrboss = 0;this.ctrm2 = 5;
+        this.ctrm = 5;this.ctrboss = 0;this.ctrm2 = 5;
         this.ctr = 0;this.ctrjlabel2 = 0;
     }
 
@@ -41,14 +39,6 @@ public class inGameData implements Serializable{
 
     public void setCtrjlabel2(int ctrjlabel2) {
         this.ctrjlabel2 = ctrjlabel2;
-    }
-
-    public int getCount() {
-        return count;
-    }
-
-    public void setCount(int count) {
-        this.count = count;
     }
 
     public int getCtrm() {
@@ -73,14 +63,6 @@ public class inGameData implements Serializable{
 
     public void setCtrboss(int ctrboss) {
         this.ctrboss = ctrboss;
-    }
-
-    public boolean isPlaying() {
-        return playing;
-    }
-
-    public void setPlaying(boolean playing) {
-        this.playing = playing;
     }
 
     public int getEagle() {

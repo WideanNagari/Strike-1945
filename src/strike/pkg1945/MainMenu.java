@@ -6,6 +6,12 @@
 package strike.pkg1945;
 
 import java.awt.event.WindowEvent;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import javax.swing.JFrame;
 
@@ -21,11 +27,98 @@ public class MainMenu extends javax.swing.JFrame {
     static ArrayList<HighScores> high;
     static ArrayList<Player> p;
     static ArrayList<inGameData> data;
-    public MainMenu(ArrayList<HighScores> h,ArrayList<Player> player, ArrayList<inGameData> d) {
+    public MainMenu() {
         initComponents();
-        p = player;
-        high = h;
-        data = d;
+        high = new ArrayList<>();
+        p = new ArrayList<>();
+        data = new ArrayList<>();
+        
+        File f = new File("Highscore.txt");
+        if(!f.exists()) { 
+            try{
+                f.createNewFile();
+                try{
+                    FileOutputStream fo = new FileOutputStream("Highscore.txt");
+                    ObjectOutputStream out = new ObjectOutputStream(fo);
+                    out.writeObject(high);
+                    out.close();
+                    fo.close();
+                }catch(IOException ex){
+                    ex.printStackTrace();
+                }      
+            }catch(IOException ex){
+                ex.printStackTrace();
+            }
+        }
+        try{
+            FileInputStream fin = new FileInputStream("Highscore.txt");
+            ObjectInputStream in = new ObjectInputStream(fin);
+            high = (ArrayList<HighScores>)in.readObject();
+            in.close();
+            fin.close();
+        }catch(IOException ex){
+            ex.printStackTrace();
+        }catch(ClassNotFoundException ex2){
+            ex2.printStackTrace();
+        }
+        
+        File fi = new File("Player.txt");
+        if(!fi.exists()) { 
+            try{
+                fi.createNewFile();
+                try{
+                    FileOutputStream fo = new FileOutputStream("Player.txt");
+                    ObjectOutputStream out = new ObjectOutputStream(fo);
+                    out.writeObject(p);
+                    out.close();
+                    fo.close();
+                }catch(IOException ex){
+                    ex.printStackTrace();
+                }      
+            }catch(IOException ex){
+                ex.printStackTrace();
+            }
+        }
+        try{
+            FileInputStream fin = new FileInputStream("Player.txt");
+            ObjectInputStream in = new ObjectInputStream(fin);
+            p = (ArrayList<Player>)in.readObject();
+            in.close();
+            fin.close();
+        }catch(IOException ex){
+            ex.printStackTrace();
+        }catch(ClassNotFoundException ex2){
+            ex2.printStackTrace();
+        }
+        
+        File fil = new File("Data.txt");
+        if(!fil.exists()) { 
+            try{
+                fil.createNewFile();
+                try{
+                    FileOutputStream fo = new FileOutputStream("Data.txt");
+                    ObjectOutputStream out = new ObjectOutputStream(fo);
+                    out.writeObject(data);
+                    out.close();
+                    fo.close();
+                }catch(IOException ex){
+                    ex.printStackTrace();
+                }      
+            }catch(IOException ex){
+                ex.printStackTrace();
+            }
+        }
+        try{
+            FileInputStream fin = new FileInputStream("Data.txt");
+            ObjectInputStream in = new ObjectInputStream(fin);
+            data = (ArrayList<inGameData>)in.readObject();
+            in.close();
+            fin.close();
+        }catch(IOException ex){
+            ex.printStackTrace();
+        }catch(ClassNotFoundException ex2){
+            ex2.printStackTrace();
+        }
     }
 
     /**
@@ -140,7 +233,7 @@ public class MainMenu extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        Continue frame = new Continue(high,p,data);
+        Continue frame = new Continue();
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
@@ -184,7 +277,7 @@ public class MainMenu extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MainMenu(high,p,data).setVisible(true);
+                new MainMenu().setVisible(true);
             }
         });
     }

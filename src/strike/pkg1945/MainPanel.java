@@ -44,7 +44,6 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
     ArrayList<BufferedImage> km;
     Gambar gambar;
     GameFrame main;
-    NewGame n;
     Player p;
     EnemyBoss boss;
     Peluru specialBullet;
@@ -52,38 +51,44 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
     BufferedImage background2; 
     Timer Tnormal;
     Timer Tplay;
+    boolean n;
     int count, ctr, ctrm,ctrm2,ctrboss,ctrjlabel2;
     int eagle,angel,shield,sack;
-    boolean playing = false;
+    boolean playing;
     EnemyAshpest ashpest;
     EnemyBlademorph blade;
     EnemyBlazelich lich;
     EnemyBlazewing wing;
     EnemyGlowstarKing king;
     BufferedImage pesawat,knalpot,pesawatBoss;
-    public MainPanel(GameFrame main, NewGame n) {
+    public MainPanel(GameFrame main, int posisi, boolean n) {
         initComponents();
         progressboss.setVisible(false);
         jLabel2.setVisible(false);
-        eagle=0;angel=0;shield=0;sack=0;
         gambar = new Gambar();
         this.n = n;
-        if (n.newp = true) {
-            p = n.p.get(n.p.size()-1);
+        if (this.n = true) {
+            p = main.player.get(main.player.size()-1);
+        }else{
+            p = main.player.get(posisi);
         }
         if (p instanceof PesawatLockheed) {pesawat = gambar.getGambar1(); knalpot = gambar.getGambarKnalpot1(0);}
         else if (p instanceof PesawatNorthtrop) {pesawat = gambar.getGambar2(); knalpot = gambar.getGambarKnalpot2(0);}
         else if (p instanceof PesawatThunderbold) {pesawat = gambar.getGambar3(); knalpot = gambar.getGambarKnalpot3(0);}
         
         main.updateStatus(p,p.getHp(),p.getMaxhp(), p.getSkor(), p.getGold(),p.getLevel());
+        this.playing = false;
+        eagle=main.data.get(p.getPosisiSave()).getEagle();angel=main.data.get(p.getPosisiSave()).getAngel();
+        shield=main.data.get(p.getPosisiSave()).getShield();sack=main.data.get(p.getPosisiSave()).getSack();
         ashpest = new EnemyAshpest();
         blade = new EnemyBlademorph();
         lich = new EnemyBlazelich();
         wing = new EnemyBlazewing();
         king = new EnemyGlowstarKing();
         ctrm = main.data.get(p.getPosisiSave()).getCtrm();ctrboss = main.data.get(p.getPosisiSave()).getCtrboss();
-        ctrm2 = main.data.get(p.getPosisiSave()).getCtrm2();count = main.data.get(p.getPosisiSave()).getCount();
-        daftarmusuh = new ArrayList();
+        ctrm2 = main.data.get(p.getPosisiSave()).getCtrm2();count = 3;
+        System.out.println(count);
+        daftarmusuh = main.data.get(p.getPosisiSave()).getE();
         daftarpeluru = new ArrayList();
         peluruBoss = new ArrayList();
         pelurua = new ArrayList();
@@ -93,6 +98,7 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
         pelurue = new ArrayList();
         pm = new ArrayList();
         km = new ArrayList();
+        boss = main.data.get(p.getPosisiSave()).getBoss();
         for (Enemy enemy : daftarmusuh) {
             if (enemy instanceof EnemyAshpest) {pm.add(gambar.getAshpest());km.add(gambar.getKnalpot1(0));}
             else if (enemy instanceof EnemyBlademorph) {pm.add(gambar.getMorph());km.add(gambar.getKnalpot2(0));}
@@ -121,12 +127,11 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
                     }else{
                         jLabel1.setText(count+"");
                     }
-                    count--;main.data.get(p.getPosisiSave()).setCount(count);
+                    count--;
                 }else{
                     if (playing==false) {
                         jLabel1.setVisible(false);
                         playing = true;
-                        main.data.get(p.getPosisiSave()).setPlaying(playing);
                         Tplay.start();
                     }else{
                         if (p.getLevell()!=5) {
@@ -172,7 +177,6 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
                         progressboss.setVisible(true);
                         progressboss.setValue(boss.getHp());
                         playing = false;
-                        main.data.get(p.getPosisiSave()).setPlaying(playing);
                         Tnormal.stop();
                         jLabel1.setText("BOSS ROUND!!!!");
                         jLabel1.setVisible(true);
@@ -239,7 +243,7 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
                         boss.setX(boss.getX()-1);
                         progressboss.setLocation(boss.getX()+100, 200);
                         if (boss.getX()==1400) {
-                            count = 3;main.data.get(p.getPosisiSave()).setCount(count);
+                            count = 3;
                             Tnormal.start();
                         }
                     }else{progressboss.setLocation(1500,200);}
@@ -831,7 +835,6 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
                 Tnormal.stop();
                 Tplay.stop();
                 playing = false;
-                main.data.get(p.getPosisiSave()).setPlaying(playing);
                 Cheat frame = new Cheat(this.p);
                 frame.pack();
                 frame.setLocationRelativeTo(null);

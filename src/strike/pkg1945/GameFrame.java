@@ -21,21 +21,23 @@ public class GameFrame extends javax.swing.JFrame {
      * Creates new form GameFrame
      */
     MainPanel panel1;
-    static NewGame n;
     Player p;
+    static int posisi;
     static ArrayList<HighScores> high;
     static ArrayList<Player> player;
     static ArrayList<inGameData> data;
-    public GameFrame(NewGame n, ArrayList<HighScores> h, ArrayList<Player> play, ArrayList<inGameData> d) {
+    static boolean n;
+    public GameFrame(ArrayList<HighScores> h, ArrayList<Player> play, ArrayList<inGameData> d,int posisi, boolean newp) {
         initComponents();
-        this.n = n;
         this.p = new Player("",0);
         this.player = play;
+        this.posisi = posisi;
         high = h;
         data = d;
         jButton1.setFocusable(false);
         jButton2.setFocusable(false);
-        panel1 = new MainPanel(this,n);
+        this.n = newp;
+        panel1 = new MainPanel(this,posisi,n);
         panel1.setLocation(0,85);
         panel1.setSize(1920,915);
         panel1.setVisible(true);
@@ -208,7 +210,7 @@ public class GameFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new GameFrame(n, high,player,data).setVisible(true);
+                new GameFrame(high,player,data,posisi,n).setVisible(true);
             }
         });
     }
