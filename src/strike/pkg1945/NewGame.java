@@ -21,14 +21,16 @@ public class NewGame extends javax.swing.JFrame {
     static ArrayList<Player> p;
     static ArrayList<HighScores> high;
     static ArrayList<inGameData> data;
+    static MainMenu m;
     boolean newp;
     Gambar gambar;
-    public NewGame(ArrayList<HighScores> h, ArrayList<Player> player, ArrayList<inGameData> d) {
+    public NewGame(MainMenu main, ArrayList<HighScores> h, ArrayList<Player> player, ArrayList<inGameData> d) {
         initComponents();
         newp = false;
         high = h;
         p = player;
         data = d;
+        m = main;
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
@@ -249,8 +251,7 @@ public class NewGame extends javax.swing.JFrame {
         // TODO add your handling code here:
         p.add(new PesawatLockheed(nama.getText(),p.size()));
         data.add(new inGameData());
-        newp = true;
-        GameFrame frame = new GameFrame(high,p,data,0,newp);
+        GameFrame frame = new GameFrame(m,high,p,data,p.size()-1);
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
@@ -266,8 +267,7 @@ public class NewGame extends javax.swing.JFrame {
         // TODO add your handling code here:
         p.add(new PesawatNorthtrop(nama.getText(),p.size()));
         data.add(new inGameData());
-        newp = true;
-        GameFrame frame = new GameFrame(high,p,data,0,newp);
+        GameFrame frame = new GameFrame(m,high,p,data,p.size()-1);
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
@@ -278,8 +278,7 @@ public class NewGame extends javax.swing.JFrame {
         // TODO add your handling code here:
         p.add(new PesawatThunderbold(nama.getText(),p.size()));
         data.add(new inGameData());
-        newp = true;
-        GameFrame frame = new GameFrame(high,p,data,0,newp);
+        GameFrame frame = new GameFrame(m,high,p,data,p.size()-1);
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
@@ -316,7 +315,7 @@ public class NewGame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new NewGame(high,p,data).setVisible(true);
+                new NewGame(m,high,p,data).setVisible(true);
             }
         });
     }

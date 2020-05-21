@@ -61,17 +61,13 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
     EnemyBlazewing wing;
     EnemyGlowstarKing king;
     BufferedImage pesawat,knalpot,pesawatBoss;
-    public MainPanel(GameFrame main, int posisi, boolean n) {
+    public MainPanel(GameFrame main, Player pp) {
         initComponents();
         progressboss.setVisible(false);
         jLabel2.setVisible(false);
         gambar = new Gambar();
         this.n = n;
-        if (this.n = true) {
-            p = main.player.get(main.player.size()-1);
-        }else{
-            p = main.player.get(posisi);
-        }
+        p = pp;
         if (p instanceof PesawatLockheed) {pesawat = gambar.getGambar1(); knalpot = gambar.getGambarKnalpot1(0);}
         else if (p instanceof PesawatNorthtrop) {pesawat = gambar.getGambar2(); knalpot = gambar.getGambarKnalpot2(0);}
         else if (p instanceof PesawatThunderbold) {pesawat = gambar.getGambar3(); knalpot = gambar.getGambarKnalpot3(0);}

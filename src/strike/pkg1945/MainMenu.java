@@ -225,7 +225,7 @@ public class MainMenu extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        NewGame frame = new NewGame(high,p,data);
+        NewGame frame = new NewGame(this,high,p,data);
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
@@ -233,7 +233,7 @@ public class MainMenu extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        Continue frame = new Continue();
+        Continue frame = new Continue(this,high,p,data);
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);

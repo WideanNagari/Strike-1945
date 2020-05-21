@@ -26,13 +26,15 @@ public class Pause extends javax.swing.JFrame {
      */
     static Player p;
     static GameFrame g;
+    static MainMenu m;
     static ArrayList<HighScores> high;
     static ArrayList<Player> player;
     static ArrayList<inGameData> data;
-    public Pause(Player p, GameFrame g, ArrayList<HighScores> h, ArrayList<Player> play, ArrayList<inGameData> d) {
+    public Pause(MainMenu main,Player p, GameFrame g, ArrayList<HighScores> h, ArrayList<Player> play, ArrayList<inGameData> d) {
         initComponents();
         high = h;
         data = d;
+        m = main;
         this.player = play;
         this.p = p;
         this.g = g;
@@ -218,6 +220,96 @@ public class Pause extends javax.swing.JFrame {
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
+        m.high = new ArrayList<>();
+        m.p = new ArrayList<>();
+        m.data = new ArrayList<>();
+        
+        File f = new File("Highscore.txt");
+        if(!f.exists()) { 
+            try{
+                f.createNewFile();
+                try{
+                    FileOutputStream fo = new FileOutputStream("Highscore.txt");
+                    ObjectOutputStream out = new ObjectOutputStream(fo);
+                    out.writeObject(high);
+                    out.close();
+                    fo.close();
+                }catch(IOException ex){
+                    ex.printStackTrace();
+                }      
+            }catch(IOException ex){
+                ex.printStackTrace();
+            }
+        }
+        try{
+            FileInputStream fin = new FileInputStream("Highscore.txt");
+            ObjectInputStream in = new ObjectInputStream(fin);
+            m.high = (ArrayList<HighScores>)in.readObject();
+            in.close();
+            fin.close();
+        }catch(IOException ex){
+            ex.printStackTrace();
+        }catch(ClassNotFoundException ex2){
+            ex2.printStackTrace();
+        }
+        
+        File fi = new File("Player.txt");
+        if(!fi.exists()) { 
+            try{
+                fi.createNewFile();
+                try{
+                    FileOutputStream fo = new FileOutputStream("Player.txt");
+                    ObjectOutputStream out = new ObjectOutputStream(fo);
+                    out.writeObject(p);
+                    out.close();
+                    fo.close();
+                }catch(IOException ex){
+                    ex.printStackTrace();
+                }      
+            }catch(IOException ex){
+                ex.printStackTrace();
+            }
+        }
+        try{
+            FileInputStream fin = new FileInputStream("Player.txt");
+            ObjectInputStream in = new ObjectInputStream(fin);
+            m.p = (ArrayList<Player>)in.readObject();
+            in.close();
+            fin.close();
+        }catch(IOException ex){
+            ex.printStackTrace();
+        }catch(ClassNotFoundException ex2){
+            ex2.printStackTrace();
+        }
+        
+        File fil = new File("Data.txt");
+        if(!fil.exists()) { 
+            try{
+                fil.createNewFile();
+                try{
+                    FileOutputStream fo = new FileOutputStream("Data.txt");
+                    ObjectOutputStream out = new ObjectOutputStream(fo);
+                    out.writeObject(data);
+                    out.close();
+                    fo.close();
+                }catch(IOException ex){
+                    ex.printStackTrace();
+                }      
+            }catch(IOException ex){
+                ex.printStackTrace();
+            }
+        }
+        try{
+            FileInputStream fin = new FileInputStream("Data.txt");
+            ObjectInputStream in = new ObjectInputStream(fin);
+            m.data = (ArrayList<inGameData>)in.readObject();
+            in.close();
+            fin.close();
+        }catch(IOException ex){
+            ex.printStackTrace();
+        }catch(ClassNotFoundException ex2){
+            ex2.printStackTrace();
+        }
         g.dispatchEvent(new WindowEvent(this,WindowEvent.WINDOW_CLOSING));
         this.dispatchEvent(new WindowEvent(this,WindowEvent.WINDOW_CLOSING));
     }//GEN-LAST:event_jButton6ActionPerformed
@@ -252,7 +344,7 @@ public class Pause extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Pause(p,g,high,player,data).setVisible(true);
+                new Pause(m,p,g,high,player,data).setVisible(true);
             }
         });
     }

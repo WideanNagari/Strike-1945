@@ -26,18 +26,18 @@ public class GameFrame extends javax.swing.JFrame {
     static ArrayList<HighScores> high;
     static ArrayList<Player> player;
     static ArrayList<inGameData> data;
-    static boolean n;
-    public GameFrame(ArrayList<HighScores> h, ArrayList<Player> play, ArrayList<inGameData> d,int posisi, boolean newp) {
+    static MainMenu m;
+    public GameFrame(MainMenu main,ArrayList<HighScores> h, ArrayList<Player> play, ArrayList<inGameData> d,int pos) {
         initComponents();
         this.p = new Player("",0);
-        this.player = play;
-        this.posisi = posisi;
+        player = play;
+        posisi = pos;
         high = h;
         data = d;
+        m = main;
         jButton1.setFocusable(false);
         jButton2.setFocusable(false);
-        this.n = newp;
-        panel1 = new MainPanel(this,posisi,n);
+        panel1 = new MainPanel(this,player.get(posisi));
         panel1.setLocation(0,85);
         panel1.setSize(1920,915);
         panel1.setVisible(true);
@@ -169,7 +169,7 @@ public class GameFrame extends javax.swing.JFrame {
         panel1.Tnormal.stop();
         panel1.Tplay.stop();
         panel1.playing = false;
-        Pause frame = new Pause(this.p,this,this.high, this.player, this.data);
+        Pause frame = new Pause(this.m,this.p,this,this.high, this.player, this.data);
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
@@ -210,7 +210,7 @@ public class GameFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new GameFrame(high,player,data,posisi,n).setVisible(true);
+                new GameFrame(m,high,player,data,posisi).setVisible(true);
             }
         });
     }
