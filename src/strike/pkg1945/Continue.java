@@ -34,6 +34,7 @@ public class Continue extends javax.swing.JFrame {
         p = player;
         high = h;
         data = d;
+        m = main;
         for (Player play : p) {
             if (play.getPosisiSave() == 0) {
                 satu.setText("1. "+play.getNama());
@@ -114,14 +115,29 @@ public class Continue extends javax.swing.JFrame {
         tiga.setBounds(230, 630, 1300, 130);
 
         buang1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/strike/pkg1945/Gambar/sampah.png"))); // NOI18N
+        buang1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buang1ActionPerformed(evt);
+            }
+        });
         jPanel1.add(buang1);
         buang1.setBounds(1620, 260, 110, 130);
 
         buang2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/strike/pkg1945/Gambar/sampah.png"))); // NOI18N
+        buang2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buang2ActionPerformed(evt);
+            }
+        });
         jPanel1.add(buang2);
         buang2.setBounds(1620, 440, 110, 130);
 
         buang3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/strike/pkg1945/Gambar/sampah.png"))); // NOI18N
+        buang3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buang3ActionPerformed(evt);
+            }
+        });
         jPanel1.add(buang3);
         buang3.setBounds(1620, 630, 110, 130);
 
@@ -180,6 +196,124 @@ public class Continue extends javax.swing.JFrame {
             this.dispatchEvent(new WindowEvent(this,WindowEvent.WINDOW_CLOSING));
         }
     }//GEN-LAST:event_tigaActionPerformed
+
+    private void buang1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buang1ActionPerformed
+        // TODO add your handling code here:
+        if (!satu.getText().equals("1. Save Data Not Found!")) {
+            if (!dua.getText().equals("2. Save Data Not Found!")) {
+                dua.setText("2. Save Data Not Found!");m.p.remove(0);m.data.remove(0);
+                m.p.get(0).setPosisiSave(0);
+                if (!tiga.getText().equals("3. Save Data Not Found!")) {
+                    tiga.setText("3. Save Data Not Found!");m.p.get(1).setPosisiSave(1);
+                }
+            }else{
+                satu.setText("1. Save Data Not Found!");m.p.remove(0);m.data.remove(0);
+            }
+            for (Player play : m.p) {
+                if (play.getPosisiSave() == 0) {
+                    satu.setText("1. "+play.getNama());
+                }else if (play.getPosisiSave() == 1) {
+                    dua.setText("2. "+play.getNama());
+                }else if (play.getPosisiSave() == 2) {
+                    tiga.setText("3. "+play.getNama());
+                }
+            }
+        }
+        try{
+            FileOutputStream fo = new FileOutputStream("Player.txt");
+            ObjectOutputStream out = new ObjectOutputStream(fo);
+            out.writeObject(m.p);
+            out.close();
+            fo.close();
+        }catch(IOException ex){
+            ex.printStackTrace();
+        } 
+        
+        try{
+            FileOutputStream fo = new FileOutputStream("Data.txt");
+            ObjectOutputStream out = new ObjectOutputStream(fo);
+            out.writeObject(m.data);
+            out.close();
+            fo.close();
+        }catch(IOException ex){
+            ex.printStackTrace();
+        } 
+    }//GEN-LAST:event_buang1ActionPerformed
+
+    private void buang2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buang2ActionPerformed
+        // TODO add your handling code here:
+        if (!dua.getText().equals("2. Save Data Not Found!")) {
+            if(!tiga.getText().equals("3. Save Data Not Found!")){
+                tiga.setText("3. Save Data Not Found!");m.p.remove(1);m.data.remove(1);
+                m.p.get(1).setPosisiSave(1);
+            }else{dua.setText("2. Save Data Not Found!");m.p.remove(1);m.data.remove(1);}
+            for (Player play : m.p) {
+                if (play.getPosisiSave() == 0) {
+                    satu.setText("1. "+play.getNama());
+                }else if (play.getPosisiSave() == 1) {
+                    dua.setText("2. "+play.getNama());
+                }else if (play.getPosisiSave() == 2) {
+                    tiga.setText("3. "+play.getNama());
+                }
+            }
+        }
+        try{
+            FileOutputStream fo = new FileOutputStream("Player.txt");
+            ObjectOutputStream out = new ObjectOutputStream(fo);
+            out.writeObject(m.p);
+            out.close();
+            fo.close();
+        }catch(IOException ex){
+            ex.printStackTrace();
+        } 
+        
+        try{
+            FileOutputStream fo = new FileOutputStream("Data.txt");
+            ObjectOutputStream out = new ObjectOutputStream(fo);
+            out.writeObject(m.data);
+            out.close();
+            fo.close();
+        }catch(IOException ex){
+            ex.printStackTrace();
+        } 
+    }//GEN-LAST:event_buang2ActionPerformed
+
+    private void buang3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buang3ActionPerformed
+        // TODO add your handling code here:
+        if (!tiga.getText().equals("3. Save Data Not Found!")) {
+            tiga.setText("3. Save Data Not Found!");
+            m.p.remove(2);
+            m.data.remove(2);
+            for (Player play : m.p) {
+                if (play.getPosisiSave() == 0) {
+                    satu.setText("1. "+play.getNama());
+                }else if (play.getPosisiSave() == 1) {
+                    dua.setText("2. "+play.getNama());
+                }else if (play.getPosisiSave() == 2) {
+                    tiga.setText("3. "+play.getNama());
+                }
+            }
+            try{
+                FileOutputStream fo = new FileOutputStream("Player.txt");
+                ObjectOutputStream out = new ObjectOutputStream(fo);
+                out.writeObject(m.p);
+                out.close();
+                fo.close();
+            }catch(IOException ex){
+                ex.printStackTrace();
+            } 
+
+            try{
+                FileOutputStream fo = new FileOutputStream("Data.txt");
+                ObjectOutputStream out = new ObjectOutputStream(fo);
+                out.writeObject(m.data);
+                out.close();
+                fo.close();
+            }catch(IOException ex){
+                ex.printStackTrace();
+            } 
+        }
+    }//GEN-LAST:event_buang3ActionPerformed
 
     /**
      * @param args the command line arguments

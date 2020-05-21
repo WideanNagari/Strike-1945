@@ -59,6 +59,10 @@ public class Player implements Serializable{
         this.levelattack = 1; this.levelhp = 1; this.leveldefend = 1;
     }
 
+    public void setPosisiSave(int posisiSave) {
+        this.posisiSave = posisiSave;
+    }
+
     public int getPosisiSave() {
         return posisiSave;
     }

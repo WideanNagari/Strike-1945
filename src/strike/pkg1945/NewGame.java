@@ -31,6 +31,13 @@ public class NewGame extends javax.swing.JFrame {
         p = player;
         data = d;
         m = main;
+        if (p.size()<3) {
+            jLabel20.setVisible(false);
+            jLabel21.setVisible(false);
+        }else{
+            jLabel20.setVisible(true);
+            jLabel21.setVisible(true);
+        }
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
@@ -67,6 +74,8 @@ public class NewGame extends javax.swing.JFrame {
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -105,7 +114,7 @@ public class NewGame extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(240, 240, 240));
         jLabel4.setText("Choose Your SpaceShip :");
         jPanel1.add(jLabel4);
-        jLabel4.setBounds(240, 320, 590, 100);
+        jLabel4.setBounds(240, 330, 590, 100);
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/strike/pkg1945/Gambar/Pesawat 1.png"))); // NOI18N
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -224,6 +233,18 @@ public class NewGame extends javax.swing.JFrame {
         jPanel1.add(jLabel19);
         jLabel19.setBounds(930, 790, 290, 40);
 
+        jLabel20.setFont(new java.awt.Font("Comic Sans MS", 1, 48)); // NOI18N
+        jLabel20.setForeground(new java.awt.Color(240, 240, 240));
+        jLabel20.setText("Try to delete one of them!");
+        jPanel1.add(jLabel20);
+        jLabel20.setBounds(1270, 90, 670, 100);
+
+        jLabel21.setFont(new java.awt.Font("Comic Sans MS", 1, 48)); // NOI18N
+        jLabel21.setForeground(new java.awt.Color(240, 240, 240));
+        jLabel21.setText("Oops! the save slot is full!");
+        jPanel1.add(jLabel21);
+        jLabel21.setBounds(1270, 30, 670, 100);
+
         jLabel1.setForeground(new java.awt.Color(240, 240, 240));
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/strike/pkg1945/Gambar/Main Menu.jpg"))); // NOI18N
         jPanel1.add(jLabel1);
@@ -249,13 +270,15 @@ public class NewGame extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        p.add(new PesawatLockheed(nama.getText(),p.size()));
-        data.add(new inGameData());
-        GameFrame frame = new GameFrame(m,high,p,data,p.size()-1);
-        frame.pack();
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
-        this.dispatchEvent(new WindowEvent(this,WindowEvent.WINDOW_CLOSING));
+        if (p.size()<3) {
+            p.add(new PesawatLockheed(nama.getText(),p.size()));
+            data.add(new inGameData());
+            GameFrame frame = new GameFrame(m,high,p,data,p.size()-1);
+            frame.pack();
+            frame.setLocationRelativeTo(null);
+            frame.setVisible(true);
+            this.dispatchEvent(new WindowEvent(this,WindowEvent.WINDOW_CLOSING));
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -265,24 +288,28 @@ public class NewGame extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        p.add(new PesawatNorthtrop(nama.getText(),p.size()));
-        data.add(new inGameData());
-        GameFrame frame = new GameFrame(m,high,p,data,p.size()-1);
-        frame.pack();
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
-        this.dispatchEvent(new WindowEvent(this,WindowEvent.WINDOW_CLOSING));
+        if (p.size()<3) {
+            p.add(new PesawatNorthtrop(nama.getText(),p.size()));
+            data.add(new inGameData());
+            GameFrame frame = new GameFrame(m,high,p,data,p.size()-1);
+            frame.pack();
+            frame.setLocationRelativeTo(null);
+            frame.setVisible(true);
+            this.dispatchEvent(new WindowEvent(this,WindowEvent.WINDOW_CLOSING));
+        }
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        p.add(new PesawatThunderbold(nama.getText(),p.size()));
-        data.add(new inGameData());
-        GameFrame frame = new GameFrame(m,high,p,data,p.size()-1);
-        frame.pack();
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
-        this.dispatchEvent(new WindowEvent(this,WindowEvent.WINDOW_CLOSING));
+        if (p.size()<3) {
+            p.add(new PesawatThunderbold(nama.getText(),p.size()));
+            data.add(new inGameData());
+            GameFrame frame = new GameFrame(m,high,p,data,p.size()-1);
+            frame.pack();
+            frame.setLocationRelativeTo(null);
+            frame.setVisible(true);
+            this.dispatchEvent(new WindowEvent(this,WindowEvent.WINDOW_CLOSING));
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
@@ -337,6 +364,8 @@ public class NewGame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
