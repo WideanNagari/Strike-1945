@@ -16,10 +16,6 @@ import javax.imageio.ImageIO;
  * @author Asus
  */
 public class EnemyBoss{
-    BufferedImage[] gambarAnimasi;
-    Random r= new Random();
-    BufferedImage[] gambarLedak;
-    BufferedImage gambar;
     protected int x,y,width,height,speed;
     protected int hp;
     protected int cooldown;
@@ -34,37 +30,7 @@ public class EnemyBoss{
     protected int tabrak;
     
     public EnemyBoss(int hpPlayer, int x, int y){
-        gambarAnimasi = new BufferedImage[4];
-        try{
-            this.gambarAnimasi[0]= ImageIO.read(new File("./src/strike/pkg1945/Gambar/EnemyBoss1.png"));
-            this.gambarAnimasi[1]= ImageIO.read(new File("./src/strike/pkg1945/Gambar/EnemyBoss2.png"));
-            this.gambarAnimasi[2]= ImageIO.read(new File("./src/strike/pkg1945/Gambar/EnemyBoss3.png"));
-            this.gambarAnimasi[3]= ImageIO.read(new File("./src/strike/pkg1945/Gambar/EnemyBoss4.png"));
-        }catch(IOException ex){
-            ex.printStackTrace();
-        }
-        gambarLedak = new BufferedImage[15];
-        try{
-            this.gambarLedak[0]=ImageIO.read(new File("./Explosion/boss/1.png"));
-            this.gambarLedak[1]=ImageIO.read(new File("./Explosion/boss/2.png"));
-            this.gambarLedak[2]=ImageIO.read(new File("./Explosion/boss/3.png"));
-            this.gambarLedak[3]=ImageIO.read(new File("./Explosion/boss/4.png"));
-            this.gambarLedak[4]=ImageIO.read(new File("./Explosion/boss/5.png"));
-            this.gambarLedak[5]=ImageIO.read(new File("./Explosion/boss/6.png"));
-            this.gambarLedak[6]=ImageIO.read(new File("./Explosion/boss/7.png"));
-            this.gambarLedak[7]=ImageIO.read(new File("./Explosion/boss/8.png"));
-            this.gambarLedak[8]=ImageIO.read(new File("./Explosion/boss/9.png"));
-            this.gambarLedak[9]=ImageIO.read(new File("./Explosion/boss/10.png"));
-            this.gambarLedak[10]=ImageIO.read(new File("./Explosion/boss/11.png"));
-            this.gambarLedak[11]=ImageIO.read(new File("./Explosion/boss/12.png"));
-            this.gambarLedak[12]=ImageIO.read(new File("./Explosion/boss/13.png"));
-            this.gambarLedak[13]=ImageIO.read(new File("./Explosion/boss/14.png"));
-            this.gambarLedak[14]=ImageIO.read(new File("./Explosion/boss/15.png"));
-        }catch(IOException ex){
-            ex.printStackTrace();
-        }
         this.animasi = 0;
-        this.gambar=gambarAnimasi[animasi];
         this.hp = hpPlayer;
         this.x = x;
         this.y = y;
@@ -127,29 +93,24 @@ public class EnemyBoss{
     public int getHeight() {
         return height;
     }
-
-    public BufferedImage getGambar() {
-        return gambar;
-    }
     
-    public void gantiAnimasi(){
-        if (this.hp > 0) {
+    public BufferedImage gantiAnimasi(BufferedImage gambar){
             if(this.animasi<3){
                 this.animasi++;
             }else{
                 this.animasi=0;
             }
-            this.gambar=this.gambarAnimasi[this.animasi];
-        }else{
+            return gambar;
+    }
+    
+    public BufferedImage ledak(BufferedImage gambarLedak){
             if (this.mati == 1) {
                 this.animasi = 0;
             }
             if (this.animasi < 15) {
                 this.animasi++;
-                if (this.animasi<=14) {
-                    this.gambar = this.gambarLedak[this.animasi];
-                }
-            }
-        }
+                return gambarLedak;
+            }else{
+                return null;}
     }
 }

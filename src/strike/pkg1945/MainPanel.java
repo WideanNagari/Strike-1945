@@ -52,7 +52,7 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
     BufferedImage background2; 
     Timer Tnormal;
     Timer Tplay;
-    int count = 3, ctr, ctrm,ctrm2,ctrboss,ctrjlabel2;
+    int count, ctr, ctrm,ctrm2,ctrboss,ctrjlabel2;
     int eagle,angel,shield,sack;
     boolean playing = false;
     EnemyAshpest ashpest;
@@ -60,7 +60,7 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
     EnemyBlazelich lich;
     EnemyBlazewing wing;
     EnemyGlowstarKing king;
-    BufferedImage pesawat,knalpot;
+    BufferedImage pesawat,knalpot,pesawatBoss;
     public MainPanel(GameFrame main, NewGame n) {
         initComponents();
         progressboss.setVisible(false);
@@ -81,7 +81,8 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
         lich = new EnemyBlazelich();
         wing = new EnemyBlazewing();
         king = new EnemyGlowstarKing();
-        ctrm = 5;ctrboss = 0;ctrm2 = 5;
+        ctrm = main.data.get(p.getPosisiSave()).getCtrm();ctrboss = main.data.get(p.getPosisiSave()).getCtrboss();
+        ctrm2 = main.data.get(p.getPosisiSave()).getCtrm2();count = main.data.get(p.getPosisiSave()).getCount();
         daftarmusuh = new ArrayList();
         daftarpeluru = new ArrayList();
         peluruBoss = new ArrayList();
@@ -116,20 +117,21 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
                     jLabel1.setVisible(true);
                     if (count == 0) {
                         jLabel1.setText("GO!!!!!");
-                        ctr = 0;
+                        ctr = main.data.get(p.getPosisiSave()).getCtr();
                     }else{
                         jLabel1.setText(count+"");
                     }
-                    count--;
+                    count--;main.data.get(p.getPosisiSave()).setCount(count);
                 }else{
                     if (playing==false) {
                         jLabel1.setVisible(false);
                         playing = true;
+                        main.data.get(p.getPosisiSave()).setPlaying(playing);
                         Tplay.start();
                     }else{
                         if (p.getLevell()!=5) {
                             if (ctrm == ctrm2) {
-                                ctrm = 0;
+                                ctrm = 0;main.data.get(p.getPosisiSave()).setCtrm(ctrm);
                                 for (int i = 0; i < p.getJumlahMusuh(); i++) {
                                     int rand = (int)(Math.random()*5);
                                     int randy = (int)(Math.random()*750);
@@ -158,23 +160,26 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
                                     if (p.getAngelBox()>0) {daftarmusuh.get(daftarmusuh.size()-1).setHp(daftarmusuh.get(daftarmusuh.size()-1).getHp()/2);}
                                 }
                             }
-                            ctrm++;  
+                            ctrm++;main.data.get(p.getPosisiSave()).setCtrm(ctrm); 
                         }
                     }
                     if (p.getLevell()==5 && boss==null) {
                         boss = new EnemyBoss(p.getHp()*p.getBossKe(), 1920, 230);
+                        pesawatBoss = gambar.getBoss(0);
                         progressboss.setMinimum(0);
                         progressboss.setMaximum(boss.getHp());
                         progressboss.setLocation(1970,100);
                         progressboss.setVisible(true);
                         progressboss.setValue(boss.getHp());
                         playing = false;
+                        main.data.get(p.getPosisiSave()).setPlaying(playing);
                         Tnormal.stop();
                         jLabel1.setText("BOSS ROUND!!!!");
                         jLabel1.setVisible(true);
+                        main.data.get(p.getPosisiSave()).setBoss(boss);
                     }
                     if (ctrjlabel2>1) {
-                        ctrjlabel2--;
+                        ctrjlabel2--;main.data.get(p.getPosisiSave()).setCtrjlabel2(ctrjlabel2);
                     }else{
                         jLabel2.setVisible(false);
                     }
@@ -234,13 +239,14 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
                         boss.setX(boss.getX()-1);
                         progressboss.setLocation(boss.getX()+100, 200);
                         if (boss.getX()==1400) {
-                            count = 3;
+                            count = 3;main.data.get(p.getPosisiSave()).setCount(count);
                             Tnormal.start();
                         }
                     }else{progressboss.setLocation(1500,200);}
                     if (ctrboss == 15) {
-                        boss.gantiAnimasi();
-                        ctrboss = 0;
+                        if (boss.getHp()>0) {pesawatBoss = boss.gantiAnimasi(gambar.getBoss(boss.getAnimasi()));}
+                        else{pesawatBoss = boss.ledak(gambar.getGambarLedakBoss(boss.getAnimasi()));}
+                        ctrboss = 0;main.data.get(p.getPosisiSave()).setCtrboss(ctrboss);
                     }if (boss.getCooldown()==0 && boss.getHp()>0 && playing) {
                         for (int i = 0; i < 3; i++) {
                             int rr = (int)(Math.random()*boss.getHeight()-70)+1;
@@ -248,6 +254,7 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
                         }
                         boss.setCooldown(boss.getCd());
                     }
+                    main.data.get(p.getPosisiSave()).setBoss(boss);
                 }
                 for (Enemy musuh : daftarmusuh) {
                     if (musuh.getHp()>0 && playing) {
@@ -346,7 +353,7 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
                             }
                         }
                     }
-                    ctr = 0;
+                    ctr = 0;main.data.get(p.getPosisiSave()).setCtr(ctr);
                 }
                 repaint();
                 for (Enemy musuh : daftarmusuh) {
@@ -641,11 +648,12 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
                     p.setAngelBox(0);
                     p.setBossKe(p.getBossKe()+1);
                     progressboss.setVisible(false);
+                    pesawatBoss = null;
                 }
                 if (playing) {
-                    ctr++;
+                    ctr++;main.data.get(p.getPosisiSave()).setCtr(ctr);
                 }
-                if (boss!=null) {ctrboss++;}
+                if (boss!=null) {ctrboss++;main.data.get(p.getPosisiSave()).setCtrboss(ctrboss);}
                 if (p.getMusuhTerbunuh()==10) {
                     p.setAngelBox(p.getAngelBox()-1);
                     p.setMusuhTerbunuh(0);
@@ -657,7 +665,7 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
                     p.setLevell(p.getLevell()+1);}
                     if (p.getLevel()%3==0) {
                         if (ctrm2>1) {
-                            ctrm2--;
+                            ctrm2--;main.data.get(p.getPosisiSave()).setCtrm2(ctrm2);
                         }else if(p.getJumlahMusuh()<5){
                             p.setJumlahMusuh(p.getJumlahMusuh()+1);
                         }
@@ -667,24 +675,27 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
                 if (p.getEaglePotion()<=0 && eagle == 1) {
                     jLabel2.setText("Efek Eagle Potion Telah Habis!");
                     jLabel2.setVisible(true);
-                    ctrjlabel2 = 2;eagle--;
+                    ctrjlabel2 = 2;eagle--;main.data.get(p.getPosisiSave()).setCtrjlabel2(ctrjlabel2);
+                    main.data.get(p.getPosisiSave()).setEagle(eagle);
                     p.setAttack(p.getAttack()-500);
                 }if (p.getShieldofCrystal()<=0 && shield == 1) {
                     jLabel2.setText("Efek Shield of Crystal Barrier Telah Habis!");
                     jLabel2.setVisible(true);
-                    ctrjlabel2 = 2;shield--;
+                    ctrjlabel2 = 2;shield--;main.data.get(p.getPosisiSave()).setCtrjlabel2(ctrjlabel2);
+                    main.data.get(p.getPosisiSave()).setShield(shield);
                     p.setDefend(p.getDefend()-20);
                 }if (p.getAngelBox()<=0 && angel == 1) {
                     jLabel2.setText("Efek Angel Box Telah Habis!");
-                    jLabel2.setVisible(true);ctrjlabel2 = 2;
+                    jLabel2.setVisible(true);ctrjlabel2 = 2;main.data.get(p.getPosisiSave()).setCtrjlabel2(ctrjlabel2);
                     for (Enemy enemy : daftarmusuh) {
                         enemy.setHp(enemy.getHp()*2);
                     }
-                    angel--;
+                    angel--;main.data.get(p.getPosisiSave()).setAngel(angel);
                 }if (p.getSackofGold()<=0 && sack==1) {
                     jLabel2.setText("Efek Sack of Gold Telah Habis!");
                     jLabel2.setVisible(true);
-                    ctrjlabel2 = 2;sack--;
+                    ctrjlabel2 = 2;sack--;main.data.get(p.getPosisiSave()).setCtrjlabel2(ctrjlabel2);
+                    main.data.get(p.getPosisiSave()).setSack(sack);
                 }
             }
         });
@@ -709,7 +720,7 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
             g2.drawImage(pp.getGambarB(), pp.getX(), pp.getY(), pp.getWidth()*2,pp.getHeight()*2,this);
         }
         if (boss!=null) {
-            g2.drawImage(boss.getGambar(), boss.getX(), boss.getY(), boss.getWidth(),boss.getHeight(),this);
+            g2.drawImage(pesawatBoss, boss.getX(), boss.getY(), boss.getWidth(),boss.getHeight(),this);
         }
         for (Peluru pp : pelurua) {
             g2.drawImage(pp.getGambarM(), pp.getX(), pp.getY(), pp.getWidth(),pp.getHeight(),this);
@@ -820,6 +831,7 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
                 Tnormal.stop();
                 Tplay.stop();
                 playing = false;
+                main.data.get(p.getPosisiSave()).setPlaying(playing);
                 Cheat frame = new Cheat(this.p);
                 frame.pack();
                 frame.setLocationRelativeTo(null);
@@ -830,26 +842,29 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
                     jLabel2.setText("Eagle Potion Activated! "+p.getJumEaglePotion()+" Left");
                     p.setEaglePotion(5);
                     p.setAttack(p.getAttack()+500);eagle = 1;
+                    main.data.get(p.getPosisiSave()).setEagle(eagle);
                 }else{
                     jLabel2.setText("No Eagle Potion Left!");
-                }jLabel2.setVisible(true);ctrjlabel2 = 2;
+                }jLabel2.setVisible(true);ctrjlabel2 = 2;main.data.get(p.getPosisiSave()).setCtrjlabel2(ctrjlabel2);
             }else if (a == 'u') {
                 if (p.getJumShieldofCrystal()>=1 && playing) {
                     p.setJumShieldofCrystal(p.getJumShieldofCrystal()-1);
                     jLabel2.setText("Shield of Crystal Barrier Activated! "+p.getJumShieldofCrystal()+" Left");
                     p.setShieldofCrystal(5);
                     p.setDefend(p.getDefend()+20); shield = 1;
+                    main.data.get(p.getPosisiSave()).setShield(shield);
                 }else{
                     jLabel2.setText("No Shield of Crystal Barrier Left!");
-                }jLabel2.setVisible(true);ctrjlabel2 = 2;
+                }jLabel2.setVisible(true);ctrjlabel2 = 2;main.data.get(p.getPosisiSave()).setCtrjlabel2(ctrjlabel2);
             }else if (a == 'i') {
                 if (p.getJumSackofGold()>=1 && playing) {
                     p.setJumSackofGold(p.getJumSackofGold()-1);
                     jLabel2.setText("Sack of Gold Activated! "+p.getJumSackofGold()+" Left");
                     p.setSackofGold(5);sack = 1;
+                    main.data.get(p.getPosisiSave()).setSack(sack);
                 }else{
                     jLabel2.setText("No Sack of Gold Left!");
-                }jLabel2.setVisible(true);ctrjlabel2 = 2;
+                }jLabel2.setVisible(true);ctrjlabel2 = 2;main.data.get(p.getPosisiSave()).setCtrjlabel2(ctrjlabel2);
             }else if (a == 'o') {
                 if (p.getJumMassiveSalve()>=1 && playing) {
                     p.setJumMassiveSalve(p.getJumMassiveSalve()-1);
@@ -858,18 +873,19 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
                     if (p.getHp()>p.getMaxhp()) {p.setHp(p.getMaxhp());}
                 }else{
                     jLabel2.setText("No Massive Heal Left!");
-                }jLabel2.setVisible(true);ctrjlabel2 = 2;
+                }jLabel2.setVisible(true);ctrjlabel2 = 2;main.data.get(p.getPosisiSave()).setCtrjlabel2(ctrjlabel2);
             }else if (a == 'p') {
                 if (p.getJumAngelBox()>=1 && playing) {
                     p.setJumAngleBox(p.getJumAngelBox()-1);
                     jLabel2.setText("Angel Box Activated! "+p.getJumAngelBox()+" Left!");
                     p.setAngelBox(3);angel = 1;
+                    main.data.get(p.getPosisiSave()).setAngel(angel);
                     for (Enemy enemy : daftarmusuh) {
                         enemy.setHp(enemy.getHp()/2);
                     }
                 }else{
                     jLabel2.setText("No Angel Box Left!");
-                }jLabel2.setVisible(true);ctrjlabel2 = 2;
+                }jLabel2.setVisible(true);ctrjlabel2 = 2;main.data.get(p.getPosisiSave()).setCtrjlabel2(ctrjlabel2);
             }
         }
     }
