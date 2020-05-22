@@ -14,12 +14,18 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
 import javax.imageio.ImageIO;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.Timer;
@@ -51,8 +57,7 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
     BufferedImage background2; 
     Timer Tnormal;
     Timer Tplay;
-    boolean n;
-    int count, ctr, ctrm,ctrm2,ctrboss,ctrjlabel2;
+    int count, ctr, ctrm,ctrm2,ctrboss,ctrjlabel2,ctrgo;
     int eagle,angel,shield,sack;
     boolean playing;
     EnemyAshpest ashpest;
@@ -66,12 +71,11 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
         progressboss.setVisible(false);
         jLabel2.setVisible(false);
         gambar = new Gambar();
-        this.n = n;
         p = pp;
         if (p instanceof PesawatLockheed) {pesawat = gambar.getGambar1(); knalpot = gambar.getGambarKnalpot1(0);}
         else if (p instanceof PesawatNorthtrop) {pesawat = gambar.getGambar2(); knalpot = gambar.getGambarKnalpot2(0);}
         else if (p instanceof PesawatThunderbold) {pesawat = gambar.getGambar3(); knalpot = gambar.getGambarKnalpot3(0);}
-        
+        ctrgo = 0;
         main.updateStatus(p,p.getHp(),p.getMaxhp(), p.getSkor(), p.getGold(),p.getLevel());
         this.playing = false;
         eagle=main.data.get(p.getPosisiSave()).getEagle();angel=main.data.get(p.getPosisiSave()).getAngel();
@@ -83,8 +87,8 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
         king = new EnemyGlowstarKing();
         ctrm = main.data.get(p.getPosisiSave()).getCtrm();ctrboss = main.data.get(p.getPosisiSave()).getCtrboss();
         ctrm2 = main.data.get(p.getPosisiSave()).getCtrm2();count = 3;
-        System.out.println(count);
         daftarmusuh = main.data.get(p.getPosisiSave()).getE();
+        boss = main.data.get(p.getPosisiSave()).getBoss();
         daftarpeluru = new ArrayList();
         peluruBoss = new ArrayList();
         pelurua = new ArrayList();
@@ -94,7 +98,6 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
         pelurue = new ArrayList();
         pm = new ArrayList();
         km = new ArrayList();
-        boss = main.data.get(p.getPosisiSave()).getBoss();
         for (Enemy enemy : daftarmusuh) {
             if (enemy instanceof EnemyAshpest) {pm.add(gambar.getAshpest());km.add(gambar.getKnalpot1(0));}
             else if (enemy instanceof EnemyBlademorph) {pm.add(gambar.getMorph());km.add(gambar.getKnalpot2(0));}
@@ -415,13 +418,6 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
                                         p.setHp(p.getHp()-((m.getDamage()*2)-p.getDefend()));
                                     }
                                     main.updateStatus(p,p.getHp(),p.getMaxhp(), p.getSkor(), p.getGold(),p.getLevel());
-//                                    if (p.getHp() <= 0) {
-//                                        playing = false;
-//                                        Tnormal.stop();
-//                                        Tplay.stop();
-//                                        jLabel1.setText("GAME OVER");
-//                                        jLabel1.setVisible(true);
-//                                    }
                                     repaint();
                                     break;
                                 }
@@ -671,6 +667,100 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
                         }
                     }
                     main.updateStatus(p,p.getHp(),p.getMaxhp(), p.getSkor(), p.getGold(),p.getLevel());
+                }
+                if (p.getHp() <= 0 && p.getAnimasi()>=13) {
+                    playing = false;
+                    Tnormal.stop();
+                    if (ctrgo==20) {
+                        ctrgo = 0;
+                        if (jLabel1.getText().equals("GO!!!!!")) {jLabel1.setText("G");}
+                        else if (jLabel1.getText().equals("G")) {jLabel1.setText("GA");}
+                        else if (jLabel1.getText().equals("GA")) {jLabel1.setText("GAM");}
+                        else if (jLabel1.getText().equals("GAM")) {jLabel1.setText("GAME");}
+                        else if (jLabel1.getText().equals("GAME")) {jLabel1.setText("GAME ");}
+                        else if (jLabel1.getText().equals("GAME ")) {jLabel1.setText("GAME O");}
+                        else if (jLabel1.getText().equals("GAME O")) {jLabel1.setText("GAME OV");}
+                        else if (jLabel1.getText().equals("GAME OV")) {jLabel1.setText("GAME OVE");}
+                        else if (jLabel1.getText().equals("GAME OVE")) {jLabel1.setText("GAME OVER");}
+                        else if (jLabel1.getText().equals("GAME OVER")) {jLabel1.setText("GAME OVER!");Tplay.stop();
+                            if (p.getRetryChance()==1) {
+                                if (JOptionPane.showConfirmDialog(null, "ingin mengulang permainan dari posisi save terakhir?","Restart",JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION) {         
+                                    main.player = new ArrayList<>();
+                                    main.data = new ArrayList<>();
+                                    File fi = new File("Player.txt");
+                                    try{
+                                        FileInputStream fin = new FileInputStream("Player.txt");
+                                        ObjectInputStream in = new ObjectInputStream(fin);
+                                        main.player = (ArrayList<Player>)in.readObject();
+                                        in.close();
+                                        fin.close();
+                                    }catch(IOException ex){
+                                        ex.printStackTrace();
+                                    }catch(ClassNotFoundException ex2){
+                                        ex2.printStackTrace();
+                                    }
+
+                                    File fil = new File("Data.txt");
+                                    try{
+                                        FileInputStream fin = new FileInputStream("Data.txt");
+                                        ObjectInputStream in = new ObjectInputStream(fin);
+                                        main.data = (ArrayList<inGameData>)in.readObject();
+                                        in.close();
+                                        fin.close();
+                                    }catch(IOException ex){
+                                        ex.printStackTrace();
+                                    }catch(ClassNotFoundException ex2){
+                                        ex2.printStackTrace();
+                                    }
+                                    p = main.player.get(main.posisi);
+                                    p.setRetryChance(0);
+                                    jLabel1.setText("Press PLAY to play!");
+                                    progressboss.setVisible(false);
+                                    jLabel2.setVisible(false);
+                                    if (p instanceof PesawatLockheed) {pesawat = gambar.getGambar1(); knalpot = gambar.getGambarKnalpot1(0);}
+                                    else if (p instanceof PesawatNorthtrop) {pesawat = gambar.getGambar2(); knalpot = gambar.getGambarKnalpot2(0);}
+                                    else if (p instanceof PesawatThunderbold) {pesawat = gambar.getGambar3(); knalpot = gambar.getGambarKnalpot3(0);}
+                                    main.updateStatus(p,p.getHp(),p.getMaxhp(), p.getSkor(), p.getGold(),p.getLevel());
+                                    eagle=main.data.get(p.getPosisiSave()).getEagle();angel=main.data.get(p.getPosisiSave()).getAngel();
+                                    shield=main.data.get(p.getPosisiSave()).getShield();sack=main.data.get(p.getPosisiSave()).getSack();
+                                    ctrm = main.data.get(p.getPosisiSave()).getCtrm();ctrboss = main.data.get(p.getPosisiSave()).getCtrboss();
+                                    ctrm2 = main.data.get(p.getPosisiSave()).getCtrm2();count = 3;
+                                    daftarmusuh = main.data.get(p.getPosisiSave()).getE();
+                                    boss = main.data.get(p.getPosisiSave()).getBoss();
+                                    daftarpeluru = new ArrayList();
+                                    peluruBoss = new ArrayList();
+                                    pelurua = new ArrayList();
+                                    pelurub = new ArrayList();
+                                    peluruc = new ArrayList();
+                                    pelurud = new ArrayList();
+                                    pelurue = new ArrayList();
+                                    pm = new ArrayList();
+                                    km = new ArrayList();
+                                    for (Enemy enemy : daftarmusuh) {
+                                        if (enemy instanceof EnemyAshpest) {pm.add(gambar.getAshpest());km.add(gambar.getKnalpot1(0));}
+                                        else if (enemy instanceof EnemyBlademorph) {pm.add(gambar.getMorph());km.add(gambar.getKnalpot2(0));}
+                                        else if (enemy instanceof EnemyBlazelich) {pm.add(gambar.getLich());km.add(gambar.getKnalpot3(0));}
+                                        else if (enemy instanceof EnemyBlazewing) {pm.add(gambar.getWing());km.add(gambar.getKnalpot4(0));}
+                                        else if (enemy instanceof EnemyGlowstarKing) {pm.add(gambar.getGlow());km.add(gambar.getKnalpot5(0));}
+                                    }
+                                    repaint();
+                                    JOptionPane.showMessageDialog(null, "Selamat Bermain!");
+                                }else{
+                                    //tambah highscore
+                                    main.player.remove(p.getPosisiSave());main.data.remove(p.getPosisiSave());
+                                    JOptionPane.showMessageDialog(null, "Sampai Jumpa!");
+                                    main.dispatchEvent(new WindowEvent(main,WindowEvent.WINDOW_CLOSING));
+                                }
+                            }else{
+                                //tambah highscore
+                                main.player.remove(p.getPosisiSave());main.data.remove(p.getPosisiSave());
+                                JOptionPane.showMessageDialog(null, "Sampai Jumpa!");
+                                main.dispatchEvent(new WindowEvent(main,WindowEvent.WINDOW_CLOSING));
+                            }
+                        }
+                        jLabel1.setVisible(true);
+                    }
+                    ctrgo++;
                 }
                 if (p.getEaglePotion()<=0 && eagle == 1) {
                     jLabel2.setText("Efek Eagle Potion Telah Habis!");

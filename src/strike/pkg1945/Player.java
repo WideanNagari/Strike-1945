@@ -27,7 +27,7 @@ public class Player implements Serializable{
     protected int jumEaglePotion,jumShieldofCrystal,jumMassiveSalve,jumSackofGold,jumAngelBox;
     protected int EaglePotion,ShieldofCrystal,SackofGold,AngelBox;
     protected int musuhTerbunuh, efek,mati,jumlahMusuh,bossKe;
-    protected int posisiSave;
+    protected int posisiSave, retryChance, newp;
             
     public Player(String nama,int save) {
         this.posisiSave = save;
@@ -42,11 +42,11 @@ public class Player implements Serializable{
         this.cd = 25;
         this.attack = 50;
         this.defend = 10;
-        this.hp = 1500;
+        this.hp = 10;
         this.level = 1;
         this.levell = 1;
         this.chancemiss = 5;
-        this.maxhp = 1500;
+        this.maxhp = 10;
         this.gold = 0;
         this.skor = 0;
         this.jumlahMusuh = 1;
@@ -55,8 +55,25 @@ public class Player implements Serializable{
         this.musuhTerbunuh = 0;
         this.efek = 0;
         this.mati = 0;
+        this.retryChance = 0;this.newp = 1;
         this.EaglePotion = 0;this.ShieldofCrystal = 0;this.SackofGold = 0;this.AngelBox = 0;
         this.levelattack = 1; this.levelhp = 1; this.leveldefend = 1;
+    }
+
+    public int getNewp() {
+        return newp;
+    }
+
+    public void setNewp(int newp) {
+        this.newp = newp;
+    }
+
+    public int getRetryChance() {
+        return retryChance;
+    }
+
+    public void setRetryChance(int retryChance) {
+        this.retryChance = retryChance;
     }
 
     public void setPosisiSave(int posisiSave) {

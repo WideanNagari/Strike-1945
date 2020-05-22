@@ -166,6 +166,10 @@ public class Pause extends javax.swing.JFrame {
         if (ctr==0) {
             high.add(hh);
         }
+        if (this.player.get(p.getPosisiSave()).getNewp()==1) {
+            this.player.get(p.getPosisiSave()).setRetryChance(1);
+            this.player.get(p.getPosisiSave()).setNewp(0);
+        }
         try{
             FileOutputStream fo = new FileOutputStream("Highscore.txt");
             ObjectOutputStream out = new ObjectOutputStream(fo);
