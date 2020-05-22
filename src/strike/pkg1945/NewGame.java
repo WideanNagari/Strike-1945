@@ -31,6 +31,9 @@ public class NewGame extends javax.swing.JFrame {
         p = player;
         data = d;
         m = main;
+        jLabel22.setVisible(false);
+        jLabel23.setVisible(false);
+        jLabel24.setVisible(false);
         if (p.size()<3) {
             jLabel20.setVisible(false);
             jLabel21.setVisible(false);
@@ -76,6 +79,9 @@ public class NewGame extends javax.swing.JFrame {
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
+        jLabel23 = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -243,7 +249,25 @@ public class NewGame extends javax.swing.JFrame {
         jLabel21.setForeground(new java.awt.Color(240, 240, 240));
         jLabel21.setText("Oops! the save slot is full!");
         jPanel1.add(jLabel21);
-        jLabel21.setBounds(1270, 30, 670, 100);
+        jLabel21.setBounds(1270, 20, 670, 100);
+
+        jLabel22.setFont(new java.awt.Font("Comic Sans MS", 1, 36)); // NOI18N
+        jLabel22.setForeground(new java.awt.Color(240, 240, 240));
+        jLabel22.setText("Oops! the name is already exist!");
+        jPanel1.add(jLabel22);
+        jLabel22.setBounds(10, 10, 580, 70);
+
+        jLabel23.setFont(new java.awt.Font("Comic Sans MS", 1, 36)); // NOI18N
+        jLabel23.setForeground(new java.awt.Color(240, 240, 240));
+        jLabel23.setText("Please try another name or");
+        jPanel1.add(jLabel23);
+        jLabel23.setBounds(50, 60, 580, 70);
+
+        jLabel24.setFont(new java.awt.Font("Comic Sans MS", 1, 36)); // NOI18N
+        jLabel24.setForeground(new java.awt.Color(240, 240, 240));
+        jLabel24.setText("try to clear the highscore first!");
+        jPanel1.add(jLabel24);
+        jLabel24.setBounds(10, 110, 580, 70);
 
         jLabel1.setForeground(new java.awt.Color(240, 240, 240));
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/strike/pkg1945/Gambar/Main Menu.jpg"))); // NOI18N
@@ -270,7 +294,18 @@ public class NewGame extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        if (p.size()<3) {
+        int ctr = 0;
+        for (HighScores h : high) {
+            if (h.getNama().equals(nama.getText())) {
+                ctr++;
+            }
+        }
+        if (ctr>0) {
+            jLabel22.setVisible(true);
+            jLabel23.setVisible(true);
+            jLabel24.setVisible(true);
+        }
+        else if (p.size()<3) {
             p.add(new PesawatLockheed(nama.getText(),p.size()));
             data.add(new inGameData());
             GameFrame frame = new GameFrame(m,high,p,data,p.size()-1);
@@ -288,7 +323,18 @@ public class NewGame extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        if (p.size()<3) {
+        int ctr = 0;
+        for (HighScores h : high) {
+            if (h.getNama().equals(nama.getText())) {
+                ctr++;
+            }
+        }
+        if (ctr>0) {
+            jLabel22.setVisible(true);
+            jLabel23.setVisible(true);
+            jLabel24.setVisible(true);
+        }
+        else if (p.size()<3) {
             p.add(new PesawatNorthtrop(nama.getText(),p.size()));
             data.add(new inGameData());
             GameFrame frame = new GameFrame(m,high,p,data,p.size()-1);
@@ -301,7 +347,18 @@ public class NewGame extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        if (p.size()<3) {
+        int ctr = 0;
+        for (HighScores h : high) {
+            if (h.getNama().equals(nama.getText())) {
+                ctr++;
+            }
+        }
+        if (ctr>0) {
+            jLabel22.setVisible(true);
+            jLabel23.setVisible(true);
+            jLabel24.setVisible(true);
+        }
+        else if (p.size()<3) {
             p.add(new PesawatThunderbold(nama.getText(),p.size()));
             data.add(new inGameData());
             GameFrame frame = new GameFrame(m,high,p,data,p.size()-1);
@@ -366,6 +423,9 @@ public class NewGame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

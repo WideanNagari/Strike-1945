@@ -158,9 +158,9 @@ public class Pause extends javax.swing.JFrame {
         // TODO add your handling code here:
         HighScores hh = new HighScores(this.p.getNama(), this.p.getGold(), this.p.getSkor(), this.p.getLevel(),this.p.getPosisiSave());
         int ctr = 0;
-        for (HighScores h : high) {
-            if (h.getLetak() == this.p.getPosisiSave()) {
-                h = hh;ctr++;
+        for (int i = 0; i < high.size(); i++) {
+            if (high.get(i).getNama().equalsIgnoreCase(this.p.getNama())) {
+                high.set(i, hh);ctr++;
             }
         }
         if (ctr==0) {
@@ -168,6 +168,7 @@ public class Pause extends javax.swing.JFrame {
         }
         if (this.player.get(p.getPosisiSave()).getNewp()==1) {
             this.player.get(p.getPosisiSave()).setRetryChance(1);
+            this.p.setRetryChance(1);
             this.player.get(p.getPosisiSave()).setNewp(0);
         }
         try{

@@ -6,6 +6,9 @@
 package strike.pkg1945;
 
 import java.awt.event.WindowEvent;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import javax.swing.JFrame;
 
@@ -24,8 +27,8 @@ public class HighScore extends javax.swing.JFrame {
     public HighScore(ArrayList<HighScores> h) {
         initComponents();
         high = h;
-        high2 = new int[3];
-        high3 = new String[3];
+        high2 = new int[high.size()];
+        high3 = new String[high.size()];
         int ctr = 0;
         for (HighScores h2 : high) {
             high2[ctr] = h2.getSkor();
@@ -33,8 +36,8 @@ public class HighScore extends javax.swing.JFrame {
             ctr++;
         }
         
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 2; j++) {
+        for (int i = 0; i < high.size(); i++) {
+            for (int j = 0; j < high.size()-1; j++) {
                 if (high2[j]<high2[j+1]) {
                     int c = high2[j];
                     high2[j]=high2[j+1];
@@ -76,6 +79,7 @@ public class HighScore extends javax.swing.JFrame {
         dua = new javax.swing.JLabel();
         tiga = new javax.swing.JLabel();
         satu = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -93,7 +97,7 @@ public class HighScore extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton1);
-        jButton1.setBounds(880, 800, 200, 75);
+        jButton1.setBounds(740, 810, 200, 75);
 
         jLabel2.setFont(new java.awt.Font("Comic Sans MS", 1, 80)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(240, 240, 240));
@@ -131,6 +135,15 @@ public class HighScore extends javax.swing.JFrame {
         jPanel1.add(satu);
         satu.setBounds(660, 250, 1030, 110);
 
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/strike/pkg1945/Gambar/Reset.png"))); // NOI18N
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton2);
+        jButton2.setBounds(1050, 810, 200, 75);
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/strike/pkg1945/Gambar/Main Menu.jpg"))); // NOI18N
         jPanel1.add(jLabel1);
         jLabel1.setBounds(0, 0, 2100, 1000);
@@ -153,6 +166,23 @@ public class HighScore extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.dispatchEvent(new WindowEvent(this,WindowEvent.WINDOW_CLOSING));
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        satu.setText("-");
+        dua.setText("-");
+        tiga.setText("-");
+        high = new ArrayList<>();
+        try{
+            FileOutputStream fo = new FileOutputStream("Highscore.txt");
+            ObjectOutputStream out = new ObjectOutputStream(fo);
+            out.writeObject(high);
+            out.close();
+            fo.close();
+        }catch(IOException ex){
+            ex.printStackTrace();
+        }  
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -192,6 +222,7 @@ public class HighScore extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel dua;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
