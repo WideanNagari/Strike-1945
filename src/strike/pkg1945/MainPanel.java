@@ -747,12 +747,50 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
                                     JOptionPane.showMessageDialog(null, "Selamat Bermain!");
                                 }else{
                                     //tambah highscore
+                                    HighScores hh = new HighScores(p.getNama(), p.getGold(), p.getSkor(), p.getLevel(), p.getPosisiSave());
+                                    int ctr = 0;
+                                    for (int i = 0; i < main.high.size(); i++) {
+                                        if (main.high.get(i).getNama().equalsIgnoreCase(p.getNama())) {
+                                            main.high.set(i, hh);ctr++;
+                                        }
+                                    }
+                                    if (ctr==0) {
+                                        main.high.add(hh);
+                                    }
+                                    try{
+                                        FileOutputStream fo = new FileOutputStream("Highscore.txt");
+                                        ObjectOutputStream out = new ObjectOutputStream(fo);
+                                        out.writeObject(main.high);
+                                        out.close();
+                                        fo.close();
+                                    }catch(IOException ex){
+                                        ex.printStackTrace();
+                                    }
                                     main.player.remove(p.getPosisiSave());main.data.remove(p.getPosisiSave());
                                     JOptionPane.showMessageDialog(null, "Sampai Jumpa!");
                                     main.dispatchEvent(new WindowEvent(main,WindowEvent.WINDOW_CLOSING));
                                 }
                             }else{
                                 //tambah highscore
+                                    HighScores hh = new HighScores(p.getNama(), p.getGold(), p.getSkor(), p.getLevel(), p.getPosisiSave());
+                                    int ctr = 0;
+                                    for (int i = 0; i < main.high.size(); i++) {
+                                        if (main.high.get(i).getNama().equalsIgnoreCase(p.getNama())) {
+                                            main.high.set(i, hh);ctr++;
+                                        }
+                                    }
+                                    if (ctr==0) {
+                                        main.high.add(hh);
+                                    }
+                                    try{
+                                        FileOutputStream fo = new FileOutputStream("Highscore.txt");
+                                        ObjectOutputStream out = new ObjectOutputStream(fo);
+                                        out.writeObject(main.high);
+                                        out.close();
+                                        fo.close();
+                                    }catch(IOException ex){
+                                        ex.printStackTrace();
+                                    }
                                 main.player.remove(p.getPosisiSave());main.data.remove(p.getPosisiSave());
                                 JOptionPane.showMessageDialog(null, "Sampai Jumpa!");
                                 main.dispatchEvent(new WindowEvent(main,WindowEvent.WINDOW_CLOSING));

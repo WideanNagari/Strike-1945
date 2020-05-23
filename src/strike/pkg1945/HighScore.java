@@ -6,8 +6,10 @@
 package strike.pkg1945;
 
 import java.awt.event.WindowEvent;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import javax.swing.JFrame;
@@ -24,9 +26,19 @@ public class HighScore extends javax.swing.JFrame {
     static ArrayList<HighScores> high;
     int[] high2;
     String[] high3;
-    public HighScore(ArrayList<HighScores> h) {
+    public HighScore() {
         initComponents();
-        high = h;
+        try{
+            FileInputStream fin = new FileInputStream("Highscore.txt");
+            ObjectInputStream in = new ObjectInputStream(fin);
+            high = (ArrayList<HighScores>)in.readObject();
+            in.close();
+            fin.close();
+        }catch(IOException ex){
+            ex.printStackTrace();
+        }catch(ClassNotFoundException ex2){
+            ex2.printStackTrace();
+        }
         high2 = new int[high.size()];
         high3 = new String[high.size()];
         int ctr = 0;
@@ -214,7 +226,7 @@ public class HighScore extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new HighScore(high).setVisible(true);
+                new HighScore().setVisible(true);
             }
         });
     }

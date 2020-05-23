@@ -180,7 +180,6 @@ public class Pause extends javax.swing.JFrame {
         }catch(IOException ex){
             ex.printStackTrace();
         }  
-        
         try{
             FileOutputStream fo = new FileOutputStream("Player.txt");
             ObjectOutputStream out = new ObjectOutputStream(fo);

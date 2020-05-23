@@ -217,7 +217,7 @@ public class MainMenu extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        HighScore frame = new HighScore(high);
+        HighScore frame = new HighScore();
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
