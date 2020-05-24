@@ -139,7 +139,6 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
                                 for (int i = 0; i < p.getJumlahMusuh(); i++) {
                                     int rand = (int)(Math.random()*5);
                                     int randy = (int)(Math.random()*750);
-                                    rand = 0;
                                     if (rand == 0) {
                                         daftarmusuh.add(new EnemyAshpest(1700,randy));
                                         pm.add(gambar.getAshpest());
