@@ -12,13 +12,13 @@ import java.util.ArrayList;
  *
  * @author Widean Nagari
  */
-public class inGameData implements Serializable{
-    private ArrayList<Enemy> e;
+public class inGameData<T> implements Serializable{
+    private ArrayEnemy<T> e;
     private EnemyBoss boss;
     private int ctr, ctrm,ctrm2,ctrboss,ctrjlabel2;
     private int eagle,angel,shield,sack;
     public inGameData() {
-        this.e = new ArrayList();
+        this.e = new ArrayEnemy<>();
         this.boss = null;
         this.eagle = 0;this.angel = 0;this.shield = 0;this.sack = 0;
         this.ctrm = 5;this.ctrboss = 0;this.ctrm2 = 5;
@@ -105,11 +105,11 @@ public class inGameData implements Serializable{
         this.boss = boss;
     }
 
-    public ArrayList<Enemy> getE() {
+    public ArrayEnemy<T> getE() {
         return e;
     }
 
-    public void setE(ArrayList<Enemy> e) {
+    public void setE(ArrayEnemy<T> e) {
         this.e = e;
     }
     

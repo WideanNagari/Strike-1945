@@ -38,7 +38,7 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
     /**
      * Creates new form MainPanel
      */
-    ArrayList<Enemy> daftarmusuh;
+    ArrayEnemy<Enemy> daftarmusuh;
     ArrayList<Peluru> daftarpeluru;
     ArrayList<Peluru> pelurua;
     ArrayList<Peluru> pelurub;
@@ -98,12 +98,12 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
         pelurue = new ArrayList();
         pm = new ArrayList();
         km = new ArrayList();
-        for (Enemy enemy : daftarmusuh) {
-            if (enemy instanceof EnemyAshpest) {pm.add(gambar.getAshpest());km.add(gambar.getKnalpot1(0));}
-            else if (enemy instanceof EnemyBlademorph) {pm.add(gambar.getMorph());km.add(gambar.getKnalpot2(0));}
-            else if (enemy instanceof EnemyBlazelich) {pm.add(gambar.getLich());km.add(gambar.getKnalpot3(0));}
-            else if (enemy instanceof EnemyBlazewing) {pm.add(gambar.getWing());km.add(gambar.getKnalpot4(0));}
-            else if (enemy instanceof EnemyGlowstarKing) {pm.add(gambar.getGlow());km.add(gambar.getKnalpot5(0));}
+        for (int i = 0; i < daftarmusuh.size(); i++) {
+            if (daftarmusuh.get(i) instanceof EnemyAshpest) {pm.add(gambar.getAshpest());km.add(gambar.getKnalpot1(0));}
+            else if (daftarmusuh.get(i) instanceof EnemyBlademorph) {pm.add(gambar.getMorph());km.add(gambar.getKnalpot2(0));}
+            else if (daftarmusuh.get(i) instanceof EnemyBlazelich) {pm.add(gambar.getLich());km.add(gambar.getKnalpot3(0));}
+            else if (daftarmusuh.get(i) instanceof EnemyBlazewing) {pm.add(gambar.getWing());km.add(gambar.getKnalpot4(0));}
+            else if (daftarmusuh.get(i) instanceof EnemyGlowstarKing) {pm.add(gambar.getGlow());km.add(gambar.getKnalpot5(0));}
         }
         this.main = main;
         this.addKeyListener(this);
@@ -194,9 +194,9 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
                 repaint();
                 main.data.get(p.getPosisiSave()).setE(daftarmusuh);
                 p.setCooldown(p.getCooldown()-1);
-                for (Enemy enemy : daftarmusuh) {
+                for (int i = 0; i < daftarmusuh.size(); i++) {
                     if (playing) {
-                        enemy.setCooldown(enemy.getCooldown()-1);
+                        daftarmusuh.get(i).setCooldown(daftarmusuh.get(i).getCooldown()-1);
                     }
                 }
                 for (Peluru peluru : daftarpeluru) {
@@ -258,20 +258,20 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
                     }
                     main.data.get(p.getPosisiSave()).setBoss(boss);
                 }
-                for (Enemy musuh : daftarmusuh) {
-                    if (musuh.getHp()>0 && playing) {
-                        musuh.setX(musuh.getX()-musuh.getSpeed());
+                for (int i = 0; i < daftarmusuh.size(); i++) {
+                    if (daftarmusuh.get(i).getHp()>0 && playing) {
+                        daftarmusuh.get(i).setX(daftarmusuh.get(i).getX()-daftarmusuh.get(i).getSpeed());
                     }else{
-                        musuh.setMati(musuh.getMati()+1);
+                        daftarmusuh.get(i).setMati(daftarmusuh.get(i).getMati()+1);
                     }
-                    if (musuh.getX()<(-10)) {
-                        musuh.setTabrak(2);
-                        musuh.setHp(0);
+                    if (daftarmusuh.get(i).getX()<(-10)) {
+                        daftarmusuh.get(i).setTabrak(2);
+                        daftarmusuh.get(i).setHp(0);
                     }
-                    if (musuh.getMati()==1) {
-                        if (musuh.getTabrak() == 1) {
+                    if (daftarmusuh.get(i).getMati()==1) {
+                        if (daftarmusuh.get(i).getTabrak() == 1) {
                             p.setSkor(p.getSkor()-2);
-                        }else if (musuh.getTabrak() == 2) {
+                        }else if (daftarmusuh.get(i).getTabrak() == 2) {
                             p.setSkor(p.getSkor()-1);
                         }else{
                             p.setMusuhTerbunuh(p.getMusuhTerbunuh()+1);
@@ -282,30 +282,30 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
                                 ((PesawatNorthtrop)p).specialEffect();
                             }
                             if (p.getSackofGold()>0) {p.setGold(p.getGold()+200);
-                            }else{p.setGold(p.getGold()+musuh.getGold());}
-                            p.setSkor(p.getSkor()+musuh.getScore());
+                            }else{p.setGold(p.getGold()+daftarmusuh.get(i).getGold());}
+                            p.setSkor(p.getSkor()+daftarmusuh.get(i).getScore());
                             p.setSackofGold(p.getSackofGold()-1);
                             p.setEaglePotion(p.getEaglePotion()-1);
                             p.setShieldofCrystal(p.getShieldofCrystal()-1);
                         }
                         main.updateStatus(p,p.getHp(), p.getMaxhp(), p.getSkor(), p.getGold(), p.getLevel());
                     }
-                    if (musuh.getCooldown()<=0 && musuh.getHp()>0 && playing) {
-                            if (musuh instanceof EnemyAshpest) {
-                                pelurua.add(new Peluru(musuh.getX()+80, musuh.getY()+15));
-                                ((EnemyAshpest) musuh).setCooldown(((EnemyAshpest) musuh).getCd());
-                            }else if (musuh instanceof EnemyBlademorph) {
-                                pelurub.add(new Peluru(musuh.getX()+80, musuh.getY()+15));
-                                ((EnemyBlademorph) musuh).setCooldown(((EnemyBlademorph) musuh).getCd());
-                            }else if (musuh instanceof EnemyBlazelich) {
-                                peluruc.add(new Peluru(musuh.getX()+80, musuh.getY()+15));
-                                ((EnemyBlazelich) musuh).setCooldown(((EnemyBlazelich) musuh).getCd());
-                            }else if (musuh instanceof EnemyBlazewing) {
-                                pelurud.add(new Peluru(musuh.getX()+80, musuh.getY()+25));
-                                ((EnemyBlazewing) musuh).setCooldown(((EnemyBlazewing) musuh).getCd());
-                            }else if (musuh instanceof EnemyGlowstarKing) {
-                                pelurue.add(new Peluru(musuh.getX()+80, musuh.getY()+20));
-                                ((EnemyGlowstarKing) musuh).setCooldown(((EnemyGlowstarKing) musuh).getCd());
+                    if (daftarmusuh.get(i).getCooldown()<=0 && daftarmusuh.get(i).getHp()>0 && playing) {
+                            if (daftarmusuh.get(i) instanceof EnemyAshpest) {
+                                pelurua.add(new Peluru(daftarmusuh.get(i).getX()+80, daftarmusuh.get(i).getY()+15));
+                                ((EnemyAshpest) daftarmusuh.get(i)).setCooldown(((EnemyAshpest) daftarmusuh.get(i)).getCd());
+                            }else if (daftarmusuh.get(i) instanceof EnemyBlademorph) {
+                                pelurub.add(new Peluru(daftarmusuh.get(i).getX()+80, daftarmusuh.get(i).getY()+15));
+                                ((EnemyBlademorph) daftarmusuh.get(i)).setCooldown(((EnemyBlademorph) daftarmusuh.get(i)).getCd());
+                            }else if (daftarmusuh.get(i) instanceof EnemyBlazelich) {
+                                peluruc.add(new Peluru(daftarmusuh.get(i).getX()+80, daftarmusuh.get(i).getY()+15));
+                                ((EnemyBlazelich) daftarmusuh.get(i)).setCooldown(((EnemyBlazelich) daftarmusuh.get(i)).getCd());
+                            }else if (daftarmusuh.get(i) instanceof EnemyBlazewing) {
+                                pelurud.add(new Peluru(daftarmusuh.get(i).getX()+80, daftarmusuh.get(i).getY()+25));
+                                ((EnemyBlazewing) daftarmusuh.get(i)).setCooldown(((EnemyBlazewing) daftarmusuh.get(i)).getCd());
+                            }else if (daftarmusuh.get(i) instanceof EnemyGlowstarKing) {
+                                pelurue.add(new Peluru(daftarmusuh.get(i).getX()+80, daftarmusuh.get(i).getY()+20));
+                                ((EnemyGlowstarKing) daftarmusuh.get(i)).setCooldown(((EnemyGlowstarKing) daftarmusuh.get(i)).getCd());
                             }
                             repaint();
                     }
@@ -347,10 +347,42 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
                     for (int i = 0; i < daftarmusuh.size(); i++) {
                         if (daftarmusuh.get(i) instanceof EnemyAshpest) {
                             if (daftarmusuh.get(i).getHp()>0) {
-                                km.set(i, daftarmusuh.get(i).gantiAnimasi(gambar.getKnalpot1(daftarmusuh.get(i).getAnimasi())));
+                                km.set(i, ((EnemyAshpest)daftarmusuh.get(i)).gantiAnimasi(gambar.getKnalpot1(daftarmusuh.get(i).getAnimasi())));
                             }else{
                                 if (daftarmusuh.get(i).getAnimasi()<11) {
-                                    pm.set(i, daftarmusuh.get(i).ledak(gambar.getGambarLedakMusuh(daftarmusuh.get(i).getAnimasi())));
+                                    pm.set(i, ((EnemyAshpest)daftarmusuh.get(i)).ledak(gambar.getGambarLedakMusuh(daftarmusuh.get(i).getAnimasi())));
+                                }
+                            }
+                        }else if (daftarmusuh.get(i) instanceof EnemyBlademorph) {
+                            if (daftarmusuh.get(i).getHp()>0) {
+                                km.set(i, ((EnemyBlademorph)daftarmusuh.get(i)).gantiAnimasi(gambar.getKnalpot1(daftarmusuh.get(i).getAnimasi())));
+                            }else{
+                                if (daftarmusuh.get(i).getAnimasi()<11) {
+                                    pm.set(i, ((EnemyBlademorph)daftarmusuh.get(i)).ledak(gambar.getGambarLedakMusuh(daftarmusuh.get(i).getAnimasi())));
+                                }
+                            }
+                        }else if (daftarmusuh.get(i) instanceof EnemyBlazelich) {
+                            if (daftarmusuh.get(i).getHp()>0) {
+                                km.set(i, ((EnemyBlazelich)daftarmusuh.get(i)).gantiAnimasi(gambar.getKnalpot1(daftarmusuh.get(i).getAnimasi())));
+                            }else{
+                                if (daftarmusuh.get(i).getAnimasi()<11) {
+                                    pm.set(i, ((EnemyBlazelich)daftarmusuh.get(i)).ledak(gambar.getGambarLedakMusuh(daftarmusuh.get(i).getAnimasi())));
+                                }
+                            }
+                        }else if (daftarmusuh.get(i) instanceof EnemyBlazewing) {
+                            if (daftarmusuh.get(i).getHp()>0) {
+                                km.set(i, ((EnemyBlazewing)daftarmusuh.get(i)).gantiAnimasi(gambar.getKnalpot1(daftarmusuh.get(i).getAnimasi())));
+                            }else{
+                                if (daftarmusuh.get(i).getAnimasi()<11) {
+                                    pm.set(i, ((EnemyBlazewing)daftarmusuh.get(i)).ledak(gambar.getGambarLedakMusuh(daftarmusuh.get(i).getAnimasi())));
+                                }
+                            }
+                        }else if (daftarmusuh.get(i) instanceof EnemyGlowstarKing) {
+                            if (daftarmusuh.get(i).getHp()>0) {
+                                km.set(i, ((EnemyGlowstarKing)daftarmusuh.get(i)).gantiAnimasi(gambar.getKnalpot1(daftarmusuh.get(i).getAnimasi())));
+                            }else{
+                                if (daftarmusuh.get(i).getAnimasi()<11) {
+                                    pm.set(i, ((EnemyGlowstarKing)daftarmusuh.get(i)).ledak(gambar.getGambarLedakMusuh(daftarmusuh.get(i).getAnimasi())));
                                 }
                             }
                         }
@@ -358,14 +390,14 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
                     ctr = 0;main.data.get(p.getPosisiSave()).setCtr(ctr);
                 }
                 repaint();
-                for (Enemy musuh : daftarmusuh) {
-                    if (musuh.getHp()>=0) {
-                        Rectangle bbMusuh = new Rectangle(musuh.getX(),musuh.getY(),musuh.getWidth(),musuh.getHeight());
+                for (int i = 0; i < daftarmusuh.size(); i++) {
+                    if (daftarmusuh.get(i).getHp()>=0) {
+                        Rectangle bbMusuh = new Rectangle(daftarmusuh.get(i).getX(),daftarmusuh.get(i).getY(),daftarmusuh.get(i).getWidth(),daftarmusuh.get(i).getHeight());
                         for (Peluru peluru : daftarpeluru) {
                             if (peluru.getHp()>0) {
                                 Rectangle bbPeluru = new Rectangle(peluru.getX(),peluru.getY(),peluru.getWidth(),peluru.getHeight());
                                 if (bbMusuh.intersects(bbPeluru)) {
-                                    musuh.setHp(musuh.getHp()-p.getAttack());
+                                    daftarmusuh.get(i).setHp(daftarmusuh.get(i).getHp()-p.getAttack());
                                     peluru.setHp(0);
                                     repaint();
                                     break;
@@ -375,7 +407,7 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
                         if (specialBullet!=null && specialBullet.getHp() > 0) {
                             Rectangle bbPeluru = new Rectangle(specialBullet.getX(),specialBullet.getY(),specialBullet.getWidth()*2,specialBullet.getHeight()*2);
                                 if (bbMusuh.intersects(bbPeluru)) {
-                                    musuh.setHp(musuh.getHp()-(p.getAttack()*3));
+                                    daftarmusuh.get(i).setHp(daftarmusuh.get(i).getHp()-(p.getAttack()*3));
                                     specialBullet.setHp(0);
                                     repaint();
                                 }
@@ -407,14 +439,14 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
                         }
                 }
                         Rectangle bbPlayer = new Rectangle(p.getX(),p.getY(),p.getWidth(),p.getHeight());
-                        for (Enemy m : daftarmusuh) {
-                            if (m.getHp()>0) {
-                                Rectangle bbMusuh = new Rectangle(m.getX(),m.getY(),m.getWidth(),m.getHeight());
+                        for (int i = 0; i < daftarmusuh.size(); i++) {
+                            if (daftarmusuh.get(i).getHp()>0) {
+                                Rectangle bbMusuh = new Rectangle(daftarmusuh.get(i).getX(),daftarmusuh.get(i).getY(),daftarmusuh.get(i).getWidth(),daftarmusuh.get(i).getHeight());
                                 if (bbPlayer.intersects(bbMusuh)) {
-                                    m.setHp(0);
-                                    m.setTabrak(1);
-                                    if ((m.getDamage()*2)>p.getDefend()) {
-                                        p.setHp(p.getHp()-((m.getDamage()*2)-p.getDefend()));
+                                    daftarmusuh.get(i).setHp(0);
+                                    daftarmusuh.get(i).setTabrak(1);
+                                    if ((daftarmusuh.get(i).getDamage()*2)>p.getDefend()) {
+                                        p.setHp(p.getHp()-((daftarmusuh.get(i).getDamage()*2)-p.getDefend()));
                                     }
                                     main.updateStatus(p,p.getHp(),p.getMaxhp(), p.getSkor(), p.getGold(),p.getLevel());
                                     repaint();
@@ -685,7 +717,7 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
                             if (p.getRetryChance()==1) {
                                 if (JOptionPane.showConfirmDialog(null, "ingin mengulang permainan dari posisi save terakhir?","Restart",JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION) {         
                                     main.player = new ArrayList<>();
-                                    main.data = new ArrayList<>();
+                                    main.data = new ArrayEnemy<>();
                                     File fi = new File("Player.txt");
                                     try{
                                         FileInputStream fin = new FileInputStream("Player.txt");
@@ -698,12 +730,11 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
                                     }catch(ClassNotFoundException ex2){
                                         ex2.printStackTrace();
                                     }
-
                                     File fil = new File("Data.txt");
                                     try{
                                         FileInputStream fin = new FileInputStream("Data.txt");
                                         ObjectInputStream in = new ObjectInputStream(fin);
-                                        main.data = (ArrayList<inGameData>)in.readObject();
+                                        main.data = (ArrayEnemy<inGameData<Enemy>>)in.readObject();
                                         in.close();
                                         fin.close();
                                     }catch(IOException ex){
@@ -735,17 +766,16 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
                                     pelurue = new ArrayList();
                                     pm = new ArrayList();
                                     km = new ArrayList();
-                                    for (Enemy enemy : daftarmusuh) {
-                                        if (enemy instanceof EnemyAshpest) {pm.add(gambar.getAshpest());km.add(gambar.getKnalpot1(0));}
-                                        else if (enemy instanceof EnemyBlademorph) {pm.add(gambar.getMorph());km.add(gambar.getKnalpot2(0));}
-                                        else if (enemy instanceof EnemyBlazelich) {pm.add(gambar.getLich());km.add(gambar.getKnalpot3(0));}
-                                        else if (enemy instanceof EnemyBlazewing) {pm.add(gambar.getWing());km.add(gambar.getKnalpot4(0));}
-                                        else if (enemy instanceof EnemyGlowstarKing) {pm.add(gambar.getGlow());km.add(gambar.getKnalpot5(0));}
+                                    for (int i = 0; i < daftarmusuh.size(); i++) {
+                                        if (daftarmusuh.get(i) instanceof EnemyAshpest) {pm.add(gambar.getAshpest());km.add(gambar.getKnalpot1(0));}
+                                        else if (daftarmusuh.get(i) instanceof EnemyBlademorph) {pm.add(gambar.getMorph());km.add(gambar.getKnalpot2(0));}
+                                        else if (daftarmusuh.get(i) instanceof EnemyBlazelich) {pm.add(gambar.getLich());km.add(gambar.getKnalpot3(0));}
+                                        else if (daftarmusuh.get(i) instanceof EnemyBlazewing) {pm.add(gambar.getWing());km.add(gambar.getKnalpot4(0));}
+                                        else if (daftarmusuh.get(i) instanceof EnemyGlowstarKing) {pm.add(gambar.getGlow());km.add(gambar.getKnalpot5(0));}
                                     }
                                     repaint();
                                     JOptionPane.showMessageDialog(null, "Selamat Bermain!");
                                 }else{
-                                    //tambah highscore
                                     HighScores hh = new HighScores(p.getNama(), p.getGold(), p.getSkor(), p.getLevel(), p.getPosisiSave());
                                     int ctr = 0;
                                     for (int i = 0; i < main.high.size(); i++) {
@@ -765,13 +795,13 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
                                     }catch(IOException ex){
                                         ex.printStackTrace();
                                     }
-                                    main.player.remove(p.getPosisiSave());main.data.remove(p.getPosisiSave());
+                                    main.player.remove(p.getPosisiSave());
+                                    main.data.remove(p.getPosisiSave());
                                     JOptionPane.showMessageDialog(null, "Sampai Jumpa!");
                                     main.dispatchEvent(new WindowEvent(main,WindowEvent.WINDOW_CLOSING));
                                 }
                             }else{
-                                //tambah highscore
-                                    HighScores hh = new HighScores(p.getNama(), p.getGold(), p.getSkor(), p.getLevel(), p.getPosisiSave());
+                                HighScores hh = new HighScores(p.getNama(), p.getGold(), p.getSkor(), p.getLevel(), p.getPosisiSave());
                                     int ctr = 0;
                                     for (int i = 0; i < main.high.size(); i++) {
                                         if (main.high.get(i).getNama().equalsIgnoreCase(p.getNama())) {
@@ -790,9 +820,10 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
                                     }catch(IOException ex){
                                         ex.printStackTrace();
                                     }
-                                main.player.remove(p.getPosisiSave());main.data.remove(p.getPosisiSave());
-                                JOptionPane.showMessageDialog(null, "Sampai Jumpa!");
-                                main.dispatchEvent(new WindowEvent(main,WindowEvent.WINDOW_CLOSING));
+                                    main.m.p.remove(p.getPosisiSave());
+                                    main.m.data.remove(p.getPosisiSave());
+                                    JOptionPane.showMessageDialog(null, "Sampai Jumpa!");
+                                    main.dispatchEvent(new WindowEvent(main,WindowEvent.WINDOW_CLOSING));
                             }
                         }
                         jLabel1.setVisible(true);
@@ -814,8 +845,8 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
                 }if (p.getAngelBox()<=0 && angel == 1) {
                     jLabel2.setText("Efek Angel Box Telah Habis!");
                     jLabel2.setVisible(true);ctrjlabel2 = 2;main.data.get(p.getPosisiSave()).setCtrjlabel2(ctrjlabel2);
-                    for (Enemy enemy : daftarmusuh) {
-                        enemy.setHp(enemy.getHp()*2);
+                    for (int i = 0; i < daftarmusuh.size(); i++) {
+                        daftarmusuh.get(i).setHp(daftarmusuh.get(i).getHp()*2);
                     }
                     angel--;main.data.get(p.getPosisiSave()).setAngel(angel);
                 }if (p.getSackofGold()<=0 && sack==1) {
@@ -1006,8 +1037,8 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
                     jLabel2.setText("Angel Box Activated! "+p.getJumAngelBox()+" Left!");
                     p.setAngelBox(3);angel = 1;
                     main.data.get(p.getPosisiSave()).setAngel(angel);
-                    for (Enemy enemy : daftarmusuh) {
-                        enemy.setHp(enemy.getHp()/2);
+                    for (int i = 0; i < daftarmusuh.size(); i++) {
+                        daftarmusuh.get(i).setHp(daftarmusuh.get(i).getHp()/2);
                     }
                 }else{
                     jLabel2.setText("No Angel Box Left!");

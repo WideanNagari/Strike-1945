@@ -19,12 +19,12 @@ public class NewGame extends javax.swing.JFrame {
      * Creates new form NewGame
      */
     static ArrayList<Player> p;
-    static ArrayList<HighScores> high;
-    static ArrayList<inGameData> data;
+    static ArrayList<HighScores<String,Integer>> high;
+    static ArrayEnemy<inGameData<Enemy>> data;
     static MainMenu m;
     boolean newp;
     Gambar gambar;
-    public NewGame(MainMenu main, ArrayList<HighScores> h, ArrayList<Player> player, ArrayList<inGameData> d) {
+    public NewGame(MainMenu main, ArrayList<HighScores<String,Integer>> h, ArrayList<Player> player, ArrayEnemy<inGameData<Enemy>> d) {
         initComponents();
         newp = false;
         high = h;

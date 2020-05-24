@@ -26,10 +26,10 @@ public class Continue extends javax.swing.JFrame {
      * Creates new form Continue
      */
     static ArrayList<Player> p;
-    static ArrayList<HighScores> high;
-    static ArrayList<inGameData> data;
+    static ArrayList<HighScores<String,Integer>> high;
+    static ArrayEnemy<inGameData<Enemy>> data;
     static MainMenu m;
-    public Continue(MainMenu main, ArrayList<HighScores> h, ArrayList<Player> player, ArrayList<inGameData> d) {
+    public Continue(MainMenu main, ArrayList<HighScores<String,Integer>> h, ArrayList<Player> player, ArrayEnemy<inGameData<Enemy>> d) {
         initComponents();
         p = player;
         high = h;

@@ -23,7 +23,7 @@ public class HighScore extends javax.swing.JFrame {
     /**
      * Creates new form HighScore
      */
-    static ArrayList<HighScores> high;
+    static ArrayList<HighScores<String,Integer>> high;
     int[] high2;
     String[] high3;
     public HighScore() {
@@ -31,7 +31,7 @@ public class HighScore extends javax.swing.JFrame {
         try{
             FileInputStream fin = new FileInputStream("Highscore.txt");
             ObjectInputStream in = new ObjectInputStream(fin);
-            high = (ArrayList<HighScores>)in.readObject();
+            high = (ArrayList<HighScores<String,Integer>>)in.readObject();
             in.close();
             fin.close();
         }catch(IOException ex){
@@ -42,7 +42,7 @@ public class HighScore extends javax.swing.JFrame {
         high2 = new int[high.size()];
         high3 = new String[high.size()];
         int ctr = 0;
-        for (HighScores h2 : high) {
+        for (HighScores<String,Integer> h2 : high) {
             high2[ctr] = h2.getSkor();
             high3[ctr] = h2.getNama();
             ctr++;
@@ -60,7 +60,7 @@ public class HighScore extends javax.swing.JFrame {
                 }
             }
         }
-            for (HighScores hh : high) {
+            for (HighScores<String,Integer> hh : high) {
                 if (hh.getSkor() == high2[0] && hh.getNama().equals(high3[0])) {
                     satu.setText(hh.getNama()+" - "+ hh.getSkor()+" - "+ hh.getUang()+" - "+ hh.getLevel());
                 }else if (hh.getSkor() == high2[1] && hh.getNama().equals(high3[1])&&high.size()>1) {

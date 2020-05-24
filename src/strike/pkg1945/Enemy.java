@@ -28,8 +28,8 @@ public abstract class Enemy implements Serializable{
     protected int yk;
     protected int mati;
     protected int tabrak;
-    public Enemy(){}
-    public Enemy(int x, int y) {
+    protected Enemy(){}
+    protected Enemy(int x, int y) {
         this.x = x;
         this.y = y;
         this.speed = 1;   
@@ -138,6 +138,5 @@ public abstract class Enemy implements Serializable{
     public void ketabrak(int x){
         this.hp-=x;
     }
-    public abstract BufferedImage gantiAnimasi(BufferedImage g);
-    public abstract BufferedImage ledak(BufferedImage g);
+    
 }

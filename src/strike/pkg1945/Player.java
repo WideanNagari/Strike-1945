@@ -15,7 +15,7 @@ import javax.imageio.ImageIO;
  *
  * @author TUF
  */
-public class Player implements Serializable{
+public class Player implements Serializable,animasi{
     protected int x,y,width,height,speed;
     protected int cooldown,cd;
     protected int animasi,animasiknalpot;
@@ -42,11 +42,11 @@ public class Player implements Serializable{
         this.cd = 25;
         this.attack = 50;
         this.defend = 10;
-        this.hp = 1500;
+        this.hp = 10;
         this.level = 1;
         this.levell = 1;
         this.chancemiss = 5;
-        this.maxhp = 1500;
+        this.maxhp = 10;
         this.gold = 0;
         this.skor = 0;
         this.jumlahMusuh = 1;
@@ -345,6 +345,7 @@ public class Player implements Serializable{
         return animasi;
     }
     
+    @Override
     public BufferedImage gantiAnimasi(BufferedImage gambarKnalpot){
             if(this.animasi<3){
                 this.animasi++;
@@ -353,6 +354,7 @@ public class Player implements Serializable{
             }
             return gambarKnalpot;
     }
+    @Override
     public BufferedImage ledak(BufferedImage gambarLedak){
             if (this.mati == 1) {
                 this.animasi = 0;

@@ -27,10 +27,10 @@ public class Pause extends javax.swing.JFrame {
     static Player p;
     static GameFrame g;
     static MainMenu m;
-    static ArrayList<HighScores> high;
+    static ArrayList<HighScores<String,Integer>> high;
     static ArrayList<Player> player;
-    static ArrayList<inGameData> data;
-    public Pause(MainMenu main,Player p, GameFrame g, ArrayList<HighScores> h, ArrayList<Player> play, ArrayList<inGameData> d) {
+    static ArrayEnemy<inGameData<Enemy>> data;
+    public Pause(MainMenu main,Player p, GameFrame g, ArrayList<HighScores<String,Integer>> h, ArrayList<Player> play, ArrayEnemy<inGameData<Enemy>> d) {
         initComponents();
         high = h;
         data = d;
@@ -226,7 +226,7 @@ public class Pause extends javax.swing.JFrame {
         // TODO add your handling code here:
         m.high = new ArrayList<>();
         m.p = new ArrayList<>();
-        m.data = new ArrayList<>();
+        m.data = new ArrayEnemy<>();
         
         File f = new File("Highscore.txt");
         if(!f.exists()) { 
@@ -248,7 +248,7 @@ public class Pause extends javax.swing.JFrame {
         try{
             FileInputStream fin = new FileInputStream("Highscore.txt");
             ObjectInputStream in = new ObjectInputStream(fin);
-            m.high = (ArrayList<HighScores>)in.readObject();
+            m.high = (ArrayList<HighScores<String,Integer>>)in.readObject();
             in.close();
             fin.close();
         }catch(IOException ex){
@@ -306,7 +306,7 @@ public class Pause extends javax.swing.JFrame {
         try{
             FileInputStream fin = new FileInputStream("Data.txt");
             ObjectInputStream in = new ObjectInputStream(fin);
-            m.data = (ArrayList<inGameData>)in.readObject();
+            m.data = (ArrayEnemy<inGameData<Enemy>>)in.readObject();
             in.close();
             fin.close();
         }catch(IOException ex){

@@ -14,7 +14,7 @@ import javax.imageio.ImageIO;
  *
  * @author Asus
  */
-public class EnemyBlazelich extends Enemy{
+public class EnemyBlazelich extends Enemy implements animasi{
     public EnemyBlazelich(){
         this.damage=50;
     }

@@ -24,14 +24,14 @@ public class MainMenu extends javax.swing.JFrame {
     /**
      * Creates new form MainMenu
      */
-    static ArrayList<HighScores> high;
+    static ArrayList<HighScores<String,Integer>> high;
     static ArrayList<Player> p;
-    static ArrayList<inGameData> data;
+    static ArrayEnemy<inGameData<Enemy>> data;
     public MainMenu() {
         initComponents();
-        high = new ArrayList<>();
+        high = new ArrayList();
         p = new ArrayList<>();
-        data = new ArrayList<>();
+        data = new ArrayEnemy<>();
         
         File f = new File("Highscore.txt");
         if(!f.exists()) { 
@@ -53,7 +53,7 @@ public class MainMenu extends javax.swing.JFrame {
         try{
             FileInputStream fin = new FileInputStream("Highscore.txt");
             ObjectInputStream in = new ObjectInputStream(fin);
-            high = (ArrayList<HighScores>)in.readObject();
+            high = (ArrayList<HighScores<String,Integer>>)in.readObject();
             in.close();
             fin.close();
         }catch(IOException ex){
@@ -111,7 +111,7 @@ public class MainMenu extends javax.swing.JFrame {
         try{
             FileInputStream fin = new FileInputStream("Data.txt");
             ObjectInputStream in = new ObjectInputStream(fin);
-            data = (ArrayList<inGameData>)in.readObject();
+            data = (ArrayEnemy<inGameData<Enemy>>)in.readObject();
             in.close();
             fin.close();
         }catch(IOException ex){
@@ -212,6 +212,34 @@ public class MainMenu extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        try{
+            FileOutputStream fo = new FileOutputStream("Highscore.txt");
+            ObjectOutputStream out = new ObjectOutputStream(fo);
+            out.writeObject(high);
+            out.close();
+            fo.close();
+        }catch(IOException ex){
+            ex.printStackTrace();
+        }  
+        try{
+            FileOutputStream fo = new FileOutputStream("Player.txt");
+            ObjectOutputStream out = new ObjectOutputStream(fo);
+            out.writeObject(p);
+            out.close();
+            fo.close();
+        }catch(IOException ex){
+            ex.printStackTrace();
+        } 
+        
+        try{
+            FileOutputStream fo = new FileOutputStream("Data.txt");
+            ObjectOutputStream out = new ObjectOutputStream(fo);
+            out.writeObject(data);
+            out.close();
+            fo.close();
+        }catch(IOException ex){
+            ex.printStackTrace();
+        } 
         this.dispatchEvent(new WindowEvent(this,WindowEvent.WINDOW_CLOSING));
     }//GEN-LAST:event_jButton1ActionPerformed
 

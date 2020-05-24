@@ -11,14 +11,14 @@ import java.util.ArrayList;
  *
  * @author Widean Nagari
  */
-public class HighScores implements Serializable{
-    private String nama;
-    private int uang;
-    private int skor;
-    private int level;
-    private int letak;
+public class HighScores<T1,T2> implements Serializable{
+    private T1 nama;
+    private T2 uang;
+    private T2 skor;
+    private T2 level;
+    private T2 letak;
 
-    public HighScores(String nama, int uang, int skor, int level, int letak) {
+    public HighScores(T1 nama, T2 uang, T2 skor, T2 level, T2 letak) {
         this.nama = nama;
         this.uang = uang;
         this.skor = skor;
@@ -26,23 +26,23 @@ public class HighScores implements Serializable{
         this.letak = letak;
     }
     
-    public int getLetak() {
+    public T2 getLetak() {
         return letak;
     }
 
-    public String getNama() {
+    public T1 getNama() {
         return nama;
     }
 
-    public int getUang() {
+    public T2 getUang() {
         return uang;
     }
 
-    public int getSkor() {
+    public T2 getSkor() {
         return skor;
     }
 
-    public int getLevel() {
+    public T2 getLevel() {
         return level;
     }
     

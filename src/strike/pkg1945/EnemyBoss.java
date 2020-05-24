@@ -15,7 +15,7 @@ import javax.imageio.ImageIO;
  *
  * @author Asus
  */
-public class EnemyBoss{
+public class EnemyBoss implements animasi{
     protected int x,y,width,height,speed;
     protected int hp;
     protected int cooldown;
@@ -94,6 +94,7 @@ public class EnemyBoss{
         return height;
     }
     
+    @Override
     public BufferedImage gantiAnimasi(BufferedImage gambar){
             if(this.animasi<3){
                 this.animasi++;
@@ -103,6 +104,7 @@ public class EnemyBoss{
             return gambar;
     }
     
+    @Override
     public BufferedImage ledak(BufferedImage gambarLedak){
             if (this.mati == 1) {
                 this.animasi = 0;

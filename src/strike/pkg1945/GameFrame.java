@@ -23,11 +23,11 @@ public class GameFrame extends javax.swing.JFrame {
     MainPanel panel1;
     Player p;
     static int posisi;
-    static ArrayList<HighScores> high;
+    static ArrayList<HighScores<String,Integer>> high;
     static ArrayList<Player> player;
-    static ArrayList<inGameData> data;
+    static ArrayEnemy<inGameData<Enemy>> data;
     static MainMenu m;
-    public GameFrame(MainMenu main,ArrayList<HighScores> h, ArrayList<Player> play, ArrayList<inGameData> d,int pos) {
+    public GameFrame(MainMenu main,ArrayList<HighScores<String,Integer>> h, ArrayList<Player> play, ArrayEnemy<inGameData<Enemy>> d,int pos) {
         initComponents();
         this.p = new Player("",0);
         player = play;
