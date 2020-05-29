@@ -26,6 +26,42 @@ public class Upgrade extends javax.swing.JFrame {
         Defend.setText(p.getDefend()+"");
         Bullet.setText(p.getJumlahpeluru()+"/7");
         gold.setText(p.getGold()+"");
+        
+        String uang = "";
+        for (int i = 0; i < tombolbullet.getText().length(); i++) {
+            if(tombolbullet.getText().charAt(i) >= '0' && tombolbullet.getText().charAt(i) <= '9' ){
+                uang += tombolbullet.getText().charAt(i);
+            }
+        }
+        int harga = Integer.parseInt(uang);
+        tombolbullet.setText((harga*p.getJumlahpeluru())+" Gold");
+        
+        uang = "";
+        for (int i = 0; i < tomboldefend.getText().length(); i++) {
+            if(tomboldefend.getText().charAt(i) >= '0' && tomboldefend.getText().charAt(i) <= '9' ){
+                uang += tomboldefend.getText().charAt(i);
+            }
+        }
+        harga = Integer.parseInt(uang);
+        tomboldefend.setText((harga*p.getLeveldefend())+" Gold");
+        
+        uang = "";
+        for (int i = 0; i < tombolattack.getText().length(); i++) {
+            if(tombolattack.getText().charAt(i) >= '0' && tombolattack.getText().charAt(i) <= '9' ){
+                uang += tombolattack.getText().charAt(i);
+            }
+        }
+        harga = Integer.parseInt(uang);
+        tombolattack.setText((harga*p.getLevelattack())+" Gold");
+        
+        uang = "";
+        for (int i = 0; i < tombolhp.getText().length(); i++) {
+            if(tombolhp.getText().charAt(i) >= '0' && tombolhp.getText().charAt(i) <= '9' ){
+                uang += tombolhp.getText().charAt(i);
+            }
+        }
+        harga = Integer.parseInt(uang);
+        tombolhp.setText((harga*p.getLevelhp())+" Gold");
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
