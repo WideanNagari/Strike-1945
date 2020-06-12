@@ -681,7 +681,7 @@ public class MainPanel extends javax.swing.JPanel implements KeyListener, MouseL
                     ctr++;main.data.get(p.getPosisiSave()).setCtr(ctr);
                 }
                 if (boss!=null) {ctrboss++;main.data.get(p.getPosisiSave()).setCtrboss(ctrboss);}
-                if (p.getMusuhTerbunuh()==2) {
+                if (p.getMusuhTerbunuh()==10) {
                     p.setAngelBox(p.getAngelBox()-1);
                     p.setMusuhTerbunuh(0);
                     p.setGold(p.getGold()+(1000*p.getLevel()));

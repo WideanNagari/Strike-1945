@@ -18,7 +18,7 @@ import javax.imageio.ImageIO;
 public class Player implements Serializable,animasi{
     protected int x,y,width,height,speed;
     protected int cooldown,cd;
-    protected int animasi,animasiknalpot;
+    protected int animasi;
     protected int attack,defend,level,levell,chancemiss,maxhp,hp,skor,jumlahpeluru,gold;
     protected int xk,yk;
     protected int levelhp,levelattack,leveldefend;
